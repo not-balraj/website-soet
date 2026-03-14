@@ -240,3 +240,18 @@ font-size:14px;
 .home-icon:hover{
     color: orange;
 }
+
+.footer-heading {
+    position: relative;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer-heading::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #ff3b3b; /* red dash */
+    margin-top: 8px;
+}
