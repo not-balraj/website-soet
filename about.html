@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>About - SOET</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+<div id="header"></div>
+
+<!--Footer Part starts here-->
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <a href="index.html">
+      <img src="images/logo2.png" class="footer-logo">
+      </a>
+
+      <a href="index.html">
+      <p>
+        School of Engineering and Technology <br>
+        Samrat Vikramaditya Vishwavidyalaya <br>
+        Ujjain, India
+      </p>
+      </a>
+      
+
+      <p>+91-8770122362</p>
+      <p>soet@vikramuniv.ac.in</p>
+      <a href="https://soet.ac.in" target="_blank">soet.ac.in</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li>Departments</li>
+        <li>Online services</li>
+        <li>Campus Life</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Explore</h3>
+      <ul>
+        <li>Rules</li>
+        <li>Educational Programmes</li>
+        <li>NIRF Ranking</li>
+        <li>NAAC</li>
+        <li>Anti Ragging Committee & Helpline</li>
+        <li>Internal Complaints Committee & Women Cell</li>
+        <li>Contact Us</li>
+
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>☁</h3>
+      <p id="date"></p>
+<p id="time"></p>
+<p id="location">स्वामी विवेकानन्द स्नातक भवन </p>
+<p id="location">Ujjain , India</p>
+
+<p id="weather">Loading weather...</p>
+<p id="temp"></p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    Copyright © 2026 Student Tech Team SOET
+  </div>
+
+  <div class="footer-info">
+Last Updated: <span id="lastUpdated"></span> |
+Visitors: <span id="visitorCount"></span>
+</div>
+</footer>
+
+</div>
+
+
+<script src="js/script.js"></script>
+
+
+<script>
+
+// Date
+const today = new Date();
+document.getElementById("date").innerHTML =
+today.toDateString();
+
+// Time (updates every second)
+setInterval(function(){
+let now = new Date();
+document.getElementById("time").innerHTML =
+now.toLocaleTimeString();
+},1000);
+
+
+// WEATHER API
+const apiKey = "6ab4623b616a1ea162cf45d73c2dcb32";
+const city = "Ujjain";
+
+fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
+.then(response => response.json())
+.then(data => {
+
+document.getElementById("weather").innerHTML =
+data.weather[0].description;
+
+document.getElementById("temp").innerHTML =
+"Temp: " + data.main.temp + "°C";
+
+});
+
+</script>
+
+<div id="searchOverlay">
+
+    <span class="closeSearch" onclick="closeSearch()">✖</span>
+
+    <div class="searchBox">
+        <input type="text" placeholder="Search Your Future Here..." />
+        <button>Search</button>
+    </div>
+
+</div>
+
+<script>
+
+function openSearch(){
+    document.getElementById("searchOverlay").style.display="flex";
+}
+
+function closeSearch(){
+    document.getElementById("searchOverlay").style.display="none";
+}
+
+</script>
+
+<script>
+
+
+document.getElementById("lastUpdated").innerHTML = document.lastModified;
+
+
+let count = localStorage.getItem("visitorCount");
+
+if(count === null){
+count = 1;
+}else{
+count = Number(count) + 1;
+}
+
+localStorage.setItem("visitorCount", count);
+document.getElementById("visitorCount").innerText = count;
+
+</script>
+
+<script>
+function googleTranslateElementInit() {
+new google.translate.TranslateElement(
+{pageLanguage: 'en'},
+'google_translate_element'
+);
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+
+  let slides = document.getElementsByClassName("slides");
+
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  slideIndex++;
+
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+
+  slides[slideIndex-1].style.display = "block";
+
+  setTimeout(showSlides, 20000);
+}
+
+function changeSlide(n){
+  slideIndex += n-1;
+  showSlides();
+}
+
+</script>
+
+<script src="js/script.js"></script>
+<script>
+fetch("header.html")
+.then(res => res.text())
+.then(data => {
+document.getElementById("header").innerHTML = data;
+});
+
+</script>
+</body>
+</html>
