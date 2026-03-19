@@ -692,7 +692,7 @@ display:block;
     font-weight: 700;
     letter-spacing: 1px;
     color: #222
-    margin-bottom: 15px;
+    margin-bottom; 15px;
 }
 
 .director-box img {
@@ -706,4 +706,440 @@ display:block;
 .director-name {
     font-size: 18px;
     color: #555;
+}
+/* ---------------- ACADEMIC DEPARTMENTS SECTION ---------------- */
+.departments-section {
+    padding: 80px 100px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.dept-header h2 {
+    color: #800000;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.dept-header .line {
+    width: 60px;
+    height: 4px;
+    background-color: #800000;
+    margin: 0 auto 50px auto;
+}
+
+.dept-grid {
+    display: grid;
+    /* This forces exactly 3 equal columns */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dept-card {
+    background: #fdfdfd;
+    padding: 40px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-bottom: 4px solid #800000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dept-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.dept-icon {
+    font-size: 45px;
+    color: #800000;
+    margin-bottom: 20px;
+}
+
+.dept-card h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    min-height: 50px; 
+}
+
+.dept-card p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.dept-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #800000;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.dept-btn:hover {
+    background-color: #5a0000;
+}
+/* Default for Desktop: 3 columns */
+.dept-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+/* Hide cards by default if they have the 'hidden' class */
+.dept-card.hidden {
+    display: none;
+}
+
+/* Style for the Show More button */
+.show-more-container {
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+/* Update these styles to target both the UG and PG buttons */
+#ug-btn, #pg-btn {
+    padding: 12px 35px;
+    background-color: #800000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#ug-btn:hover, #pg-btn:hover {
+    background-color: #5a0000;
+    transform: translateY(-2px);
+}
+/* ================= NEWS & EVENTS SECTION ================= */
+.news-events-section {
+    padding: 50px 5%;
+    background-color: #f9f9f9; /* A very light gray to separate it from the white section above */
+}
+
+.news-events-container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap; /* Keeps it mobile-friendly */
+}
+
+/* Common styles for both Left and Right columns */
+.news-col, .events-col {
+    flex: 1;
+    min-width: 300px; /* Prevents them from getting too skinny on phones */
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-top: 4px solid #800000; /* Maroon top border */
+}
+
+.news-col h3, .events-col h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 22px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.news-col h3 i, .events-col h3 i {
+    color: #800000;
+    margin-right: 10px;
+}
+
+/* --- Latest News Styling --- */
+/* --- Latest News Styling (Seamless Vertical Scroll) --- */
+.news-box {
+    height: 300px; /* Forces the box to stay exactly this tall */
+    overflow: hidden; /* Completely hides the extra news items */
+    position: relative;
+    padding-right: 10px;
+    display: block;
+}
+
+.news-track {
+    display: flex;
+    flex-direction: column;
+    animation: verticalScroll 15s linear infinite;
+}
+
+.news-box:hover .news-track {
+    animation-play-state: paused;
+}
+
+@keyframes verticalScroll {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%);
+    }
+}
+.news-item {
+    padding: 10px 0;
+}
+
+.news-date {
+    color: #800000;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.news-item p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.news-item a {
+    color: #800000;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.news-item a:hover {
+    text-decoration: underline;
+}
+
+.news-box hr {
+    border: 0;
+    border-top: 1px dashed #ccc;
+    margin: 10px 0;
+}
+
+/* --- Upcoming Events Styling --- */
+.event-card {
+    display: flex;
+    align-items: center;
+    background: #f8f8f8;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    padding: 15px;
+    border-left: 4px solid transparent;
+    transition: 0.3s;
+}
+
+.event-card:hover {
+    border-left: 4px solid #800000;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.event-date {
+    background: #800000;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-align: center;
+    min-width: 60px;
+    margin-right: 15px;
+}
+
+.event-date .day {
+    display: block;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.event-date .month {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.event-details h4 {
+    color: #333;
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.event-details p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+}
+
+.event-details p i {
+    color: #800000;
+    margin-right: 5px;
+}
+
+.view-all-btn {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background: #800000;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.view-all-btn:hover {
+    background: #5a0000;
+}
+/* ================= CAMPUS LIFE SECTION ================= */
+.campus-life-section {
+    padding: 60px 5%;
+    background-color: #ffffff;
+}
+
+.campus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.campus-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.campus-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Image container to control the hover zoom effect */
+.campus-img {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.campus-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.campus-card:hover .campus-img img {
+    transform: scale(1.1); /* Zooms the image in slightly on hover */
+}
+
+.campus-info {
+    padding: 20px;
+    border-bottom: 4px solid #800000; /* Signature maroon accent */
+}
+
+.campus-info h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.campus-info h3 i {
+    color: #800000;
+}
+
+.campus-info p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+/* ================= IMPORTANT LINKS SEAMLESS CAROUSEL ================= */
+.logo-ticker-section {
+    padding: 50px 5%;
+    background-color: #f4f4f4; 
+}
+
+.ticker-container {
+    margin-top: 30px;
+    padding: 10px 0;
+    overflow: hidden; /* This hides the logos that have scrolled off-screen */
+    white-space: nowrap; /* Keeps everything in one long horizontal line */
+    position: relative;
+}
+
+.logo-track {
+    display: inline-flex;
+    gap: 40px; 
+    padding: 20px 10px;
+    
+    /* Here is the magic animation! Adjust '20s' to change the speed (smaller = faster) */
+    animation: infiniteScroll 20s linear infinite;
+}
+
+/* Pause the animation when the user hovers over it to click a link */
+.logo-track:hover {
+    animation-play-state: paused;
+}
+
+/* The Keyframes that make it move */
+@keyframes infiniteScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* This moves the track exactly halfway (past Set 1). 
+           Because Set 2 looks exactly like Set 1, when it snaps back to 0%, your eyes can't tell! */
+        transform: translateX(calc(-50% - 20px)); 
+    }
+}
+
+/* --- (Keep your existing .logo-card and .logo-card:hover CSS from earlier here) --- */
+.logo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.logo-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    transition: transform 0.3s;
+}
+
+.logo-card span {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.logo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-bottom: 3px solid #800000;
+    color: #800000;
+}
+
+.logo-card:hover img {
+    transform: scale(1.1);
 }
