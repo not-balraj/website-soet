@@ -61,14 +61,28 @@ function toggleDarkMode(){
 let isDark = document.body.classList.contains("dark-mode");
 let nextMode = isDark ? "light" : "dark";
 
-localStorage.setItem("theme", nextMode);
 applyTheme(nextMode);
+
+try{
+localStorage.setItem("theme", nextMode);
+}
+catch(error){
+// Ignore storage failures (e.g., restricted local file contexts).
+}
 
 }
 
 document.addEventListener("DOMContentLoaded", function(){
 
-let savedTheme = localStorage.getItem("theme") || "light";
+let savedTheme = "light";
+
+try{
+savedTheme = localStorage.getItem("theme") || "light";
+}
+catch(error){
+savedTheme = "light";
+}
+
 applyTheme(savedTheme);
 
 });
