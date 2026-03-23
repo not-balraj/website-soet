@@ -113,11 +113,11 @@ width:100px;
 .right-emblems{
 display:flex;
 align-items:center;
-gap:14px;
+gap:20px;
 }
 
 .emblem-right{
-width:52px;
+width:64px;
 height:auto;
 display:block;
 }
@@ -140,11 +140,11 @@ width:90px;
 
 @media (max-width: 768px){
 .emblem-right{
-width:42px;
+width:52px;
 }
 
 .right-emblems{
-gap:10px;
+gap:14px;
 }
 }
 
