@@ -110,6 +110,18 @@ gap:15px;
 width:100px;
 }
 
+.right-emblems{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.emblem-right{
+width:52px;
+height:auto;
+display:block;
+}
+
 .title h1{
 margin:0;
 font-size:24px;
@@ -124,6 +136,16 @@ color:#666;
 
 .constitution{
 width:90px;
+}
+
+@media (max-width: 768px){
+.emblem-right{
+width:42px;
+}
+
+.right-emblems{
+gap:10px;
+}
 }
 
 
