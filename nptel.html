@@ -8,6 +8,59 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<style>
+    :root {
+      --soet-maroon: #800000;
+      --soet-gold:   #ffcc00;
+      --bg-light:    #f8f9fa;
+      --text-dark:   #111111;
+      --text-gray:   #555555;
+      --line-color:  #e0e0e0;
+      --sans-font:   'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --serif-font:  'Georgia', 'Times New Roman', serif;
+    }
+
+    .cs-main { font-family: var(--sans-font); background: #fafafa; color: var(--text-dark); overflow-x: hidden; }
+
+    /* ── HERO ── */
+    .np-hero {
+      position: relative;
+      width: 100%; height: 46vh; min-height: 380px;
+      background: url('https://nptel.ac.in/_app/immutable/assets/front.BnYX-uS_.avif') center/cover no-repeat;
+      background-attachment: fixed;
+      display: flex; align-items: flex-end; padding: 0 5%;
+      margin-bottom: 80px; box-sizing: border-box;
+    }
+    .np-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%);
+      z-index: 1;
+    }
+    .np-hero-box {
+      position: relative; z-index: 2;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      padding: 45px 50px; border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      max-width: 800px; border-top: 6px solid var(--soet-maroon);
+      bottom: -40px;
+    }
+    .np-breadcrumb {
+      font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
+      color: #666; margin-bottom: 15px; font-weight: bold;
+    }
+    .np-breadcrumb a { color: var(--soet-maroon); text-decoration: none; transition: .3s; }
+    .np-breadcrumb .sep { margin: 0 8px; color: #ccc; }
+    .np-hero-box h1 {
+      font-size: 44px; color: #222; margin: 0 0 15px;
+      font-family: var(--serif-font); line-height: 1.2;
+      font-weight: normal;
+    }
+    .np-hero-box p {
+      color: #555; font-size: 18px; margin: 0;
+      border-left: 4px solid var(--soet-gold);
+      padding-left: 15px; line-height: 1.6;
+    }
+    </style>
 
 </head>
 
@@ -209,12 +262,20 @@
 </nav>
 
 
-<section class="nptel-banner">
-    <div class="banner-content">
-        <h1>NPTEL & MOOCs Portal</h1>
-        <p><a href="index.html">Home</a> / <a href="academics.html">Academics</a> / NPTEL</p>
+  <section class="np-hero">
+    <div class="np-hero-overlay"></div>
+    <div class="np-hero-box">
+      <div class="np-breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="academics.html">Academics</a>
+        <span class="sep">/</span>
+        <span style="color:#333;">NPTEL & MOOCs</span>
+      </div>
+      <h1>NPTEL & MOOCs</h1>
+      <p>Expand your knowledge with free online courses from premier institutions.</p>
     </div>
-</section>
+  </section>
 
 <section class="nptel-master-container">
     

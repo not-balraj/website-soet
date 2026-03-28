@@ -209,10 +209,65 @@
 </nav>
 
 
-<section class="page-banner" style="background: linear-gradient(rgba(0,15,30,0.85), rgba(0,15,30,0.85)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; padding: 120px 0; text-align: center; color: white;">
-    <h1 style="font-size: 46px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px;">Research & Development</h1>
-    <p style="color: #ffcc00; font-weight: bold; font-size: 18px; letter-spacing: 1px;">Pioneering Innovation • Driving Global Solutions</p>
-</section>
+<style>
+    /* --- BASE & VARIABLES --- */
+    :root {
+        --soet-maroon: #800000;
+        --soet-gold: #ffcc00;
+        --bg-light: #f8f9fa;
+        --text-dark: #111111;
+        --text-gray: #555555;
+        --line-color: #e0e0e0;
+        --sans-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        --serif-font: 'Georgia', 'Times New Roman', serif;
+    }
+
+    .placement-main-content {
+        font-family: var(--sans-font);
+        background-color: #fafafa;
+        color: var(--text-dark);
+        overflow-x: hidden;
+    }
+
+    /* --- HERO SECTION --- */
+    .placement-hero-section {
+        position: relative; 
+        width: 100%; 
+        height: 55vh; 
+        min-height: 450px; 
+        background: url('https://images.unsplash.com/photo-1592659762303-90081d34b277?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZW5naW5lZXJpbmd8ZW58MHx8MHx8fDA%3D') center/cover no-repeat; 
+        background-attachment: fixed;
+        display: flex; 
+        align-items: flex-end; 
+        padding: 0 5%; 
+        margin-bottom: 80px;
+        box-sizing: border-box;
+    }
+    .hero-overlay {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+        background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%); z-index: 1;
+    }
+    .hero-box {
+        position: relative; z-index: 2; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); 
+        padding: 45px 50px; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+        max-width: 800px; border-top: 6px solid var(--soet-maroon); bottom: -40px;
+    }
+</style>
+
+<section class="placement-hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-box">
+            <div style="font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 15px; font-weight: bold;">
+                <a href="index.html" style="color: #800000; text-decoration: none; transition: 0.3s;">Home</a> 
+                <span style="margin: 0 8px; color: #ccc;">/</span> 
+                <span style="color: #333;">Research & Development</span>
+            </div>
+            <h1 style="font-size: 44px; color: #222; margin-bottom: 15px; font-family: 'Georgia', serif; line-height: 1.2; font-weight: normal; margin-top: 0;">Research & Development</h1>
+            <p style="color: #555; font-size: 18px; margin: 0; border-left: 4px solid #ffcc00; padding-left: 15px; line-height: 1.6;">
+                At the School of Engineering and Technology, we are committed to fostering a vibrant ecosystem of fundamental and translational research.
+            </p>
+        </div>
+    </section>
 
 <section id="rnd-dean" style="padding: 90px 5%; background: #fff;">
     <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 60px; align-items: flex-start;">

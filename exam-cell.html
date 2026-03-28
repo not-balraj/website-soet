@@ -8,15 +8,63 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<style> 
+<style>
+    :root {
+      --soet-maroon: #800000;
+      --soet-gold:   #ffcc00;
+      --bg-light:    #f8f9fa;
+      --text-dark:   #111111;
+      --text-gray:   #555555;
+      --line-color:  #e0e0e0;
+      --sans-font:   'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --serif-font:  'Georgia', 'Times New Roman', serif;
+    }
+
+    .cs-main { font-family: var(--sans-font); background: #fafafa; color: var(--text-dark); overflow-x: hidden; }
+ 
+
+    /* ── HERO ── */
+    .np-hero {
+      position: relative;
+      width: 100%; height: 46vh; min-height: 380px;
+      background: linear-gradient(rgba(0, 31, 63, 0.85), rgba(0, 31, 63, 0.95)), url('https://images.unsplash.com/photo-1606326608690-4e0281b1e588?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZXhhbXxlbnwwfHwwfHx8MA%3D%3D') center/cover no-repeat ;
+      background-attachment: fixed;
+      display: flex; align-items: flex-end; padding: 0 5%;
+      margin-bottom: 80px; box-sizing: border-box;
+    }
+    .np-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%);
+      z-index: 1;
+    }
+    .np-hero-box {
+      position: relative; z-index: 2;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      padding: 45px 50px; border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      max-width: 800px; border-top: 6px solid var(--soet-maroon);
+      bottom: -40px;
+    }
+    .np-breadcrumb {
+      font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
+      color: #666; margin-bottom: 15px; font-weight: bold;
+    }
+    .np-breadcrumb a { color: var(--soet-maroon); text-decoration: none; transition: .3s; }
+    .np-breadcrumb .sep { margin: 0 8px; color: #ccc; }
+    .np-hero-box h1 {
+      font-size: 44px; color: #222; margin: 0 0 15px;
+      font-family: var(--serif-font); line-height: 1.2;
+      font-weight: normal;
+    }
+    .np-hero-box p {
+      color: #555; font-size: 18px; margin: 0;
+      border-left: 4px solid var(--soet-gold);
+      padding-left: 15px; line-height: 1.6;
+    }
+    
     /* ==========================================================================
    EXAMINATION CELL & ACCORDION STYLES
    ========================================================================== */
-
-.exam-banner { background: linear-gradient(rgba(0, 31, 63, 0.85), rgba(0, 31, 63, 0.95)), url('https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=1200') center/cover; color: white; text-align: center; padding: 120px 20px; margin-bottom: 0; }
-.exam-banner h1 { font-size: 48px; margin-bottom: 15px; }
-.exam-banner a { color: #ffcc00; text-decoration: none; }
-
 .exam-master-container { display: grid; grid-template-columns: 1fr 350px; gap: 40px; max-width: 1300px; margin: 50px auto 80px; padding: 0 5%; align-items: start; }
 .exam-main-content { display: flex; flex-direction: column; gap: 20px; }
 .exam-intro h2 { color: #001f3f; font-size: 28px; margin-top: 0; margin-bottom: 15px; }
@@ -270,12 +318,21 @@
 </nav>
 
 
-<section class="exam-banner">
-    <div class="banner-content">
-        <h1>Examination Cell</h1>
-        <p><a href="index.html">Home</a> / Academics / Examination</p>
+<section class="np-hero">
+    <div class="np-hero-overlay"></div>
+    <div class="np-hero-box">
+      <div class="np-breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="academics.html">Academics</a>
+        <span class="sep">/</span>
+        <span style="color:#333;">Examination Cell</span>
+      </div>
+      <h1>Examination Cell</h1>
+      <p>Manage your examination-related queries and access important resources.</p>
     </div>
-</section>
+  </section>
+
 
 <section class="exam-master-container">
     
@@ -400,16 +457,7 @@
             </div>
         </div>
 
-    </aside> </section> ```
-
----
-
-### Part 2: The B.Tech Resource Portal (Fixes Images 1 & 2)
-This ensures the sidebar stays on the left, the study materials stay on the right, and **most importantly**, the footer stays completely at the bottom and doesn't get swallowed into your content.
-
-**1. Replace your `btech-resources.html` main content with this:**
-
-```html
+    </aside> </section> 
 
 
 <!-- FOOTER -->

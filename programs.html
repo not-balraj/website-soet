@@ -1,482 +1,343 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>School Of Engineering and Technology</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs Offered | SOET</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* DEFENSIVE RESET — kills style.css bleed into pg-main */
+    .pg-main,.pg-main *{box-sizing:border-box!important}
+    .pg-main{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif!important;background:#fafafa!important;color:#111!important;overflow-x:hidden!important}
+    .pg-main ul,.pg-main li{list-style:none!important;margin:0!important;padding:0!important}
+    .pg-main h1,.pg-main h2,.pg-main h3,.pg-main h4{margin:0!important;padding:0!important;font-weight:normal!important;line-height:1.2!important}
+    .pg-main p{margin:0!important;padding:0!important}
+    .pg-main section{display:block!important}
 
-<link rel="stylesheet" href="css/style.css">
+    :root{--m:#800000;--g:#ffcc00;--serif:'Georgia','Times New Roman',serif;--sans:'Helvetica Neue',Helvetica,Arial,sans-serif}
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    /* CONTAINER */
+    .pgw{max-width:1100px!important;margin:0 auto!important;padding:0 28px!important}
 
+    /* HERO */
+    .pg-hero{position:relative!important;width:100%!important;height:46vh!important;min-height:380px!important;background:url('images/SOET_Ai.jpg') center/cover no-repeat!important;background-attachment:fixed!important;display:flex!important;align-items:flex-end!important;padding:0 5%!important;margin-bottom:80px!important}
+    .pg-hero-ov{position:absolute!important;inset:0!important;background:linear-gradient(to bottom,rgba(0,0,0,0.08),rgba(0,0,0,0.65))!important;z-index:1!important}
+    .pg-hero-bx{position:relative!important;z-index:2!important;background:rgba(255,255,255,0.96)!important;backdrop-filter:blur(12px)!important;padding:42px 50px!important;border-radius:8px!important;box-shadow:0 20px 40px rgba(0,0,0,0.15)!important;max-width:760px!important;border-top:6px solid var(--m)!important;bottom:-40px!important}
+    .pg-crumb{font-size:12px!important;text-transform:uppercase!important;letter-spacing:2px!important;color:#666!important;margin-bottom:14px!important;font-weight:700!important;display:block!important}
+    .pg-crumb a{color:var(--m)!important;text-decoration:none!important}
+    .pg-crumb .s{margin:0 7px!important;color:#ccc!important}
+    .pg-hero-bx h1{font-family:var(--serif)!important;font-size:42px!important;color:#222!important;margin-bottom:14px!important;font-weight:normal!important;line-height:1.2!important}
+    .pg-hero-sub{color:#555!important;font-size:17px!important;border-left:4px solid var(--g)!important;padding-left:15px!important;line-height:1.6!important;display:block!important}
 
+    /* SWISS HEADER */
+    .pg-sh{border-top:3px solid #111!important;padding-top:22px!important;margin-bottom:10px!important;display:flex!important;justify-content:space-between!important;align-items:flex-end!important}
+    .pg-sh-t{font-size:40px!important;font-weight:900!important;letter-spacing:-1px!important;color:#111!important;line-height:1!important;font-family:var(--sans)!important}
+    .pg-sh-s{font-size:11px!important;text-transform:uppercase!important;letter-spacing:2px!important;color:#555!important;font-weight:700!important;padding-bottom:4px!important;font-family:var(--sans)!important}
+    .pg-intro{font-family:var(--serif)!important;font-size:19px!important;line-height:1.65!important;color:#111!important;margin-top:12px!important;margin-bottom:12px!important;max-width:820px!important;display:block!important}
+    .pg-rule{width:60px!important;height:4px!important;background:var(--g)!important;border-radius:2px!important;display:block!important;margin-bottom:44px!important}
+
+    /* CARDS SECTION */
+    .pg-cards-sec{padding:0 0 90px!important}
+    .pg-cards-grid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:26px!important}
+
+    .pg-card{background:#fff!important;border:1px solid #efefef!important;border-bottom:4px solid transparent!important;border-radius:10px!important;padding:36px 28px 28px!important;position:relative!important;overflow:hidden!important;box-shadow:0 6px 20px rgba(0,0,0,0.04)!important;transition:all .32s cubic-bezier(.165,.84,.44,1)!important;display:flex!important;flex-direction:column!important}
+    .pg-card:hover{transform:translateY(-8px)!important;box-shadow:0 20px 40px rgba(128,0,0,0.09)!important;border-bottom:4px solid var(--m)!important}
+    .pg-card-bg{position:absolute!important;top:-10px!important;right:-6px!important;font-size:106px!important;font-weight:900!important;color:rgba(128,0,0,0.035)!important;line-height:1!important;z-index:0!important;pointer-events:none!important;transition:color .32s,transform .32s!important;font-family:var(--sans)!important}
+    .pg-card:hover .pg-card-bg{color:rgba(128,0,0,0.07)!important;transform:scale(1.05)!important}
+    .pg-card-ico{width:72px!important;height:72px!important;background:rgba(255,204,0,0.12)!important;border-radius:50%!important;display:flex!important;align-items:center!important;justify-content:center!important;margin-bottom:22px!important;position:relative!important;z-index:1!important;flex-shrink:0!important;transition:all .32s ease!important}
+    .pg-card-ico i{font-size:1.6rem!important;color:var(--m)!important;transition:color .32s!important}
+    .pg-card:hover .pg-card-ico{background:var(--m)!important;transform:scale(1.08)!important}
+    .pg-card:hover .pg-card-ico i{color:#fff!important}
+    .pg-card-lbl{font-size:10px!important;font-weight:800!important;text-transform:uppercase!important;letter-spacing:2px!important;color:var(--m)!important;margin-bottom:8px!important;display:block!important;position:relative!important;z-index:1!important;font-family:var(--sans)!important}
+    .pg-card h3{font-family:var(--serif)!important;font-size:1.45rem!important;font-weight:normal!important;color:#111!important;line-height:1.25!important;margin-bottom:13px!important;position:relative!important;z-index:1!important}
+    .pg-card-txt{font-size:.9rem!important;color:#555!important;line-height:1.65!important;margin-bottom:24px!important;position:relative!important;z-index:1!important;flex:1!important;display:block!important;font-family:var(--sans)!important}
+    .pg-pills{display:flex!important;flex-wrap:wrap!important;gap:8px!important;margin-bottom:24px!important;position:relative!important;z-index:1!important}
+    .pg-pill{display:inline-flex!important;align-items:center!important;gap:5px!important;background:#f6f6f6!important;border:1px solid #e5e5e5!important;border-radius:4px!important;padding:4px 10px!important;font-size:.76rem!important;font-weight:700!important;color:#444!important;font-family:var(--sans)!important}
+    .pg-pill i{color:var(--m)!important;font-size:.72rem!important}
+    .pg-cta{display:inline-flex!important;align-items:center!important;gap:7px!important;color:var(--m)!important;border:1.5px solid var(--m)!important;padding:9px 20px!important;border-radius:4px!important;text-decoration:none!important;font-size:.82rem!important;font-weight:700!important;letter-spacing:.3px!important;transition:all .2s ease!important;position:relative!important;z-index:1!important;align-self:flex-start!important;font-family:var(--sans)!important}
+    .pg-cta:hover{background:var(--m)!important;color:#fff!important}
+    .pg-cta i{transition:transform .2s!important;font-size:.78rem!important}
+    .pg-cta:hover i{transform:translateX(3px)!important}
+
+    /* INTAKE SECTION */
+    .pg-intake-sec{padding:70px 0 90px!important;background:#f9f9f9!important}
+    .pg-tabs{display:flex!important;flex-wrap:wrap!important;border-bottom:2px solid #e5e5e5!important;margin-top:36px!important}
+    .pg-tab{padding:11px 24px!important;font-size:.83rem!important;font-weight:700!important;color:#888!important;cursor:pointer!important;border:none!important;border-bottom:3px solid transparent!important;margin-bottom:-2px!important;background:none!important;font-family:var(--sans)!important;letter-spacing:.3px!important;transition:color .18s!important}
+    .pg-tab:hover{color:var(--m)!important}
+    .pg-tab.on{color:var(--m)!important;border-bottom-color:var(--m)!important}
+    .pg-panel{display:none!important}
+    .pg-panel.on{display:block!important;animation:pgup .22s ease!important}
+    @keyframes pgup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .pg-tbl-wrap{border:1px solid #eaeaea!important;border-radius:8px!important;overflow:hidden!important;margin-top:24px!important;box-shadow:0 4px 14px rgba(0,0,0,0.04)!important}
+    .pg-tbl{width:100%!important;border-collapse:collapse!important;font-size:.88rem!important;background:#fff!important;font-family:var(--sans)!important}
+    .pg-tbl thead tr{background:var(--m)!important}
+    .pg-tbl thead th{padding:13px 18px!important;text-align:left!important;font-weight:700!important;font-size:.74rem!important;text-transform:uppercase!important;letter-spacing:1px!important;color:#fff!important;white-space:nowrap!important}
+    .pg-tbl tbody tr{border-bottom:1px solid #f2f2f2!important;transition:background .13s!important}
+    .pg-tbl tbody tr:last-child{border-bottom:none!important}
+    .pg-tbl tbody tr:hover{background:#fffbee!important}
+    .pg-tbl tbody td{padding:13px 18px!important;color:#2a2a2a!important;vertical-align:middle!important;font-family:var(--sans)!important}
+    .pg-tbl tbody td:first-child{font-weight:700!important}
+    .pg-tbl tbody td:nth-child(2){font-weight:600!important}
+    .pg-num{display:inline-block!important;background:rgba(128,0,0,0.07)!important;color:var(--m)!important;border-radius:4px!important;padding:2px 9px!important;font-weight:800!important;font-size:.83rem!important;font-family:var(--sans)!important}
+    .pg-etag{display:inline-flex!important;align-items:center!important;gap:4px!important;background:#f0f7f0!important;color:#1a6e35!important;border:1px solid #b7e0c4!important;border-radius:4px!important;padding:3px 9px!important;font-size:.74rem!important;font-weight:700!important;font-family:var(--sans)!important;white-space:nowrap!important}
+    .pg-dtag{display:inline-flex!important;align-items:center!important;gap:4px!important;background:#f4f0ff!important;color:#5a3e9a!important;border:1px solid #d4c8f0!important;border-radius:4px!important;padding:3px 9px!important;font-size:.74rem!important;font-weight:700!important;font-family:var(--sans)!important;white-space:nowrap!important}
+    .pg-note{display:flex!important;align-items:flex-start!important;gap:9px!important;background:#fffbec!important;border-left:4px solid var(--g)!important;padding:13px 18px!important;font-size:.83rem!important;color:#7a5c00!important;font-family:var(--sans)!important}
+
+    /* ACCREDITATION */
+    .pg-acc-sec{padding:70px 0 100px!important;background:#fff!important}
+    .pg-acc-grid{display:flex!important;flex-wrap:wrap!important;border-top:1px solid #eaeaea!important;border-bottom:1px solid #eaeaea!important;margin-top:44px!important}
+    .pg-acc-item{flex:1 1 180px!important;min-width:180px!important;padding:44px 20px!important;border-right:1px solid #eaeaea!important;text-align:center!important;transition:background .18s!important}
+    .pg-acc-item:last-child{border-right:none!important}
+    .pg-acc-item:hover{background:#fffbee!important}
+    .pg-acc-ico{width:66px!important;height:66px!important;background:rgba(128,0,0,0.06)!important;border-radius:50%!important;display:flex!important;align-items:center!important;justify-content:center!important;margin:0 auto 16px!important;font-size:1.5rem!important;color:var(--m)!important;transition:all .28s!important}
+    .pg-acc-item:hover .pg-acc-ico{background:var(--m)!important;color:#fff!important}
+    .pg-acc-name{font-size:22px!important;font-weight:900!important;letter-spacing:-.5px!important;color:var(--m)!important;margin-bottom:5px!important;line-height:1!important;display:block!important;font-family:var(--sans)!important}
+    .pg-acc-body{font-size:10px!important;text-transform:uppercase!important;letter-spacing:1.4px!important;color:#888!important;font-weight:700!important;margin-bottom:10px!important;display:block!important;font-family:var(--sans)!important}
+    .pg-acc-desc{font-size:.81rem!important;color:#555!important;line-height:1.55!important;font-family:var(--sans)!important;display:block!important}
+
+    @media(max-width:900px){
+      .pg-hero{background-attachment:scroll!important}
+      .pg-hero-bx{padding:26px 22px!important;bottom:-20px!important}
+      .pg-hero-bx h1{font-size:26px!important}
+      .pg-sh{flex-direction:column!important;align-items:flex-start!important;gap:4px!important}
+      .pg-sh-t{font-size:26px!important}
+      .pg-cards-grid{grid-template-columns:1fr!important}
+      .pg-acc-item{flex:1 1 45%!important}
+      .pg-acc-item:nth-child(2){border-right:none!important}
+      .pg-acc-item:nth-child(1),.pg-acc-item:nth-child(2){border-bottom:1px solid #eaeaea!important}
+    }
+    @media(max-width:500px){
+      .pg-acc-item{flex:1 1 100%!important;border-right:none!important;border-bottom:1px solid #eaeaea!important}
+    }
+  </style>
 </head>
-
 <body>
-
-  
-
-<!-- PRELOADER -->
 <div id="preloader">
-
-    <div class="loader-content">
-
-        <img src="images/logo.png" class="logo">
-
-        <h2>School of Engineering and Technology</h2>
-
-        <div class="spinner"></div>
-
-    </div>
-
+  <div class="loader-content">
+    <img src="images/logo.png" class="logo">
+    <h2>School of Engineering and Technology</h2>
+    <div class="spinner"></div>
+  </div>
 </div>
-
-
 <div class="SOET-Topstrip">
-
-<div class="topbar">
-
-<div class="topbar-left">
-<a href="student-login.html">Students</a> |
-<a href="teacher-login.html">Faculty & Staff</a> |
-<a href="alumni.html">Alumni</a> |
-<a href="placement.html">Industry</a> |
-<a href="about.html#about-contact">Directory</a> |
-<a href="contact.html">Contact</a>
-</div>
-
-<div class="topbar-right">
-<span onclick="changeFontSize(-1)">A-</span>
-<span onclick="changeFontSize(0)">A</span>
-<span onclick="changeFontSize(1)">A+</span>
-
-<span onclick="translatePage('hi')">हिंदी</span> |
-<span onclick="translatePage('en')">ENG</span>
-<button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
-
-<div id="google_translate_element"></div>
-</div>
-
-</div>
-
+  <div class="topbar">
+    <div class="topbar-left">
+      <a href="student-login.html">Students</a> | <a href="teacher-login.html">Faculty & Staff</a> | <a href="alumni.html">Alumni</a> | <a href="placement.html">Industry</a> | <a href="about.html#about-contact">Directory</a> | <a href="contact.html">Contact</a>
+    </div>
+    <div class="topbar-right">
+      <span onclick="changeFontSize(-1)">A-</span> <span onclick="changeFontSize(0)">A</span> <span onclick="changeFontSize(1)">A+</span>
+      <span onclick="translatePage('hi')">हिंदी</span> | <span onclick="translatePage('en')">ENG</span>
+      <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
+      <div id="google_translate_element"></div>
+    </div>
   </div>
-
-
-<!-- MAIN WEBSITE -->
+</div>
 <div id="content">
-
 <header>
-
-<!-- TOP BAR -->
-
-
-<div class="top-right">
-</div>
-
-</div>
-<header>
-
-
-
-<!-- LOGO AREA -->
-<div class="logo-area">
-<div class="left-header">
-
-
-<a href="index.html">
-<img src="images/logo.png" class="logo">
-</a>
-<div class="title">
-<h2>Samrat Vikramaditya Vishwavidayalaya</h2>
-<h1>School of Engineering and Technology</h1>
-</div>
-</div>
-
-<div class="right-emblems">
-<img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
-<a href="https://www.india.gov.in" target="blank">
-<img src="images/const.png" class="constitution">
-</a>
-</div>
-</div>
-
-
-<!-- NAVBAR -->
-<nav class="navbar">
-
-<a href="index.html" class="home-icon">
-<i class="fa-solid fa-house"></i>
-</a>
-
-<li class="nav-item">
-    <a href="about.html">About us</a>
-
-  <div class="dropdown-menu">
-
-    <a href="about.html#about-overview">Overview</a>
-    <a href="about.html#about-vision">Vision & Mission</a>
-    <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
-    <a href="about.html#about-history">History</a>
-    <a href="about.html#about-administration">Administration and Organization HOD details</a>
-    <a href="about.html#about-contact">Contact US / How to reach</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="campus-life.html">Campus Life</a>
-
-  <div class="dropdown-menu">
-
-    <a href="dean-office.html">Office of the Dean</a>
-    <a href="hostels-dining.html">Hostels and Dining faclities</a>
-    <a href="ncc-nss.html">NCC & NSS</a>
-    <a href="clubs-society.html">Clubs and Societies</a>
-    <a href="sports.html">Sports Infrastructure and Teams</a>
-    <a href="annual-fests.html">Annual Fests</a>
-    <a href="campus-facilities.html">Campus Facilities</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="academics.html">Academics</a>
-
-  <div class="dropdown-menu">
-
-    <a href="programs.html">Programs Offered</a>
-    <a href="undergraduate.html">Under-Graduate</a>
-    <a href="postgraduate.html">Post-Graduate</a>
-    <a href="nptel.html">NPTEL/MOOCS</a>
-    <a href="library.html">Central and College Library</a>
-    <a href="exam-cell.html">Examination Cell</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="admission.html">Admissions</a>
-
-  <div class="dropdown-menu">
-
-    <a href="why-soet.html">Why SOET Ujjain?</a>
-    <a href="life-in-ujjain.html">Life in Ujjain</a>
-    <a href="btech-admissions.html">B.TECH Admissions</a>
-    <a href="mtech-programs.html">M.TECH/PHD Admissions</a>
-    <a href="fees-scholarships.html">Fee Structure & Scholarships</a>
-    <a href="admissions-faq.html">Admission FAQ</a>
-    <a href="anti-ragging.html">Anti-Ragging Policy</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="research.html">Research and Innovations</a>
-
-  <div class="dropdown-menu">
-
-    <a href="research.html#rnd-dean">Dean of R&D</a>
-    <a href="research.html#rnd-projects">Sponsored Projects and Grants</a>
-    <a href="research.html#rnd-patents">Patents & Publications</a>
-    <a href="research.html#rnd-facilities">Central Research Facilities</a>
-    <a href="research.html#rnd-incubation">Incubation Center & E-Cell</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="placement.html">Training & Placement cell</a>
-
-  <div class="dropdown-menu">
-    <a href="placement.html#tp-message">Message from T&P Officer</a>
-    <a href="placement.html#tp-stats">Placement Statistics and Annual Report</a>
-    <a href="placement.html#tp-brochure">Official Placement Brochure</a>
-    <a href="placement.html#tp-procedure">Recruitment Procedure</a>
-    <a href="placement.html#tp-skills">Student Skill Development</a>
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="alumni.html">Alumni</a>
-</li>
-
-<a href="contact.html">Contact Us</a>
-<li>
-<a href="#" onclick="openSearch()">
-<i class="fa-solid fa-magnifying-glass search-icon"></i>
-</a>
-</li>
-
-</nav>
-
-
-<section class="page-banner large">
-    <div class="banner-content">
-        <h1>Programs Offered</h1>
-        <p><a href="index.html">Home</a> / <a href="academics.html">Academics</a> / Programs</p>
+  <div class="logo-area">
+    <div class="left-header">
+      <a href="index.html"><img src="images/logo.png" class="logo"></a>
+      <div class="title">
+        <h2>Samrat Vikramaditya Vishwavidayalaya</h2>
+        <h1>School of Engineering and Technology</h1>
+      </div>
     </div>
-</section>
-
-<section class="about-section" style="justify-content: center; text-align: center; padding-bottom: 20px; background: #fff;">
-    <div class="intro-container" style="max-width: 800px; margin: 0 auto;">
-        <h2 class="section-title text-center">Academic Disciplines</h2>
-        <p style="color: var(--text-light, #555); line-height: 1.8; font-size: 16px;">
-            The School of Engineering and Technology offers industry-aligned programs designed to produce globally competitive engineers, researchers, and innovators. Explore our undergraduate, postgraduate, and doctoral offerings below.
-        </p>
+    <div class="right-emblems">
+      <img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
+      <a href="https://www.india.gov.in" target="_blank"><img src="images/const.png" class="constitution"></a>
     </div>
-</section>
+  </div>
+  <nav class="navbar">
+    <a href="index.html" class="home-icon"><i class="fa-solid fa-house"></i></a>
+    <li class="nav-item"><a href="about.html">About us</a><div class="dropdown-menu"><a href="about.html#about-overview">Overview</a><a href="about.html#about-vision">Vision & Mission</a><a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a><a href="about.html#about-history">History</a><a href="about.html#about-administration">Administration and Organization HOD details</a><a href="about.html#about-contact">Contact US / How to reach</a></div></li>
+    <li class="nav-item"><a href="campus-life.html">Campus Life</a><div class="dropdown-menu"><a href="dean-office.html">Office of the Dean</a><a href="hostels-dining.html">Hostels and Dining facilities</a><a href="ncc-nss.html">NCC & NSS</a><a href="clubs-society.html">Clubs and Societies</a><a href="sports.html">Sports Infrastructure and Teams</a><a href="annual-fests.html">Annual Fests</a><a href="campus-facilities.html">Campus Facilities</a></div></li>
+    <li class="nav-item"><a href="academics.html">Academics</a><div class="dropdown-menu"><a href="programs.html">Programs Offered</a><a href="undergraduate.html">Under-Graduate</a><a href="postgraduate.html">Post-Graduate</a><a href="nptel.html">NPTEL/MOOCS</a><a href="library.html">Central and College Library</a><a href="exam-cell.html">Examination Cell</a></div></li>
+    <li class="nav-item"><a href="admission.html">Admissions</a><div class="dropdown-menu"><a href="why-soet.html">Why SOET Ujjain?</a><a href="life-in-ujjain.html">Life in Ujjain</a><a href="btech-admissions.html">B.TECH Admissions</a><a href="mtech-programs.html">M.TECH/PHD Admissions</a><a href="fees-scholarships.html">Fee Structure & Scholarships</a><a href="admissions-faq.html">Admission FAQ</a><a href="anti-ragging.html">Anti-Ragging Policy</a></div></li>
+    <li class="nav-item"><a href="research.html">Research and Innovations</a><div class="dropdown-menu"><a href="research.html#rnd-dean">Dean of R&D</a><a href="research.html#rnd-projects">Sponsored Projects and Grants</a><a href="research.html#rnd-patents">Patents & Publications</a><a href="research.html#rnd-facilities">Central Research Facilities</a><a href="research.html#rnd-incubation">Incubation Center & E-Cell</a></div></li>
+    <li class="nav-item"><a href="placement.html">Training & Placement cell</a><div class="dropdown-menu"><a href="placement.html#tp-message">Message from T&P Officer</a><a href="placement.html#tp-stats">Placement Statistics and Annual Report</a><a href="placement.html#tp-brochure">Official Placement Brochure</a><a href="placement.html#tp-procedure">Recruitment Procedure</a><a href="placement.html#tp-skills">Student Skill Development</a></div></li>
+    <li class="nav-item"><a href="alumni.html">Alumni</a></li>
+    <a href="contact.html">Contact Us</a>
+    <li><a href="#" onclick="openSearch()"><i class="fa-solid fa-magnifying-glass search-icon"></i></a></li>
+  </nav>
+</header>
 
-<section class="programs-master-container">
+<div class="pg-main">
 
-    <div class="program-category">
-        <div class="category-header">
-            <h2>Undergraduate Programs</h2>
-            <span class="category-badge">B.Tech (4 Years)</span>
-        </div>
-        
-        <div class="program-grid">
-            <div class="program-card">
-                <i class="fa-solid fa-bolt program-icon"></i>
-                <h3>Electrical Engineering</h3>
-                <p>Focuses on power generation, electrical machines, control systems, and renewable energy integration.</p>
-                <div class="program-details">
-                    <span><i class="fa-solid fa-clock"></i> 8 Semesters</span>
-                    <span><i class="fa-solid fa-users"></i> Intake: 60</span>
-                </div>
-            </div>
-
-            <div class="program-card">
-                <i class="fa-solid fa-computer program-icon"></i>
-                <h3>Electronics and Computer Science</h3>
-                <p>A hybrid branch bridging hardware and software, covering embedded systems, programming, and architecture.</p>
-                <div class="program-details">
-                    <span><i class="fa-solid fa-clock"></i> 8 Semesters</span>
-                    <span><i class="fa-solid fa-users"></i> Intake: 60</span>
-                </div>
-            </div>
-
-            <div class="program-card">
-                <i class="fa-solid fa-satellite-dish program-icon"></i>
-                <h3>Electronics and Communication</h3>
-                <p>Dive into microprocessors, signal processing, VLSI design, and modern telecommunication networks.</p>
-                <div class="program-details">
-                    <span><i class="fa-solid fa-clock"></i> 8 Semesters</span>
-                    <span><i class="fa-solid fa-users"></i> Intake: 60</span>
-                </div>
-            </div>
-
-            <div class="program-card">
-                <i class="fa-solid fa-gears program-icon"></i>
-                <h3>Mechanical Engineering</h3>
-                <p>Master thermodynamics, robotics, fluid mechanics, and advanced automotive systems design.</p>
-                <div class="program-details">
-                    <span><i class="fa-solid fa-clock"></i> 8 Semesters</span>
-                    <span><i class="fa-solid fa-users"></i> Intake: 60</span>
-                </div>
-            </div>
-
-            <div class="program-card">
-                <i class="fa-solid fa-helmet-safety program-icon"></i>
-                <h3>Civil Engineering</h3>
-                <p>Learn structural design, modern construction materials, environmental engineering, and smart city planning.</p>
-                <div class="program-details">
-                    <span><i class="fa-solid fa-clock"></i> 8 Semesters</span>
-                    <span><i class="fa-solid fa-users"></i> Intake: 60</span>
-                </div>
-            </div>
-
-            <div class="program-card">
-                <i class="fa-solid fa-tractor program-icon"></i>
-                <h3>Agricultural Engineering</h3>
-                <p>Combines engineering with agriculture, focusing on farm machinery, soil conservation, and crop processing.</p>
-                <div class="program-details">
-                    <span><i class="fa-solid fa-clock"></i> 8 Semesters</span>
-                    <span><i class="fa-solid fa-users"></i> Intake: 60</span>
-                </div>
-            </div>
-
-            <div class="program-card">
-                <i class="fa-solid fa-bottle-droplet program-icon"></i>
-                <h3>Dairy Technology</h3>
-                <p>Specialized study in dairy plant design, processing technologies, quality control, and bioprocess engineering.</p>
-                <div class="program-details">
-                    <span><i class="fa-solid fa-clock"></i> 8 Semesters</span>
-                    <span><i class="fa-solid fa-users"></i> Intake: 60</span>
-                </div>
-            </div>
-        </div>
+  <!-- HERO -->
+  <section class="pg-hero">
+    <div class="pg-hero-ov"></div>
+    <div class="pg-hero-bx">
+      <span class="pg-crumb"><a href="index.html">Home</a><span class="s">/</span><a href="academics.html">Academics</a><span class="s">/</span><span style="color:#333">Programs Offered</span></span>
+      <h1>Academic Programs</h1>
+      <span class="pg-hero-sub">Engineering excellence across seven disciplines — undergraduate, postgraduate &amp; doctoral pathways.</span>
     </div>
+  </section>
 
-    <div class="program-category">
-        <div class="category-header">
-            <h2>Postgraduate Programs</h2>
-            <span class="category-badge">M.Tech (2 Years)</span>
+  <!-- SECTION 1: CARDS -->
+  <section class="pg-cards-sec">
+    <div class="pgw">
+      <div class="pg-sh"><span class="pg-sh-t">Our Programs</span><span class="pg-sh-s">AICTE Approved &nbsp;·&nbsp; Est. 2011</span></div>
+      <span class="pg-intro">SOET offers three tiers of engineering education — a four-year B.Tech, a two-year M.Tech, and a doctoral Ph.D — each designed to build deep technical expertise and real-world readiness.</span>
+      <span class="pg-rule"></span>
+      <div class="pg-cards-grid">
+
+        <div class="pg-card">
+          <div class="pg-card-bg">UG</div>
+          <div class="pg-card-ico"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span class="pg-card-lbl">Undergraduate</span>
+          <h3>Bachelor of Technology<br><span style="font-size:1.05rem;color:#666;font-family:Georgia,serif;">(B.Tech)</span></h3>
+          <span class="pg-card-txt">A rigorous four-year program spanning eight semesters. Students choose from seven engineering branches and build a strong foundation in theory, laboratory work, and industry-oriented projects.</span>
+          <div class="pg-pills">
+            <span class="pg-pill"><i class="fa-solid fa-calendar-days"></i> 4 Years / 8 Semesters</span>
+            <span class="pg-pill"><i class="fa-solid fa-code-branch"></i> 7 Branches</span>
+            <span class="pg-pill"><i class="fa-solid fa-users"></i> 540 Seats</span>
+          </div>
+          <a href="undergraduate.html" class="pg-cta">Explore B.Tech <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-        
-        <div class="program-grid">
-            <div class="program-card">
-                <i class="fa-solid fa-bridge program-icon"></i>
-                <h3>Structural Engineering</h3>
-                <p>Advanced research and design techniques for earthquake-resistant, high-rise, and sustainable structures.</p>
-                <div class="program-details">
-                    <span><i class="fa-solid fa-clock"></i> 4 Semesters</span>
-                    <span><i class="fa-solid fa-users"></i> Intake: 18</span>
-                </div>
-            </div>
-            
-            <div class="program-card">
-                <i class="fa-solid fa-fire-burner program-icon"></i>
-                <h3>Thermal Engineering</h3>
-                <p>In-depth study of heat transfer, fluid dynamics, refrigeration, and renewable energy systems.</p>
-                <div class="program-details">
-                    <span><i class="fa-solid fa-clock"></i> 4 Semesters</span>
-                    <span><i class="fa-solid fa-users"></i> Intake: 18</span>
-                </div>
-            </div>
 
-            <div class="program-card">
-                <i class="fa-solid fa-plug-circle-bolt program-icon"></i>
-                <h3>Power System and Automation</h3>
-                <p>Focuses on smart grid technologies, high voltage engineering, and automated power distribution networks.</p>
-                <div class="program-details">
-                    <span><i class="fa-solid fa-clock"></i> 4 Semesters</span>
-                    <span><i class="fa-solid fa-users"></i> Intake: 18</span>
-                </div>
-            </div>
-
-            <div class="program-card">
-                <i class="fa-solid fa-tower-broadcast program-icon"></i>
-                <h3>Digital Communication</h3>
-                <p>Advanced signal processing, wireless networks, optical communication, and modern coding theory.</p>
-                <div class="program-details">
-                    <span><i class="fa-solid fa-clock"></i> 4 Semesters</span>
-                    <span><i class="fa-solid fa-users"></i> Intake: 18</span>
-                </div>
-            </div>
-
-            <div class="program-card">
-                <i class="fa-solid fa-network-wired program-icon"></i>
-                <h3>IoT and Sensor System</h3>
-                <p>Cutting-edge research in sensor networks, smart devices, embedded automation, and big data interfaces.</p>
-                <div class="program-details">
-                    <span><i class="fa-solid fa-clock"></i> 4 Semesters</span>
-                    <span><i class="fa-solid fa-users"></i> Intake: 18</span>
-                </div>
-            </div>
+        <div class="pg-card">
+          <div class="pg-card-bg">PG</div>
+          <div class="pg-card-ico"><i class="fa-solid fa-flask"></i></div>
+          <span class="pg-card-lbl">Postgraduate</span>
+          <h3>Master of Technology<br><span style="font-size:1.05rem;color:#666;font-family:Georgia,serif;">(M.Tech)</span></h3>
+          <span class="pg-card-txt">A two-year postgraduate program focused on advanced specialization, research methodology, and cutting-edge engineering practice — ideal for those seeking deeper expertise or a path towards academia.</span>
+          <div class="pg-pills">
+            <span class="pg-pill"><i class="fa-solid fa-calendar-days"></i> 2 Years / 4 Semesters</span>
+            <span class="pg-pill"><i class="fa-solid fa-code-branch"></i> 3 Specializations</span>
+            <span class="pg-pill"><i class="fa-solid fa-users"></i> 54 Seats</span>
+          </div>
+          <a href="postgraduate.html" class="pg-cta">Explore M.Tech <i class="fa-solid fa-arrow-right"></i></a>
         </div>
+
+        <div class="pg-card">
+          <div class="pg-card-bg">PhD</div>
+          <div class="pg-card-ico"><i class="fa-solid fa-microscope"></i></div>
+          <span class="pg-card-lbl">Doctoral</span>
+          <h3>Doctor of Philosophy<br><span style="font-size:1.05rem;color:#666;font-family:Georgia,serif;">(Ph.D)</span></h3>
+          <span class="pg-card-txt">A full-time research degree enabling scholars to make original contributions to engineering knowledge, guided by experienced faculty across all engineering disciplines.</span>
+          <div class="pg-pills">
+            <span class="pg-pill"><i class="fa-solid fa-calendar-days"></i> 3–5 Years</span>
+            <span class="pg-pill"><i class="fa-solid fa-book-open"></i> Research-Based</span>
+            <span class="pg-pill"><i class="fa-solid fa-chalkboard-user"></i> Faculty-Guided</span>
+          </div>
+          <a href="mtech-programs.html" class="pg-cta">Ph.D Admissions <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
+  <!-- SECTION 2: INTAKE -->
+  <section class="pg-intake-sec">
+    <div class="pgw">
+      <div class="pg-sh"><span class="pg-sh-t">Intake &amp; Eligibility</span><span class="pg-sh-s">Academic Year 2024–25</span></div>
+      <span class="pg-intro">Branch-wise approved intake, duration, and minimum eligibility criteria as per AICTE and DTE Madhya Pradesh norms.</span>
+      <span class="pg-rule"></span>
+
+      <div class="pg-tabs">
+        <button class="pg-tab on" onclick="swTab('btech',this)">B.Tech (Undergraduate)</button>
+        <button class="pg-tab"    onclick="swTab('mtech',this)">M.Tech (Postgraduate)</button>
+        <button class="pg-tab"    onclick="swTab('phd',  this)">Ph.D (Doctoral)</button>
+      </div>
+
+      <div id="tab-btech" class="pg-panel on">
+        <div class="pg-tbl-wrap">
+          <table class="pg-tbl">
+            <thead><tr><th>#</th><th>Branch / Discipline</th><th>Code</th><th>Duration</th><th>Intake</th><th>Eligibility</th><th>Admission Via</th></tr></thead>
+            <tbody>
+              <tr><td>01</td><td>Dairy Technology</td><td>DT</td><td><span class="pg-dtag"><i class="fa-solid fa-clock"></i> 4 Yrs</span></td><td><span class="pg-num">30</span></td><td><span class="pg-etag"><i class="fa-solid fa-check"></i> 10+2 PCM ≥ 45%</span></td><td>JEE Main / DTE MP</td></tr>
+              <tr><td>02</td><td>Electronics &amp; Computer Science (ECS)</td><td>ECS</td><td><span class="pg-dtag"><i class="fa-solid fa-clock"></i> 4 Yrs</span></td><td><span class="pg-num">54</span></td><td><span class="pg-etag"><i class="fa-solid fa-check"></i> 10+2 PCM ≥ 45%</span></td><td>JEE Main / DTE MP</td></tr>
+              <tr><td>03</td><td>Electronics &amp; Communication Engineering</td><td>ECE</td><td><span class="pg-dtag"><i class="fa-solid fa-clock"></i> 4 Yrs</span></td><td><span class="pg-num">54</span></td><td><span class="pg-etag"><i class="fa-solid fa-check"></i> 10+2 PCM ≥ 45%</span></td><td>JEE Main / DTE MP</td></tr>
+              <tr><td>04</td><td>Electrical Engineering</td><td>EE</td><td><span class="pg-dtag"><i class="fa-solid fa-clock"></i> 4 Yrs</span></td><td><span class="pg-num">54</span></td><td><span class="pg-etag"><i class="fa-solid fa-check"></i> 10+2 PCM ≥ 45%</span></td><td>JEE Main / DTE MP</td></tr>
+              <tr><td>05</td><td>Mechanical Engineering</td><td>ME</td><td><span class="pg-dtag"><i class="fa-solid fa-clock"></i> 4 Yrs</span></td><td><span class="pg-num">54</span></td><td><span class="pg-etag"><i class="fa-solid fa-check"></i> 10+2 PCM ≥ 45%</span></td><td>JEE Main / DTE MP</td></tr>
+              <tr><td>06</td><td>Civil Engineering</td><td>CE</td><td><span class="pg-dtag"><i class="fa-solid fa-clock"></i> 4 Yrs</span></td><td><span class="pg-num">54</span></td><td><span class="pg-etag"><i class="fa-solid fa-check"></i> 10+2 PCM ≥ 45%</span></td><td>JEE Main / DTE MP</td></tr>
+              <tr><td>07</td><td>Agricultural Engineering</td><td>AG</td><td><span class="pg-dtag"><i class="fa-solid fa-clock"></i> 4 Yrs</span></td><td><span class="pg-num">30</span></td><td><span class="pg-etag"><i class="fa-solid fa-check"></i> 10+2 PCM + Ag ≥ 45%</span></td><td>JEE Main / DTE MP</td></tr>
+            </tbody>
+          </table>
+          <div class="pg-note"><i class="fa-solid fa-circle-info" style="flex-shrink:0;margin-top:2px;"></i> SC/ST/OBC candidates eligible with 40%. Seats subject to AICTE approval each year.</div>
+        </div>
+      </div>
+
+      <div id="tab-mtech" class="pg-panel">
+        <div class="pg-tbl-wrap">
+          <table class="pg-tbl">
+            <thead><tr><th>#</th><th>Specialization</th><th>Duration</th><th>Intake</th><th>Eligibility</th><th>Admission Via</th></tr></thead>
+            <tbody>
+              <tr><td>01</td><td>Computer Science &amp; Engineering</td><td><span class="pg-dtag"><i class="fa-solid fa-clock"></i> 2 Yrs</span></td><td><span class="pg-num">18</span></td><td><span class="pg-etag"><i class="fa-solid fa-check"></i> B.Tech / BE ≥ 55%</span></td><td>GATE / University Exam</td></tr>
+              <tr><td>02</td><td>Structural Engineering (Civil)</td><td><span class="pg-dtag"><i class="fa-solid fa-clock"></i> 2 Yrs</span></td><td><span class="pg-num">18</span></td><td><span class="pg-etag"><i class="fa-solid fa-check"></i> B.Tech / BE ≥ 55%</span></td><td>GATE / University Exam</td></tr>
+              <tr><td>03</td><td>Power Systems (Electrical)</td><td><span class="pg-dtag"><i class="fa-solid fa-clock"></i> 2 Yrs</span></td><td><span class="pg-num">18</span></td><td><span class="pg-etag"><i class="fa-solid fa-check"></i> B.Tech / BE ≥ 55%</span></td><td>GATE / University Exam</td></tr>
+            </tbody>
+          </table>
+          <div class="pg-note"><i class="fa-solid fa-circle-info" style="flex-shrink:0;margin-top:2px;"></i> GATE qualified candidates are given preference. Sponsored / part-time candidates may apply per institutional norms.</div>
+        </div>
+      </div>
+
+      <div id="tab-phd" class="pg-panel">
+        <div class="pg-tbl-wrap">
+          <table class="pg-tbl">
+            <thead><tr><th>#</th><th>Department</th><th>Mode</th><th>Eligibility</th><th>Admission Via</th></tr></thead>
+            <tbody>
+              <tr><td>01</td><td>Computer Science &amp; Engineering</td><td><span class="pg-dtag"><i class="fa-solid fa-flask"></i> Full-Time</span></td><td><span class="pg-etag"><i class="fa-solid fa-check"></i> M.Tech ≥ 55%</span></td><td>Entrance Test + Interview</td></tr>
+              <tr><td>02</td><td>Electrical Engineering</td><td><span class="pg-dtag"><i class="fa-solid fa-flask"></i> Full-Time</span></td><td><span class="pg-etag"><i class="fa-solid fa-check"></i> M.Tech ≥ 55%</span></td><td>Entrance Test + Interview</td></tr>
+              <tr><td>03</td><td>Mechanical Engineering</td><td><span class="pg-dtag"><i class="fa-solid fa-flask"></i> Full-Time</span></td><td><span class="pg-etag"><i class="fa-solid fa-check"></i> M.Tech ≥ 55%</span></td><td>Entrance Test + Interview</td></tr>
+              <tr><td>04</td><td>Civil Engineering</td><td><span class="pg-dtag"><i class="fa-solid fa-flask"></i> Full-Time</span></td><td><span class="pg-etag"><i class="fa-solid fa-check"></i> M.Tech ≥ 55%</span></td><td>Entrance Test + Interview</td></tr>
+            </tbody>
+          </table>
+          <div class="pg-note"><i class="fa-solid fa-circle-info" style="flex-shrink:0;margin-top:2px;"></i> Ph.D admissions subject to supervisor availability. Contact the Dean of R&D for current vacancies.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 3: ACCREDITATION -->
+  <section class="pg-acc-sec">
+    <div class="pgw">
+      <div class="pg-sh"><span class="pg-sh-t">Accreditation &amp; Recognition</span><span class="pg-sh-s">Quality Assured</span></div>
+      <span class="pg-intro">SOET's programs are backed by statutory approvals and quality recognitions that affirm our commitment to engineering education standards.</span>
+      <span class="pg-rule"></span>
+      <div class="pg-acc-grid">
+        <div class="pg-acc-item"><div class="pg-acc-ico"><i class="fa-solid fa-certificate"></i></div><span class="pg-acc-name">AICTE</span><span class="pg-acc-body">All India Council for Technical Education</span><span class="pg-acc-desc">All B.Tech and M.Tech programs are AICTE approved, ensuring national-standard curriculum, faculty norms, and infrastructure.</span></div>
+        <div class="pg-acc-item"><div class="pg-acc-ico"><i class="fa-solid fa-star"></i></div><span class="pg-acc-name">NAAC</span><span class="pg-acc-body">National Assessment &amp; Accreditation Council</span><span class="pg-acc-desc">Samrat Vikramaditya Vishwavidyalaya is NAAC accredited, validating quality in teaching, research, and governance.</span></div>
+        <div class="pg-acc-item"><div class="pg-acc-ico"><i class="fa-solid fa-ranking-star"></i></div><span class="pg-acc-name">NIRF</span><span class="pg-acc-body">National Institutional Ranking Framework</span><span class="pg-acc-desc">Ranked by the Ministry of Education under NIRF, reflecting performance in teaching, research, outreach, and perception.</span></div>
+        <div class="pg-acc-item"><div class="pg-acc-ico"><i class="fa-solid fa-landmark"></i></div><span class="pg-acc-name">UGC</span><span class="pg-acc-body">University Grants Commission</span><span class="pg-acc-desc">The university holds UGC recognition under Sec. 2(f) &amp; 12(B), ensuring degrees are valid for government employment and higher studies.</span></div>
+        <div class="pg-acc-item"><div class="pg-acc-ico"><i class="fa-solid fa-shield-halved"></i></div><span class="pg-acc-name">DTE MP</span><span class="pg-acc-body">Directorate of Technical Education, MP</span><span class="pg-acc-desc">Admissions are conducted through DTE Madhya Pradesh via state counselling, ensuring fair and transparent selection.</span></div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /pg-main -->
+
 <footer class="elite-footer">
-    <div class="footer-top-grid">
-        
-        <div class="footer-col">
-            <h4>School of Engineering & Technology</h4>
-            <div class="contact-details">
-                <p>Samrat Vikramaditya Vishwavidyalaya<br>Ujjain, Madhya Pradesh, India</p>
-                <p><i class="fa-solid fa-phone" style="width: 25px; color: #8892b0;"></i> <a href="tel:+918770122362">+91-8770122362</a></p>
-                <p><i class="fa-solid fa-envelope" style="width: 25px; color: #8892b0;"></i> <a href="mailto:soet@vikramuniv.ac.in">soet@vikramuniv.ac.in</a></p>
-                <p><i class="fa-solid fa-globe" style="width: 25px; color: #8892b0;"></i> <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
-            </div>
-        </div>
-
-        <div class="footer-col">
-            <h4>Academics</h4>
-            <ul class="elite-links">
-                <li><a href="#">Departments</a></li>
-                <li><a href="programs.html">Educational Programmes</a></li>
-                <li><a href="#">Rules & Regulations</a></li>
-                <li><a href="https://vikram.mponline.gov.in">Online Services</a></li>
-                <li><a href="campus-life.html">Campus Life</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-col">
-            <h4>Institutional</h4>
-            <ul class="elite-links">
-                <li><a href="#">NIRF Ranking</a></li>
-                <li><a href="#">NAAC Accreditation</a></li>
-                <li><a href="anti-ragging.html">Anti-Ragging Committee</a></li>
-                <li><a href="#">Internal Complaints & Women Cell</a></li>
-                <li><a href="contact.html">Contact Directory</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-col live-campus-widget">
-            <h4>Campus Live</h4>
-            <div class="data-row">
-                <span class="data-label">Date & Time</span>
-                <span class="data-value"><span id="date">--</span> | <span id="time">--</span></span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">Location</span>
-                <span class="data-value" style="font-size: 12px;">स्वामी विवेकानन्द स्नातक भवन</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">Conditions</span>
-                <span class="data-value"><span id="weather">--</span>, <span id="temp">--</span></span>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom-bar">
-        <div class="bottom-bar-content">
-            <div class="legal-text">
-                &copy; 2026 Student Tech Team SOET.<br>All rights reserved.
-            </div>
-            
-            <div class="footer-logo-center">
-                <a href="index.html">
-                    <img src="images/logo2.png" alt="SOET University Logo">
-                </a>
-            </div>
-
-            <div class="visitor-stats">
-                Last Updated: <span id="lastUpdated"></span><br>
-                Unique Visitors: <span id="visitorCount"></span>
-            </div>
-        </div>
-    </div>
+  <div class="footer-top-grid">
+    <div class="footer-col"><h4>School of Engineering & Technology</h4><div class="contact-details"><p>Samrat Vikramaditya Vishwavidyalaya<br>Ujjain, Madhya Pradesh, India</p><p><i class="fa-solid fa-phone" style="width:25px;color:#8892b0;"></i> <a href="tel:+918770122362">+91-8770122362</a></p><p><i class="fa-solid fa-envelope" style="width:25px;color:#8892b0;"></i> <a href="mailto:soet@vikramuniv.ac.in">soet@vikramuniv.ac.in</a></p><p><i class="fa-solid fa-globe" style="width:25px;color:#8892b0;"></i> <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p></div></div>
+    <div class="footer-col"><h4>Academics</h4><ul class="elite-links"><li><a href="#">Departments</a></li><li><a href="programs.html">Educational Programmes</a></li><li><a href="#">Rules & Regulations</a></li><li><a href="https://vikram.mponline.gov.in">Online Services</a></li><li><a href="campus-life.html">Campus Life</a></li></ul></div>
+    <div class="footer-col"><h4>Institutional</h4><ul class="elite-links"><li><a href="#">NIRF Ranking</a></li><li><a href="#">NAAC Accreditation</a></li><li><a href="anti-ragging.html">Anti-Ragging Committee</a></li><li><a href="#">Internal Complaints & Women Cell</a></li><li><a href="contact.html">Contact Directory</a></li></ul></div>
+    <div class="footer-col live-campus-widget"><h4>Campus Live</h4><div class="data-row"><span class="data-label">Date & Time</span><span class="data-value"><span id="date">--</span> | <span id="time">--</span></span></div><div class="data-row"><span class="data-label">Location</span><span class="data-value" style="font-size:12px;">स्वामी विवेकानन्द स्नातक भवन</span></div><div class="data-row"><span class="data-label">Conditions</span><span class="data-value"><span id="weather">--</span>, <span id="temp">--</span></span></div></div>
+  </div>
+  <div class="footer-bottom-bar"><div class="bottom-bar-content"><div class="legal-text">&copy; 2026 Student Tech Team SOET.<br>All rights reserved.</div><div class="footer-logo-center"><a href="index.html"><img src="images/logo2.png" alt="SOET University Logo"></a></div><div class="visitor-stats">Last Updated: <span id="lastUpdated"></span><br>Unique Visitors: <span id="visitorCount"></span></div></div></div>
 </footer>
+</div>
+
 <script src="js/script.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    // 1. Date & Time
-    const dateEl = document.getElementById("date");
-    const timeEl = document.getElementById("time");
-    
-    if(dateEl) dateEl.innerHTML = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-    
-    setInterval(function(){
-        if(timeEl) timeEl.innerHTML = new Date().toLocaleTimeString('en-US', { hour12: false });
-    }, 1000);
-
-    // 2. Weather API
-    const apiKey = "6ab4623b616a1ea162cf45d73c2dcb32";
-    const city = "Ujjain";
-
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
-    .then(response => response.json())
-    .then(data => {
-        if (data.weather && data.weather.length > 0) {
-            let desc = data.weather[0].description;
-            document.getElementById("weather").innerHTML = desc.charAt(0).toUpperCase() + desc.slice(1);
-            document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
-        }
-    })
-    .catch(err => console.log("Weather error:", err));
-
-    // 3. Stats
-    const lastUp = document.getElementById("lastUpdated");
-    if(lastUp) lastUp.innerHTML = document.lastModified;
-
-    let count = localStorage.getItem("visitorCount");
-    count = count === null ? 1 : Number(count) + 1;
-    localStorage.setItem("visitorCount", count);
-    
-    const visCount = document.getElementById("visitorCount");
-    if(visCount) visCount.innerText = count.toLocaleString();
-});
+  function swTab(id,btn){
+    document.querySelectorAll('.pg-panel').forEach(p=>p.classList.remove('on'));
+    document.querySelectorAll('.pg-tab').forEach(b=>b.classList.remove('on'));
+    document.getElementById('tab-'+id).classList.add('on');
+    btn.classList.add('on');
+  }
+  document.addEventListener("DOMContentLoaded",function(){
+    const de=document.getElementById("date"),te=document.getElementById("time");
+    if(de)de.innerHTML=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+    setInterval(()=>{if(te)te.innerHTML=new Date().toLocaleTimeString('en-US',{hour12:false})},1000);
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=Ujjain&units=metric&appid=6ab4623b616a1ea162cf45d73c2dcb32')
+      .then(r=>r.json()).then(d=>{if(d.weather){let w=d.weather[0].description;document.getElementById("weather").innerHTML=w.charAt(0).toUpperCase()+w.slice(1);document.getElementById("temp").innerHTML=Math.round(d.main.temp)+"°C";}}).catch(()=>{});
+    const lu=document.getElementById("lastUpdated");if(lu)lu.innerHTML=document.lastModified;
+    let c=localStorage.getItem("visitorCount");c=c===null?1:Number(c)+1;localStorage.setItem("visitorCount",c);
+    const vc=document.getElementById("visitorCount");if(vc)vc.innerText=c.toLocaleString();
+  });
 </script>
-</HTML>
+</body>
+</html>
