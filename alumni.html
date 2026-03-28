@@ -2,210 +2,195 @@
 <html>
 
 <head>
-<title>School Of Engineering and Technology</title>
+<title>School Of Engineering and Technology - Alumni</title>
 
 <link rel="stylesheet" href="css/style.css">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<style>
+    /* ── COMING SOON OVERLAY (FROSTED GLASS) ── */
+    .coming-soon-container {
+        position: relative;
+        overflow: hidden;
+    }
 
+    .coming-soon-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.75); /* Semi-transparent white */
+        backdrop-filter: blur(4px); /* Frosted glass blur */
+        -webkit-backdrop-filter: blur(4px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        text-align: center;
+        padding: 30px;
+        border: 1px solid #eaeaea;
+    }
+
+    .coming-soon-overlay i {
+        font-size: 2.8rem;
+        color: #800000;
+        margin-bottom: 15px;
+        opacity: 0.9;
+    }
+
+    .coming-soon-overlay h3 {
+        font-family: 'Georgia', serif;
+        font-size: 1.8rem;
+        color: #111;
+        margin: 0 0 10px 0;
+    }
+
+    .coming-soon-overlay p {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 1rem;
+        color: #555;
+        margin: 0;
+        max-width: 450px;
+        line-height: 1.6;
+    }
+</style>
 </head>
 
 <body>
 
-  
-
-<!-- PRELOADER -->
 <div id="preloader">
-
     <div class="loader-content">
-
         <img src="images/logo.png" class="logo">
-
         <h2>School of Engineering and Technology</h2>
-
         <div class="spinner"></div>
-
     </div>
-
 </div>
-
 
 <div class="SOET-Topstrip">
-
-<div class="topbar">
-
-<div class="topbar-left">
-<a href="student-login.html">Students</a> |
-<a href="teacher-login.html">Faculty & Staff</a> |
-<a href="alumni.html">Alumni</a> |
-<a href="placement.html">Industry</a> |
-<a href="about.html#about-contact">Directory</a> |
-<a href="contact.html">Contact</a>
+    <div class="topbar">
+        <div class="topbar-left">
+            <a href="student-login.html">Students</a> |
+            <a href="teacher-login.html">Faculty & Staff</a> |
+            <a href="alumni.html">Alumni</a> |
+            <a href="placement.html">Industry</a> |
+            <a href="about.html#about-contact">Directory</a> |
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="topbar-right">
+            <span onclick="changeFontSize(-1)">A-</span>
+            <span onclick="changeFontSize(0)">A</span>
+            <span onclick="changeFontSize(1)">A+</span>
+            <span onclick="translatePage('hi')">हिंदी</span> |
+            <span onclick="translatePage('en')">ENG</span>
+            <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
+            <div id="google_translate_element"></div>
+        </div>
+    </div>
 </div>
 
-<div class="topbar-right">
-<span onclick="changeFontSize(-1)">A-</span>
-<span onclick="changeFontSize(0)">A</span>
-<span onclick="changeFontSize(1)">A+</span>
-
-<span onclick="translatePage('hi')">हिंदी</span> |
-<span onclick="translatePage('en')">ENG</span>
-<button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
-
-<div id="google_translate_element"></div>
-</div>
-
-</div>
-
-  </div>
-
-
-<!-- MAIN WEBSITE -->
 <div id="content">
 
 <header>
+    <div class="top-right"></div>
+</header>
 
-<!-- TOP BAR -->
-
-
-<div class="top-right">
-</div>
-
-</div>
-<header>
-
-
-
-<!-- LOGO AREA -->
 <div class="logo-area">
-<div class="left-header">
+    <div class="left-header">
+        <a href="index.html">
+            <img src="images/logo.png" class="logo">
+        </a>
+        <div class="title">
+            <h2>Samrat Vikramaditya Vishwavidayalaya</h2>
+            <h1>School of Engineering and Technology</h1>
+        </div>
+    </div>
 
-
-<a href="index.html">
-<img src="images/logo.png" class="logo">
-</a>
-<div class="title">
-<h2>Samrat Vikramaditya Vishwavidayalaya</h2>
-<h1>School of Engineering and Technology</h1>
-</div>
-</div>
-
-<div class="right-emblems">
-<img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
-<a href="https://www.india.gov.in" target="blank">
-<img src="images/const.png" class="constitution">
-</a>
-</div>
+    <div class="right-emblems">
+        <img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
+        <a href="https://www.india.gov.in" target="blank">
+            <img src="images/const.png" class="constitution">
+        </a>
+    </div>
 </div>
 
-
-<!-- NAVBAR -->
 <nav class="navbar">
-
-<a href="index.html" class="home-icon">
-<i class="fa-solid fa-house"></i>
-</a>
-
-<li class="nav-item">
-    <a href="about.html">About us</a>
-
-  <div class="dropdown-menu">
-
-    <a href="about.html#about-overview">Overview</a>
-    <a href="about.html#about-vision">Vision & Mission</a>
-    <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
-    <a href="about.html#about-history">History</a>
-    <a href="about.html#about-administration">Administration and Organization HOD details</a>
-    <a href="about.html#about-contact">Contact US / How to reach</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="campus-life.html">Campus Life</a>
-
-  <div class="dropdown-menu">
-
-    <a href="dean-office.html">Office of the Dean</a>
-    <a href="hostels-dining.html">Hostels and Dining faclities</a>
-    <a href="ncc-nss.html">NCC & NSS</a>
-    <a href="clubs-society.html">Clubs and Societies</a>
-    <a href="sports.html">Sports Infrastructure and Teams</a>
-    <a href="annual-fests.html">Annual Fests</a>
-    <a href="campus-facilities.html">Campus Facilities</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="academics.html">Academics</a>
-
-  <div class="dropdown-menu">
-
-    <a href="programs.html">Programs Offered</a>
-    <a href="undergraduate.html">Under-Graduate</a>
-    <a href="postgraduate.html">Post-Graduate</a>
-    <a href="nptel.html">NPTEL/MOOCS</a>
-    <a href="library.html">Central and College Library</a>
-    <a href="exam-cell.html">Examination Cell</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="admission.html">Admissions</a>
-
-  <div class="dropdown-menu">
-
-    <a href="why-soet.html">Why SOET Ujjain?</a>
-    <a href="life-in-ujjain.html">Life in Ujjain</a>
-    <a href="btech-admissions.html">B.TECH Admissions</a>
-    <a href="mtech-programs.html">M.TECH/PHD Admissions</a>
-    <a href="fees-scholarships.html">Fee Structure & Scholarships</a>
-    <a href="admissions-faq.html">Admission FAQ</a>
-    <a href="anti-ragging.html">Anti-Ragging Policy</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="research.html">Research and Innovations</a>
-
-  <div class="dropdown-menu">
-
-    <a href="research.html#rnd-dean">Dean of R&D</a>
-    <a href="research.html#rnd-projects">Sponsored Projects and Grants</a>
-    <a href="research.html#rnd-patents">Patents & Publications</a>
-    <a href="research.html#rnd-facilities">Central Research Facilities</a>
-    <a href="research.html#rnd-incubation">Incubation Center & E-Cell</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="placement.html">Training & Placement cell</a>
-
-  <div class="dropdown-menu">
-    <a href="placement.html#tp-message">Message from T&P Officer</a>
-    <a href="placement.html#tp-stats">Placement Statistics and Annual Report</a>
-    <a href="placement.html#tp-brochure">Official Placement Brochure</a>
-    <a href="placement.html#tp-procedure">Recruitment Procedure</a>
-    <a href="placement.html#tp-skills">Student Skill Development</a>
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="alumni.html">Alumni</a>
-</li>
-
-<a href="contact.html">Contact Us</a>
-<li>
-<a href="#" onclick="openSearch()">
-<i class="fa-solid fa-magnifying-glass search-icon"></i>
-</a>
-</li>
-
+    <a href="index.html" class="home-icon">
+        <i class="fa-solid fa-house"></i>
+    </a>
+    <li class="nav-item">
+        <a href="about.html">About us</a>
+        <div class="dropdown-menu">
+            <a href="about.html#about-overview">Overview</a>
+            <a href="about.html#about-vision">Vision & Mission</a>
+            <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
+            <a href="about.html#about-history">History</a>
+            <a href="about.html#about-administration">Administration and Organization HOD details</a>
+            <a href="about.html#about-contact">Contact US / How to reach</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="campus-life.html">Campus Life</a>
+        <div class="dropdown-menu">
+            <a href="dean-office.html">Office of the Dean</a>
+            <a href="hostels-dining.html">Hostels and Dining faclities</a>
+            <a href="ncc-nss.html">NCC & NSS</a>
+            <a href="clubs-society.html">Clubs and Societies</a>
+            <a href="sports.html">Sports Infrastructure and Teams</a>
+            <a href="annual-fests.html">Annual Fests</a>
+            <a href="campus-facilities.html">Campus Facilities</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="academics.html">Academics</a>
+        <div class="dropdown-menu">
+            <a href="programs.html">Programs Offered</a>
+            <a href="undergraduate.html">Under-Graduate</a>
+            <a href="postgraduate.html">Post-Graduate</a>
+            <a href="nptel.html">NPTEL/MOOCS</a>
+            <a href="library.html">Central and College Library</a>
+            <a href="exam-cell.html">Examination Cell</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="admission.html">Admissions</a>
+        <div class="dropdown-menu">
+            <a href="why-soet.html">Why SOET Ujjain?</a>
+            <a href="life-in-ujjain.html">Life in Ujjain</a>
+            <a href="btech-admissions.html">B.TECH Admissions</a>
+            <a href="mtech-programs.html">M.TECH/PHD Admissions</a>
+            <a href="fees-scholarships.html">Fee Structure & Scholarships</a>
+            <a href="admissions-faq.html">Admission FAQ</a>
+            <a href="anti-ragging.html">Anti-Ragging Policy</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="research.html">Research and Innovations</a>
+        <div class="dropdown-menu">
+            <a href="research.html#rnd-dean">Dean of R&D</a>
+            <a href="research.html#rnd-projects">Sponsored Projects and Grants</a>
+            <a href="research.html#rnd-patents">Patents & Publications</a>
+            <a href="research.html#rnd-facilities">Central Research Facilities</a>
+            <a href="research.html#rnd-incubation">Incubation Center & E-Cell</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="placement.html">Training & Placement cell</a>
+        <div class="dropdown-menu">
+            <a href="placement.html#tp-message">Message from T&P Officer</a>
+            <a href="placement.html#tp-stats">Placement Statistics and Annual Report</a>
+            <a href="placement.html#tp-brochure">Official Placement Brochure</a>
+            <a href="placement.html#tp-procedure">Recruitment Procedure</a>
+            <a href="placement.html#tp-skills">Student Skill Development</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="alumni.html">Alumni</a>
+    </li>
+    <a href="contact.html">Contact Us</a>
+    <li>
+        <a href="#" onclick="openSearch()">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </a>
+    </li>
 </nav>
 
 <section style="position: relative; margin-bottom: 120px;">
@@ -334,63 +319,72 @@
             <p style="color: #666; font-size: 1.05rem;">Stay connected with your alma mater. Register to receive newsletter updates, reunion invites, and network access.</p>
         </div>
 
-        <form action="#" method="POST" style="background: white; padding: 40px; border: 1px solid #eaeaea;">
-            <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
-                <div style="flex: 1; min-width: 250px;">
-                    <label style="font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; color: #333; margin-bottom: 8px; display: block;">Full Name *</label>
-                    <input type="text" required style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; outline: none; font-family: inherit; background: #fafafa;">
-                </div>
-                <div style="flex: 1; min-width: 250px;">
-                    <label style="font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; color: #333; margin-bottom: 8px; display: block;">Email Address *</label>
-                    <input type="email" required style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; outline: none; font-family: inherit; background: #fafafa;">
-                </div>
+        <div class="coming-soon-container">
+            
+            <div class="coming-soon-overlay">
+                <i class="fa-solid fa-hourglass-half"></i>
+                <h3>Portal Under Construction</h3>
+                <p>We are actively building the secure Alumni Directory and Mentorship network backend. Registration capabilities will open shortly!</p>
             </div>
 
-            <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
-                <div style="flex: 1; min-width: 250px;">
-                    <label style="font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; color: #333; margin-bottom: 8px; display: block;">Graduation Year *</label>
-                    <input type="number" min="1990" max="2026" placeholder="e.g. 2015" required style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; outline: none; font-family: inherit; background: #fafafa;">
+            <form action="#" method="POST" style="background: white; padding: 40px; border: 1px solid #eaeaea; opacity: 0.35; filter: blur(3px); pointer-events: none;">
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <label style="font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; color: #333; margin-bottom: 8px; display: block;">Full Name *</label>
+                        <input type="text" required style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; outline: none; font-family: inherit; background: #fafafa;">
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <label style="font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; color: #333; margin-bottom: 8px; display: block;">Email Address *</label>
+                        <input type="email" required style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; outline: none; font-family: inherit; background: #fafafa;">
+                    </div>
                 </div>
-                <div style="flex: 1; min-width: 250px;">
-                    <label style="font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; color: #333; margin-bottom: 8px; display: block;">Branch *</label>
-                    <select required style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; outline: none; background: #fafafa; font-family: inherit;">
-                        <option value="">Select Branch...</option>
-                        <option value="cs">Electronics & Computer Science</option>
-                        <option value="ec">Electronics & Communication</option>
-                        <option value="me">Mechanical Engineering</option>
-                        <option value="ce">Civil Engineering</option>
-                    </select>
-                </div>
-            </div>
 
-            <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 25px;">
-                <div style="flex: 1; min-width: 250px;">
-                    <label style="font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; color: #333; margin-bottom: 8px; display: block;">Current Company</label>
-                    <input type="text" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; outline: none; font-family: inherit; background: #fafafa;">
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <label style="font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; color: #333; margin-bottom: 8px; display: block;">Graduation Year *</label>
+                        <input type="number" min="1990" max="2026" placeholder="e.g. 2015" required style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; outline: none; font-family: inherit; background: #fafafa;">
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <label style="font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; color: #333; margin-bottom: 8px; display: block;">Branch *</label>
+                        <select required style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; outline: none; background: #fafafa; font-family: inherit;">
+                            <option value="">Select Branch...</option>
+                            <option value="cs">Electronics & Computer Science</option>
+                            <option value="ec">Electronics & Communication</option>
+                            <option value="me">Mechanical Engineering</option>
+                            <option value="ce">Civil Engineering</option>
+                        </select>
+                    </div>
                 </div>
-                <div style="flex: 1; min-width: 250px;">
-                    <label style="font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; color: #333; margin-bottom: 8px; display: block;">Designation / Role</label>
-                    <input type="text" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; outline: none; font-family: inherit; background: #fafafa;">
+
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 25px;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <label style="font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; color: #333; margin-bottom: 8px; display: block;">Current Company</label>
+                        <input type="text" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; outline: none; font-family: inherit; background: #fafafa;">
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <label style="font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; color: #333; margin-bottom: 8px; display: block;">Designation / Role</label>
+                        <input type="text" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; outline: none; font-family: inherit; background: #fafafa;">
+                    </div>
                 </div>
-            </div>
 
-            <div style="margin-bottom: 30px;">
-                <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 0.95rem; color: #555; cursor: pointer;">
-                    <input type="checkbox" style="width: 16px; height: 16px; accent-color: #800000;">
-                    I am interested in joining the Alumni Mentorship Program.
-                </label>
-                <label style="display: flex; align-items: center; gap: 12px; font-size: 0.95rem; color: #555; cursor: pointer;">
-                    <input type="checkbox" style="width: 16px; height: 16px; accent-color: #800000;">
-                    Subscribe to the Alumni Quarterly Newsletter.
-                </label>
-            </div>
+                <div style="margin-bottom: 30px;">
+                    <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 0.95rem; color: #555; cursor: pointer;">
+                        <input type="checkbox" style="width: 16px; height: 16px; accent-color: #800000;">
+                        I am interested in joining the Alumni Mentorship Program.
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 12px; font-size: 0.95rem; color: #555; cursor: pointer;">
+                        <input type="checkbox" style="width: 16px; height: 16px; accent-color: #800000;">
+                        Subscribe to the Alumni Quarterly Newsletter.
+                    </label>
+                </div>
 
-            <button type="submit" style="width: 100%; background: #800000; color: white; padding: 16px; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border: none; cursor: pointer; transition: background 0.3s ease;">Register Details</button>
-        </form>
+                <button type="submit" style="width: 100%; background: #800000; color: white; padding: 16px; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border: none; cursor: pointer; transition: background 0.3s ease;">Register Details</button>
+            </form>
+        </div>
         
     </div>
 </section>
-<!-- FOOTER -->
+
 <footer class="elite-footer">
     <div class="footer-top-grid">
         
@@ -503,4 +497,5 @@ document.addEventListener("DOMContentLoaded", function() {
     if(visCount) visCount.innerText = count.toLocaleString();
 });
 </script>
-</HTML>
+</body>
+</html>

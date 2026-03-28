@@ -1,349 +1,646 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>School Of Engineering and Technology</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SOET Postgraduate M.Tech Resource Portal – Syllabus, Notes & PYQs for all specializations.">
+  <title>Postgraduate Programs | SCHOOL OF ENGINEERING AND TECHNOLOGY</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ─────────────────────────────────────────
+       POSTGRADUATE PORTAL THEME 
+    ───────────────────────────────────────── */
+    :root {
+      --soet-maroon: #800000;
+      --soet-gold:   #ffcc00;
+      --bg-light:    #f8f9fa;
+      --text-dark:   #111111;
+      --text-gray:   #555555;
+      --line-color:  #e0e0e0;
+      --sans-font:   'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --serif-font:  'Georgia', 'Times New Roman', serif;
+    }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    .pg-main { font-family: var(--sans-font); background: #fafafa; color: var(--text-dark); overflow-x: hidden; }
 
+    /* ── HERO ── */
+    .pg-hero {
+      position: relative;
+      width: 100%; height: 46vh; min-height: 380px;
+      background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=600&fit=crop') center/cover no-repeat;
+      background-attachment: fixed;
+      display: flex; align-items: flex-end; padding: 0 5%;
+      margin-bottom: 80px; box-sizing: border-box;
+    }
+    .pg-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%);
+      z-index: 1;
+    }
+    .pg-hero-box {
+      position: relative; z-index: 2;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      padding: 45px 50px; border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      max-width: 800px; border-top: 6px solid var(--soet-maroon);
+      bottom: -40px;
+    }
+    .pg-breadcrumb {
+      font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
+      color: #666; margin-bottom: 15px; font-weight: bold;
+    }
+    .pg-breadcrumb a { color: var(--soet-maroon); text-decoration: none; transition: .3s; }
+    .pg-breadcrumb .sep { margin: 0 8px; color: #ccc; }
+    .pg-hero-box h1 {
+      font-size: 44px; color: #222; margin: 0 0 15px;
+      font-family: var(--serif-font); line-height: 1.2;
+      font-weight: normal;
+    }
+    .pg-hero-box p {
+      color: #555; font-size: 18px; margin: 0;
+      border-left: 4px solid var(--soet-gold);
+      padding-left: 15px; line-height: 1.6;
+    }
 
+    /* ── PORTAL WRAPPER ── */
+    .pg-portal { max-width: 1100px; margin: 0 auto; padding: 0 20px 100px; }
+
+    /* ── SWISS SECTION HEADER ── */
+    .pg-section-head {
+      border-top: 3px solid #111;
+      padding-top: 22px;
+      margin-bottom: 12px;
+      display: flex; justify-content: space-between; align-items: flex-end;
+    }
+    .pg-section-head h2 {
+      font-size: 42px; font-weight: 900; letter-spacing: -1px;
+      color: #111; margin: 0; line-height: 1;
+    }
+    .pg-section-head span {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+      color: #555; font-weight: 700; padding-bottom: 5px;
+    }
+
+    .pg-intro-text {
+      font-family: var(--serif-font);
+      font-size: 20px; line-height: 1.65; color: #111;
+      margin-bottom: 14px; max-width: 820px;
+    }
+
+    .pg-accent-line { width: 60px; height: 4px; background: var(--soet-gold); margin-bottom: 50px; border-radius: 2px; }
+
+    /* ── BRANCH TAB PILLS ── */
+    .pg-branch-tabs {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #eaeaea;
+    }
+    .pg-tab-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 10px 20px;
+      background: #fff;
+      border: 1.5px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: var(--sans-font);
+      font-size: .84rem; font-weight: 700;
+      color: var(--text-gray); letter-spacing: .3px;
+      transition: all .2s ease;
+    }
+    .pg-tab-btn i { font-size: .88rem; }
+    .pg-tab-btn:hover { border-color: var(--soet-maroon); color: var(--soet-maroon); background: #fff5f5; }
+    .pg-tab-btn.active {
+      background: var(--soet-maroon);
+      border-color: var(--soet-maroon);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(128,0,0,.22);
+    }
+
+    /* ── BRANCH PANEL ── */
+    .pg-branch-panel { display: none; }
+    .pg-branch-panel.active { display: block; animation: pgFadeUp .28s ease; }
+    @keyframes pgFadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .pg-branch-header {
+      background: #fff;
+      border: 1px solid #f0f0f0;
+      border-top: 4px solid var(--soet-maroon);
+      border-radius: 8px 8px 0 0;
+      padding: 30px 32px;
+      display: flex; align-items: center; gap: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,.04);
+    }
+    .pg-branch-icon {
+      width: 56px; height: 56px;
+      background: rgba(128,0,0,.07);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.35rem; color: var(--soet-maroon); flex-shrink: 0;
+      transition: transform .3s;
+    }
+    .pg-branch-header:hover .pg-branch-icon { transform: scale(1.08); background: var(--soet-maroon); color: #fff; }
+    .pg-branch-header h2 {
+      font-family: var(--serif-font);
+      font-size: 1.45rem; font-weight: normal;
+      color: #111; margin: 0;
+    }
+    .pg-branch-header p {
+      margin: 5px 0 0;
+      font-size: .75rem; color: #888;
+      text-transform: uppercase; letter-spacing: 1.2px;
+    }
+
+    /* ── SEMESTER LIST ── */
+    .pg-sem-list {
+      background: #fff;
+      border: 1px solid #f0f0f0; border-top: none;
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,.04);
+      margin-bottom: 60px;
+    }
+
+    .pg-sem-toggle {
+      width: 100%; border: none;
+      background: #fafafa;
+      border-bottom: 1px solid #eaeaea;
+      padding: 17px 28px;
+      text-align: left; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: var(--sans-font);
+      font-size: .92rem; font-weight: 700;
+      color: #111; letter-spacing: .2px;
+      transition: background .15s;
+    }
+    .pg-sem-toggle:hover { background: #fff5f5; }
+    .pg-sem-toggle.open { background: var(--soet-maroon); color: #fff; }
+
+    .pg-sem-label { display: flex; align-items: center; gap: 10px; }
+    .pg-sem-badge {
+      font-size: .68rem; font-weight: 800; letter-spacing: .6px;
+      text-transform: uppercase;
+      background: var(--soet-gold); color: #111;
+      padding: 2px 9px; border-radius: 2px;
+    }
+    .pg-sem-toggle.open .pg-sem-badge { background: rgba(255,255,255,.2); color: #fff; }
+    .pg-chevron { transition: transform .2s; font-size: .78rem; opacity: .5; }
+    .pg-sem-toggle.open .pg-chevron { transform: rotate(180deg); opacity: 1; }
+
+    .pg-sem-body { display: none; }
+    .pg-sem-body.open { display: block; }
+
+    /* ── SINGLE SYLLABUS BAR ── */
+    .sem-syllabus-bar {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      padding: 16px 28px; background: rgba(128,0,0,0.03); 
+      border-bottom: 1px solid rgba(128,0,0,0.08);
+    }
+    .sem-syllabus-info {
+      display: flex; align-items: center; gap: 10px;
+      color: var(--soet-maroon); font-size: 0.95rem;
+    }
+    .solid-syl-btn {
+      background: var(--soet-maroon) !important; color: #fff !important; border-color: var(--soet-maroon) !important;
+    }
+    .solid-syl-btn:hover {
+      background: #5a0000 !important; border-color: #5a0000 !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* ── SUBJECT ROW ── */
+    .pg-subject-row {
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap;
+      gap: 12px; padding: 16px 28px;
+      border-bottom: 1px solid #f5f5f5;
+      transition: background .14s;
+    }
+    .pg-subject-row:last-child { border-bottom: none; }
+    .pg-subject-row:hover { background: #fffbee; }
+
+    .pg-sub-info { flex: 1; min-width: 200px; }
+    .pg-sub-code {
+      font-size: .72rem; font-weight: 800; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--soet-maroon); margin-bottom: 3px;
+    }
+    .pg-sub-name { font-size: .93rem; font-weight: 600; color: #1a1a1a; }
+
+    .pg-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .pg-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 14px; border-radius: 4px;
+      font-family: var(--sans-font);
+      font-size: .78rem; font-weight: 600;
+      text-decoration: none; letter-spacing: .2px;
+      border: 1.5px solid transparent;
+      transition: all .2s ease; cursor: pointer;
+    }
+    .pg-btn-not { color: #1a6e35; border-color: #1a6e35; background: transparent; }
+    .pg-btn-not:hover { background: #1a6e35; color: #fff; }
+    .pg-btn-pyq { color: #7a5800; border-color: #c49a00; background: transparent; }
+    .pg-btn-pyq:hover { background: #c49a00; color: #fff; }
+
+    .pg-info-strip {
+      padding: 15px 28px;
+      background: #fffbec;
+      border-left: 4px solid var(--soet-gold);
+      font-size: .87rem; color: #7a5c00;
+      display: flex; align-items: center; gap: 9px;
+    }
+    
+    /* Thesis Kit Box styling */
+    .pg-dissertation-box {
+      padding: 30px; text-align: center;
+      background: #fdfdfd; border-top: 1px solid #f0f0f0;
+    }
+    .pg-dissertation-box i { font-size: 2rem; color: var(--soet-maroon); margin-bottom: 15px; }
+    .pg-dissertation-box h4 { font-size: 1.2rem; margin: 0 0 10px; color: #111; }
+    .pg-dissertation-box p { font-size: 0.95rem; color: #666; margin: 0 0 20px; }
+    .pg-dissertation-box .pg-btn { border: 1.5px solid #111; color: #111; padding: 10px 20px; }
+    .pg-dissertation-box .pg-btn:hover { background: #111; color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .pg-hero-box { padding: 28px 24px; bottom: -20px; }
+      .pg-hero-box h1 { font-size: 28px; }
+      .pg-section-head { flex-direction: column; align-items: flex-start; gap: 5px; }
+      .pg-section-head h2 { font-size: 28px; }
+      .pg-tab-btn { font-size: .78rem; padding: 8px 12px; }
+      .pg-subject-row { flex-direction: column; align-items: flex-start; }
+      .pg-branch-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .pg-intro-text { font-size: 17px; }
+      .pg-hero { background-attachment: scroll; }
+    }
+  </style>
 </head>
-
 <body>
 
-  
-
-<!-- PRELOADER -->
 <div id="preloader">
-
-    <div class="loader-content">
-
-        <img src="images/logo.png" class="logo">
-
-        <h2>School of Engineering and Technology</h2>
-
-        <div class="spinner"></div>
-
-    </div>
-
+  <div class="loader-content">
+    <img src="images/logo.png" class="logo" alt="SOET Logo">
+    <h2>School of Engineering and Technology</h2>
+    <div class="spinner"></div>
+  </div>
 </div>
-
 
 <div class="SOET-Topstrip">
-
-<div class="topbar">
-
-<div class="topbar-left">
-<a href="student-login.html">Students</a> |
-<a href="teacher-login.html">Faculty & Staff</a> |
-<a href="alumni.html">Alumni</a> |
-<a href="placement.html">Industry</a> |
-<a href="about.html#about-contact">Directory</a> |
-<a href="contact.html">Contact</a>
-</div>
-
-<div class="topbar-right">
-<span onclick="changeFontSize(-1)">A-</span>
-<span onclick="changeFontSize(0)">A</span>
-<span onclick="changeFontSize(1)">A+</span>
-
-<span onclick="translatePage('hi')">हिंदी</span> |
-<span onclick="translatePage('en')">ENG</span>
-<button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
-
-<div id="google_translate_element"></div>
-</div>
-
-</div>
-
+  <div class="topbar">
+    <div class="topbar-left">
+      <a href="student-login.html">Students</a> |
+      <a href="teacher-login.html">Faculty & Staff</a> |
+      <a href="alumni.html">Alumni</a> |
+      <a href="placement.html">Industry</a> |
+      <a href="about.html#about-contact">Directory</a> |
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="topbar-right">
+      <span onclick="changeFontSize(-1)">A-</span>
+      <span onclick="changeFontSize(0)">A</span>
+      <span onclick="changeFontSize(1)">A+</span>
+      <span onclick="translatePage('hi')">हिंदी</span> |
+      <span onclick="translatePage('en')">ENG</span>
+      <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
+      <div id="google_translate_element"></div>
+    </div>
   </div>
+</div>
 
-
-<!-- MAIN WEBSITE -->
 <div id="content">
-
 <header>
-
-<!-- TOP BAR -->
-
-
-<div class="top-right">
-</div>
-
-</div>
-<header>
-
-
-
-<!-- LOGO AREA -->
-<div class="logo-area">
-<div class="left-header">
-
-
-<a href="index.html">
-<img src="images/logo.png" class="logo">
-</a>
-<div class="title">
-<h2>Samrat Vikramaditya Vishwavidayalaya</h2>
-<h1>School of Engineering and Technology</h1>
-</div>
-</div>
-
-<div class="right-emblems">
-<img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
-<a href="https://www.india.gov.in" target="blank">
-<img src="images/const.png" class="constitution">
-</a>
-</div>
-</div>
-
-
-<!-- NAVBAR -->
-<nav class="navbar">
-
-<a href="index.html" class="home-icon">
-<i class="fa-solid fa-house"></i>
-</a>
-
-<li class="nav-item">
-    <a href="about.html">About us</a>
-
-  <div class="dropdown-menu">
-
-    <a href="about.html#about-overview">Overview</a>
-    <a href="about.html#about-vision">Vision & Mission</a>
-    <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
-    <a href="about.html#about-history">History</a>
-    <a href="about.html#about-administration">Administration and Organization HOD details</a>
-    <a href="about.html#about-contact">Contact US / How to reach</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="campus-life.html">Campus Life</a>
-
-  <div class="dropdown-menu">
-
-    <a href="dean-office.html">Office of the Dean</a>
-    <a href="hostels-dining.html">Hostels and Dining faclities</a>
-    <a href="ncc-nss.html">NCC & NSS</a>
-    <a href="clubs-society.html">Clubs and Societies</a>
-    <a href="sports.html">Sports Infrastructure and Teams</a>
-    <a href="annual-fests.html">Annual Fests</a>
-    <a href="campus-facilities.html">Campus Facilities</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="academics.html">Academics</a>
-
-  <div class="dropdown-menu">
-
-    <a href="programs.html">Programs Offered</a>
-    <a href="undergraduate.html">Under-Graduate</a>
-    <a href="postgraduate.html">Post-Graduate</a>
-    <a href="nptel.html">NPTEL/MOOCS</a>
-    <a href="library.html">Central and College Library</a>
-    <a href="exam-cell.html">Examination Cell</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="admission.html">Admissions</a>
-
-  <div class="dropdown-menu">
-
-    <a href="why-soet.html">Why SOET Ujjain?</a>
-    <a href="life-in-ujjain.html">Life in Ujjain</a>
-    <a href="btech-admissions.html">B.TECH Admissions</a>
-    <a href="mtech-programs.html">M.TECH/PHD Admissions</a>
-    <a href="fees-scholarships.html">Fee Structure & Scholarships</a>
-    <a href="admissions-faq.html">Admission FAQ</a>
-    <a href="anti-ragging.html">Anti-Ragging Policy</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="research.html">Research and Innovations</a>
-
-  <div class="dropdown-menu">
-
-    <a href="research.html#rnd-dean">Dean of R&D</a>
-    <a href="research.html#rnd-projects">Sponsored Projects and Grants</a>
-    <a href="research.html#rnd-patents">Patents & Publications</a>
-    <a href="research.html#rnd-facilities">Central Research Facilities</a>
-    <a href="research.html#rnd-incubation">Incubation Center & E-Cell</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="placement.html">Training & Placement cell</a>
-
-  <div class="dropdown-menu">
-    <a href="placement.html#tp-message">Message from T&P Officer</a>
-    <a href="placement.html#tp-stats">Placement Statistics and Annual Report</a>
-    <a href="placement.html#tp-brochure">Official Placement Brochure</a>
-    <a href="placement.html#tp-procedure">Recruitment Procedure</a>
-    <a href="placement.html#tp-skills">Student Skill Development</a>
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="alumni.html">Alumni</a>
-</li>
-
-<a href="contact.html">Contact Us</a>
-<li>
-<a href="#" onclick="openSearch()">
-<i class="fa-solid fa-magnifying-glass search-icon"></i>
-</a>
-</li>
-
-</nav>
-
-
-<section class="pg-banner" style="background: linear-gradient(rgba(17, 17, 17, 0.85), rgba(51, 51, 51, 0.9)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=600&fit=crop') center/cover;">
-    <div class="banner-content">
-        <h1>M.Tech Resource Portal</h1>
-        <p><a href="index.html" style="color: #ffcc00; text-decoration: none;">Home</a> / <a href="academics.html" style="color: #ffcc00; text-decoration: none;">Academics</a> / Postgraduate</p>
+  <div class="logo-area">
+    <div class="left-header">
+      <a href="index.html"><img src="images/logo.png" class="logo" alt="University Logo"></a>
+      <div class="title">
+        <h2>Samrat Vikramaditya Vishwavidayalaya</h2>
+        <h1>School of Engineering and Technology</h1>
+      </div>
     </div>
-</section>
-
-<section class="pg-intro" style="padding: 50px 5% 30px; background-color: #f4f6f9;">
-    <div class="container text-center" style="max-width: 900px; margin: 0 auto;">
-        <h2 class="section-title text-center" style="text-align: center;">Advanced Study Materials</h2>
-        <p style="font-size: 18px; color: #555; line-height: 1.8;">
-            Select your M.Tech specialization from the sidebar to access advanced research papers, official syllabi, and previous year question papers for all 4 semesters.
-        </p>
+    <div class="right-emblems">
+      <img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
+      <a href="https://www.india.gov.in" target="_blank"><img src="images/const.png" class="constitution"></a>
     </div>
-</section>
+  </div>
 
-<section class="pg-resources-wrapper" style="background-color: #f4f6f9; padding-bottom: 80px;">
-    <div class="pg-container">
-        
-        <aside class="pg-sidebar">
-            <div class="sidebar-sticky">
-                <h3>Specializations</h3>
-                <ul class="sidebar-nav">
-                    <li><a href="#structural"><i class="fa-solid fa-building"></i> Structural Engg.</a></li>
-                    <li><a href="#thermal"><i class="fa-solid fa-fire-flame-curved"></i> Thermal Engg.</a></li>
-                    <li><a href="#power"><i class="fa-solid fa-bolt"></i> Power Systems</a></li>
-                    <li><a href="#digital"><i class="fa-solid fa-satellite-dish"></i> Digital Comm.</a></li>
-                </ul>
+  <nav class="navbar">
+    <a href="index.html" class="home-icon"><i class="fa-solid fa-house"></i></a>
+    <li class="nav-item">
+      <a href="about.html">About us</a>
+      <div class="dropdown-menu">
+        <a href="about.html#about-overview">Overview</a>
+        <a href="about.html#about-vision">Vision & Mission</a>
+        <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
+        <a href="about.html#about-history">History</a>
+        <a href="about.html#about-administration">Administration and Organization HOD details</a>
+        <a href="about.html#about-contact">Contact US / How to reach</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="campus-life.html">Campus Life</a>
+      <div class="dropdown-menu">
+        <a href="dean-office.html">Office of the Dean</a>
+        <a href="hostels-dining.html">Hostels and Dining facilities</a>
+        <a href="ncc-nss.html">NCC & NSS</a>
+        <a href="clubs-society.html">Clubs and Societies</a>
+        <a href="sports.html">Sports Infrastructure and Teams</a>
+        <a href="annual-fests.html">Annual Fests</a>
+        <a href="campus-facilities.html">Campus Facilities</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="academics.html">Academics</a>
+      <div class="dropdown-menu">
+        <a href="programs.html">Programs Offered</a>
+        <a href="undergraduate.html">Under-Graduate</a>
+        <a href="postgraduate.html">Post-Graduate</a>
+        <a href="nptel.html">NPTEL/MOOCS</a>
+        <a href="library.html">Central and College Library</a>
+        <a href="exam-cell.html">Examination Cell</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="admission.html">Admissions</a>
+      <div class="dropdown-menu">
+        <a href="why-soet.html">Why SOET Ujjain?</a>
+        <a href="life-in-ujjain.html">Life in Ujjain</a>
+        <a href="btech-admissions.html">B.TECH Admissions</a>
+        <a href="mtech-programs.html">M.TECH/PHD Admissions</a>
+        <a href="fees-scholarships.html">Fee Structure & Scholarships</a>
+        <a href="admissions-faq.html">Admission FAQ</a>
+        <a href="anti-ragging.html">Anti-Ragging Policy</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="research.html">Research and Innovations</a>
+      <div class="dropdown-menu">
+        <a href="research.html#rnd-dean">Dean of R&D</a>
+        <a href="research.html#rnd-projects">Sponsored Projects and Grants</a>
+        <a href="research.html#rnd-patents">Patents & Publications</a>
+        <a href="research.html#rnd-facilities">Central Research Facilities</a>
+        <a href="research.html#rnd-incubation">Incubation Center & E-Cell</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="placement.html">Training & Placement cell</a>
+      <div class="dropdown-menu">
+        <a href="placement.html#tp-message">Message from T&P Officer</a>
+        <a href="placement.html#tp-stats">Placement Statistics and Annual Report</a>
+        <a href="placement.html#tp-brochure">Official Placement Brochure</a>
+        <a href="placement.html#tp-procedure">Recruitment Procedure</a>
+        <a href="placement.html#tp-skills">Student Skill Development</a>
+      </div>
+    </li>
+    <li class="nav-item"><a href="alumni.html">Alumni</a></li>
+    <li class="nav-item"><a href="contact.html">Contact Us</a></li>
+    <li><a href="#" onclick="openSearch()"><i class="fa-solid fa-magnifying-glass search-icon"></i></a></li>
+  </nav>
+</header>
+
+<div class="pg-main">
+
+  <section class="pg-hero">
+    <div class="pg-hero-overlay"></div>
+    <div class="pg-hero-box">
+      <div class="pg-breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="academics.html">Academics</a>
+        <span class="sep">/</span>
+        <span style="color:#333;">Postgraduate</span>
+      </div>
+      <h1>M.Tech Resource Portal</h1>
+      <p>Advanced Research Papers &nbsp;·&nbsp; Syllabi &nbsp;·&nbsp; Thesis Kits &nbsp;— all specializations, all semesters.</p>
+    </div>
+  </section>
+
+  <div class="pg-portal">
+
+    <div class="pg-section-head">
+      <h2>Postgraduate Programs</h2>
+      <span>M.Tech &nbsp;·&nbsp; 2-Year Degree</span>
+    </div>
+
+    <p class="pg-intro-text">
+      Select your M.Tech specialization below, then expand any semester to access advanced research papers, official syllabi, and previous year question papers — all linked directly from Google Drive.
+    </p>
+    <div class="pg-accent-line"></div>
+
+    <div class="pg-branch-tabs">
+      <button class="pg-tab-btn active" onclick="showBranch('structural', this)">
+        <i class="fa-solid fa-building"></i> Structural Engg.
+      </button>
+      <button class="pg-tab-btn" onclick="showBranch('thermal', this)">
+        <i class="fa-solid fa-fire-flame-curved"></i> Thermal Engg.
+      </button>
+      <button class="pg-tab-btn" onclick="showBranch('power', this)">
+        <i class="fa-solid fa-bolt"></i> Power Systems
+      </button>
+      <button class="pg-tab-btn" onclick="showBranch('digital', this)">
+        <i class="fa-solid fa-satellite-dish"></i> Digital Comm.
+      </button>
+      <button class="pg-tab-btn" onclick="showBranch('iot', this)">
+        <i class="fa-solid fa-microchip"></i> IOT & Sensor Systems
+      </button>
+    </div>
+
+    <div id="branch-structural" class="pg-branch-panel active">
+      <div class="pg-branch-header">
+        <div class="pg-branch-icon"><i class="fa-solid fa-building"></i></div>
+        <div>
+          <h2>Structural Engineering</h2>
+          <p>4 Semesters &nbsp;·&nbsp; 2-Year Program &nbsp;·&nbsp; Department of Civil Engineering</p>
+        </div>
+      </div>
+      <div class="pg-sem-list">
+
+        <div class="pg-sem-item">
+          <button class="pg-sem-toggle" onclick="toggleSem(this)">
+            <span class="pg-sem-label"><i class="fa-solid fa-layer-group"></i>&nbsp; Semester 1 <span class="pg-sem-badge">2 Subjects</span></span>
+            <i class="fa-solid fa-chevron-down pg-chevron"></i>
+          </button>
+          <div class="pg-sem-body">
+            
+            <div class="sem-syllabus-bar">
+              <div class="sem-syllabus-info">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span><strong>Official Semester Syllabus</strong> (Combined PDF)</span>
+              </div>
+              <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn solid-syl-btn">
+                <i class="fa-solid fa-download"></i> Download PDF
+              </a>
             </div>
-        </aside>
 
-        <main class="pg-content">
+            <div class="pg-subject-row">
+              <div class="pg-sub-info"><div class="pg-sub-code">MTSE-101</div><div class="pg-sub-name">Advanced Structural Analysis</div></div>
+              <div class="pg-actions">
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn pg-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn pg-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
+              </div>
+            </div>
+            <div class="pg-subject-row">
+              <div class="pg-sub-info"><div class="pg-sub-code">MTSE-102</div><div class="pg-sub-name">Theory of Elasticity & Plasticity</div></div>
+              <div class="pg-actions">
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn pg-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn pg-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <section id="structural" class="pg-spec-section">
-                <div class="spec-header">
-                    <h2>Structural Engineering</h2>
-                    <p>Department of Civil Engineering</p>
-                </div>
-                
-                <div class="semester-grid">
-                    <div class="sem-card">
-                        <div class="sem-card-header">Semester 1</div>
-                        <ul class="subject-list">
-                            <li>
-                                <div class="subj-name"><strong>MTSE-101:</strong> Advanced Structural Analysis</div>
-                                <div class="subj-actions">
-                                    <a href="#" class="icon-btn syllabus" title="Syllabus"><i class="fa-solid fa-file-pdf"></i></a>
-                                    <a href="#" class="icon-btn notes" title="Notes"><i class="fa-solid fa-book"></i></a>
-                                    <a href="#" class="icon-btn pyq" title="PYQs"><i class="fa-solid fa-clock-rotate-left"></i></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="subj-name"><strong>MTSE-102:</strong> Theory of Elasticity & Plasticity</div>
-                                <div class="subj-actions">
-                                    <a href="#" class="icon-btn syllabus" title="Syllabus"><i class="fa-solid fa-file-pdf"></i></a>
-                                    <a href="#" class="icon-btn notes" title="Notes"><i class="fa-solid fa-book"></i></a>
-                                    <a href="#" class="icon-btn pyq" title="PYQs"><i class="fa-solid fa-clock-rotate-left"></i></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+        <div class="pg-sem-item">
+          <button class="pg-sem-toggle" onclick="toggleSem(this)">
+            <span class="pg-sem-label"><i class="fa-solid fa-layer-group"></i>&nbsp; Semester 2 <span class="pg-sem-badge">2 Subjects</span></span>
+            <i class="fa-solid fa-chevron-down pg-chevron"></i>
+          </button>
+          <div class="pg-sem-body">
+            
+            <div class="sem-syllabus-bar">
+              <div class="sem-syllabus-info">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span><strong>Official Semester Syllabus</strong> (Combined PDF)</span>
+              </div>
+              <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn solid-syl-btn">
+                <i class="fa-solid fa-download"></i> Download PDF
+              </a>
+            </div>
 
-                    <div class="sem-card">
-                        <div class="sem-card-header">Semester 2</div>
-                        <ul class="subject-list">
-                            <li>
-                                <div class="subj-name"><strong>MTSE-201:</strong> FEM in Structural Engg.</div>
-                                <div class="subj-actions">
-                                    <a href="#" class="icon-btn syllabus" title="Syllabus"><i class="fa-solid fa-file-pdf"></i></a>
-                                    <a href="#" class="icon-btn notes" title="Notes"><i class="fa-solid fa-book"></i></a>
-                                    <a href="#" class="icon-btn pyq" title="PYQs"><i class="fa-solid fa-clock-rotate-left"></i></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="subj-name"><strong>MTSE-202:</strong> Earthquake Resonant Design</div>
-                                <div class="subj-actions">
-                                    <a href="#" class="icon-btn syllabus" title="Syllabus"><i class="fa-solid fa-file-pdf"></i></a>
-                                    <a href="#" class="icon-btn notes" title="Notes"><i class="fa-solid fa-book"></i></a>
-                                    <a href="#" class="icon-btn pyq" title="PYQs"><i class="fa-solid fa-clock-rotate-left"></i></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="sem-card dissertation-card">
-                        <div class="sem-card-header">Semester 3 & 4</div>
-                        <div class="dissertation-content">
-                            <i class="fa-solid fa-microscope"></i>
-                            <h4>Dissertation & Thesis Phase</h4>
-                            <p>Access thesis formatting guidelines, literature review templates, and plagiarism policies.</p>
-                            <a href="#" class="btn-outline-dark">Download Thesis Kit &rarr;</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <div class="pg-subject-row">
+              <div class="pg-sub-info"><div class="pg-sub-code">MTSE-201</div><div class="pg-sub-name">FEM in Structural Engg.</div></div>
+              <div class="pg-actions">
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn pg-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn pg-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
+              </div>
+            </div>
+            <div class="pg-subject-row">
+              <div class="pg-sub-info"><div class="pg-sub-code">MTSE-202</div><div class="pg-sub-name">Earthquake Resonant Design</div></div>
+              <div class="pg-actions">
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn pg-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn pg-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <section id="thermal" class="pg-spec-section">
-                <div class="spec-header" style="border-left-color: #ff4500;">
-                    <h2>Thermal Engineering</h2>
-                    <p>Department of Mechanical Engineering</p>
-                </div>
-                
-                <div class="semester-grid">
-                    <div class="sem-card">
-                        <div class="sem-card-header">Semester 1</div>
-                        <ul class="subject-list">
-                            <li>
-                                <div class="subj-name"><strong>MTTE-101:</strong> Advanced Thermodynamics</div>
-                                <div class="subj-actions">
-                                    <a href="#" class="icon-btn syllabus" title="Syllabus"><i class="fa-solid fa-file-pdf"></i></a>
-                                    <a href="#" class="icon-btn notes" title="Notes"><i class="fa-solid fa-book"></i></a>
-                                    <a href="#" class="icon-btn pyq" title="PYQs"><i class="fa-solid fa-clock-rotate-left"></i></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="subj-name"><strong>MTTE-102:</strong> Heat & Mass Transfer</div>
-                                <div class="subj-actions">
-                                    <a href="#" class="icon-btn syllabus" title="Syllabus"><i class="fa-solid fa-file-pdf"></i></a>
-                                    <a href="#" class="icon-btn notes" title="Notes"><i class="fa-solid fa-book"></i></a>
-                                    <a href="#" class="icon-btn pyq" title="PYQs"><i class="fa-solid fa-clock-rotate-left"></i></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+        <div class="pg-sem-item">
+          <button class="pg-sem-toggle" onclick="toggleSem(this)">
+            <span class="pg-sem-label"><i class="fa-solid fa-layer-group"></i>&nbsp; Semester 3 & 4 <span class="pg-sem-badge" style="background: #111; color: #fff;">Thesis Phase</span></span>
+            <i class="fa-solid fa-chevron-down pg-chevron"></i>
+          </button>
+          <div class="pg-sem-body">
+            <div class="pg-dissertation-box">
+                <i class="fa-solid fa-microscope"></i>
+                <h4>Dissertation & Thesis Phase</h4>
+                <p>Access thesis formatting guidelines, literature review templates, and plagiarism policies.</p>
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn"><i class="fa-solid fa-download"></i> Download Thesis Kit</a>
+            </div>
+          </div>
+        </div>
 
-        </main>
+      </div>
     </div>
-</section>
 
-<!-- FOOTER -->
-<footer class="elite-footer">
-    <div class="footer-top-grid">
+    <div id="branch-thermal" class="pg-branch-panel">
+      <div class="pg-branch-header">
+        <div class="pg-branch-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+        <div>
+          <h2>Thermal Engineering</h2>
+          <p>4 Semesters &nbsp;·&nbsp; 2-Year Program &nbsp;·&nbsp; Department of Mechanical Engineering</p>
+        </div>
+      </div>
+      <div class="pg-sem-list">
+        <div class="pg-sem-item">
+          <button class="pg-sem-toggle" onclick="toggleSem(this)">
+            <span class="pg-sem-label"><i class="fa-solid fa-layer-group"></i>&nbsp; Semester 1 <span class="pg-sem-badge">2 Subjects</span></span>
+            <i class="fa-solid fa-chevron-down pg-chevron"></i>
+          </button>
+          <div class="pg-sem-body">
+            
+            <div class="sem-syllabus-bar">
+              <div class="sem-syllabus-info">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span><strong>Official Semester Syllabus</strong> (Combined PDF)</span>
+              </div>
+              <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn solid-syl-btn">
+                <i class="fa-solid fa-download"></i> Download PDF
+              </a>
+            </div>
+
+            <div class="pg-subject-row">
+              <div class="pg-sub-info"><div class="pg-sub-code">MTTE-101</div><div class="pg-sub-name">Advanced Thermodynamics</div></div>
+              <div class="pg-actions">
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn pg-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn pg-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
+              </div>
+            </div>
+            <div class="pg-subject-row">
+              <div class="pg-sub-info"><div class="pg-sub-code">MTTE-102</div><div class="pg-sub-name">Heat & Mass Transfer</div></div>
+              <div class="pg-actions">
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn pg-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="pg-btn pg-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
+              </div>
+            </div>
+          </div>
+        </div>
         
+        <div class="pg-info-strip">
+          <i class="fa-solid fa-circle-info"></i>&nbsp; Content for remaining semesters is currently being updated by the department.
+        </div>
+      </div>
+    </div>
+
+    <div id="branch-power" class="pg-branch-panel">
+      <div class="pg-branch-header">
+        <div class="pg-branch-icon"><i class="fa-solid fa-bolt"></i></div>
+        <div>
+          <h2>Power System & Automation</h2>
+          <p>4 Semesters &nbsp;·&nbsp; 2-Year Program &nbsp;·&nbsp; Department of Electrical Engineering</p>
+        </div>
+      </div>
+      <div class="pg-sem-list">
+        <div class="pg-info-strip">
+          <i class="fa-solid fa-circle-info"></i>&nbsp; Subject resources for Power System & Automation will be uploaded shortly.
+        </div>
+      </div>
+    </div>
+
+    <div id="branch-digital" class="pg-branch-panel">
+      <div class="pg-branch-header">
+        <div class="pg-branch-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+        <div>
+          <h2>Digital Communication</h2>
+          <p>4 Semesters &nbsp;·&nbsp; 2-Year Program &nbsp;·&nbsp; Department of Electronics & Comm.</p>
+        </div>
+      </div>
+      <div class="pg-sem-list">
+        <div class="pg-info-strip">
+          <i class="fa-solid fa-circle-info"></i>&nbsp; Subject resources for Digital Communication will be uploaded shortly.
+        </div>
+      </div>
+    </div>
+
+    <div id="branch-iot" class="pg-branch-panel">
+      <div class="pg-branch-header">
+        <div class="pg-branch-icon"><i class="fa-solid fa-microchip"></i></div>
+        <div>
+          <h2>IOT & Sensor Systems</h2>
+          <p>4 Semesters &nbsp;·&nbsp; 2-Year Program &nbsp;·&nbsp; Advanced Technologies Hub</p>
+        </div>
+      </div>
+      <div class="pg-sem-list">
+        <div class="pg-info-strip">
+          <i class="fa-solid fa-circle-info"></i>&nbsp; Subject resources for IOT & Sensor Systems will be uploaded shortly.
+        </div>
+      </div>
+    </div>
+
+  </div> </div> <footer class="elite-footer">
+    <div class="footer-top-grid">
         <div class="footer-col">
             <h4>School of Engineering & Technology</h4>
             <div class="contact-details">
@@ -391,7 +688,6 @@
                 <span class="data-value"><span id="weather">--</span>, <span id="temp">--</span></span>
             </div>
         </div>
-
     </div>
 
     <div class="footer-bottom-bar">
@@ -399,13 +695,11 @@
             <div class="legal-text">
                 &copy; 2026 Student Tech Team SOET.<br>All rights reserved.
             </div>
-            
             <div class="footer-logo-center">
                 <a href="index.html">
                     <img src="images/logo2.png" alt="SOET University Logo">
                 </a>
             </div>
-
             <div class="visitor-stats">
                 Last Updated: <span id="lastUpdated"></span><br>
                 Unique Visitors: <span id="visitorCount"></span>
@@ -413,10 +707,37 @@
         </div>
     </div>
 </footer>
+
 <script src="js/script.js"></script>
 <script>
+// Logic to handle Tab Switching & Accordions seamlessly
+function showBranch(branchId, btn) {
+    document.querySelectorAll('.pg-tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.pg-branch-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('branch-' + branchId).classList.add('active');
+}
+
+function toggleSem(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    
+    // Close all open accordions within the same panel
+    const allBtns = btn.closest('.pg-sem-list').querySelectorAll('.pg-sem-toggle');
+    allBtns.forEach(b => {
+        b.classList.remove('open');
+        b.nextElementSibling.classList.remove('open');
+    });
+    
+    // Open the clicked one if it wasn't already open
+    if (!isOpen) {
+        btn.classList.add('open');
+        body.classList.add('open');
+    }
+}
+
+// Global Campus Info Script
 document.addEventListener("DOMContentLoaded", function() {
-    // 1. Date & Time
     const dateEl = document.getElementById("date");
     const timeEl = document.getElementById("time");
     
@@ -426,7 +747,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if(timeEl) timeEl.innerHTML = new Date().toLocaleTimeString('en-US', { hour12: false });
     }, 1000);
 
-    // 2. Weather API
     const apiKey = "6ab4623b616a1ea162cf45d73c2dcb32";
     const city = "Ujjain";
 
@@ -441,7 +761,6 @@ document.addEventListener("DOMContentLoaded", function() {
     })
     .catch(err => console.log("Weather error:", err));
 
-    // 3. Stats
     const lastUp = document.getElementById("lastUpdated");
     if(lastUp) lastUp.innerHTML = document.lastModified;
 
@@ -453,4 +772,5 @@ document.addEventListener("DOMContentLoaded", function() {
     if(visCount) visCount.innerText = count.toLocaleString();
 });
 </script>
-</HTML>
+</body>
+</html>

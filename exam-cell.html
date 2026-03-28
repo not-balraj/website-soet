@@ -8,6 +8,67 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<style> 
+    /* ==========================================================================
+   EXAMINATION CELL & ACCORDION STYLES
+   ========================================================================== */
+
+.exam-banner { background: linear-gradient(rgba(0, 31, 63, 0.85), rgba(0, 31, 63, 0.95)), url('https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=1200') center/cover; color: white; text-align: center; padding: 120px 20px; margin-bottom: 0; }
+.exam-banner h1 { font-size: 48px; margin-bottom: 15px; }
+.exam-banner a { color: #ffcc00; text-decoration: none; }
+
+.exam-master-container { display: grid; grid-template-columns: 1fr 350px; gap: 40px; max-width: 1300px; margin: 50px auto 80px; padding: 0 5%; align-items: start; }
+.exam-main-content { display: flex; flex-direction: column; gap: 20px; }
+.exam-intro h2 { color: #001f3f; font-size: 28px; margin-top: 0; margin-bottom: 15px; }
+.exam-intro p { font-size: 16px; color: #555; line-height: 1.8; }
+
+/* Notice Board */
+.exam-notice-board { background: #fff; border: 1px solid #e0e0e0; border-left: 5px solid #d9534f; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); overflow: hidden; }
+.notice-header { background: #fafbfc; padding: 15px 25px; border-bottom: 1px solid #eee; }
+.notice-header h3 { margin: 0; color: #d9534f; font-size: 20px; display: flex; align-items: center; gap: 10px; }
+.notice-list { list-style: none; padding: 0; margin: 0; }
+.notice-list li { padding: 15px 25px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 15px; }
+.notice-date { background: #001f3f; color: #fff; font-size: 12px; font-weight: bold; padding: 4px 8px; border-radius: 4px; min-width: 55px; text-align: center;}
+.notice-list a { color: #333; text-decoration: none; font-size: 15px; font-weight: 500; flex-grow: 1; }
+.badge.new { background: #d9534f; color: white; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+
+/* Timetable Accordion */
+.timetable-accordion { margin-bottom: 20px; }
+.branch-details { background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; margin-bottom: 10px; overflow: hidden; }
+.branch-summary { padding: 15px 20px; background: #f4f6f9; font-weight: 600; color: #001f3f; cursor: pointer; font-size: 16px; display: flex; align-items: center; gap: 10px; list-style: none; }
+.branch-summary::-webkit-details-marker { display: none; }
+.branch-summary::after { content: '\25BC'; font-size: 12px; margin-left: auto; color: #666; transition: transform 0.3s; }
+.branch-details[open] .branch-summary::after { transform: rotate(-180deg); color: #fff; }
+.branch-details[open] .branch-summary { border-bottom: 1px solid #e0e0e0; background: #001f3f; color: #fff; }
+.branch-links { padding: 15px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; background: #fff; }
+.branch-links a { display: block; padding: 10px 15px; background: #fafbfc; border: 1px solid #eee; border-radius: 4px; color: #333; text-decoration: none; font-size: 14px; border-left: 3px solid #d9534f; }
+.branch-links a:hover { background: #fdfdfd; border-color: #d9534f; transform: translateX(3px); }
+
+/* Downloads */
+.exam-section-title h3 { margin: 0; color: #001f3f; font-size: 22px; display: flex; align-items: center; gap: 10px; }
+.exam-downloads-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.download-card { display: flex; align-items: center; gap: 15px; padding: 20px; background: #fff; border: 1px solid #eee; border-radius: 8px; text-decoration: none; color: inherit; transition: 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+.download-card:hover { border-color: #001f3f; transform: translateY(-3px); }
+.download-card i { font-size: 28px; color: #001f3f; }
+.download-card h4 { margin: 0 0 5px; font-size: 16px; color: #333; }
+.download-card p { margin: 0; font-size: 13px; color: #777; }
+
+/* Exam Sidebar */
+.exam-sidebar { position: sticky; top: 100px; }
+.exam-widget { background: #fff; border: 1px solid #e0e0e0; border-top: 4px solid #001f3f; border-radius: 8px; padding: 25px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+.exam-widget h3 { margin: 0 0 20px; font-size: 18px; color: #333; display: flex; align-items: center; gap: 10px; }
+.exam-widget h3 i { color: #001f3f; }
+.timeline { position: relative; padding-left: 15px; border-left: 2px solid #eee; margin-left: 10px;}
+.timeline-item { position: relative; margin-bottom: 20px; }
+.time-dot { position: absolute; left: -21.5px; top: 0; width: 11px; height: 11px; background: #fff; border: 2px solid #d9534f; border-radius: 50%; }
+.time-date { margin: 0 0 3px; font-size: 12px; font-weight: bold; color: #d9534f; text-transform: uppercase; }
+.time-text { margin: 0; font-size: 14px; color: #444; font-weight: 500; }
+.exam-profile { display: flex; align-items: center; gap: 15px; }
+.profile-icon { width: 45px; height: 45px; background: #f0f4f8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #001f3f; }
+.profile-details h4 { margin: 0 0 3px; font-size: 15px; color: #111; }
+.profile-details p { margin: 0; font-size: 13px; color: #666; }
+
+</style>
 
 </head>
 

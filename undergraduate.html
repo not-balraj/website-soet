@@ -1,424 +1,698 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>School Of Engineering and Technology</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SOET Undergraduate B.Tech Resource Portal – Syllabus, Notes & PYQs for all branches and semesters.">
+  <title>Undergraduate Programs | SCHOOL OF ENGINEERING AND TECHNOLOGY</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ─────────────────────────────────────────
+       UG PORTAL THEME
+    ───────────────────────────────────────── */
+    :root {
+      --soet-maroon: #800000;
+      --soet-gold:   #ffcc00;
+      --bg-light:    #f8f9fa;
+      --text-dark:   #111111;
+      --text-gray:   #555555;
+      --line-color:  #e0e0e0;
+      --sans-font:   'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --serif-font:  'Georgia', 'Times New Roman', serif;
+    }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    .ug-main { font-family: var(--sans-font); background: #fafafa; color: var(--text-dark); overflow-x: hidden; }
 
+    /* ── HERO ── */
+    .ug-hero {
+      position: relative;
+      width: 100%; height: 46vh; min-height: 380px;
+      background: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      background-attachment: fixed;
+      display: flex; align-items: flex-end; padding: 0 5%;
+      margin-bottom: 80px; box-sizing: border-box;
+    }
+    .ug-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.62) 100%);
+      z-index: 1;
+    }
+    .ug-hero-box {
+      position: relative; z-index: 2;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      padding: 45px 50px; border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      max-width: 800px; border-top: 6px solid var(--soet-maroon);
+      bottom: -40px;
+    }
+    .ug-breadcrumb {
+      font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
+      color: #666; margin-bottom: 15px; font-weight: bold;
+    }
+    .ug-breadcrumb a { color: var(--soet-maroon); text-decoration: none; transition: .3s; }
+    .ug-breadcrumb .sep { margin: 0 8px; color: #ccc; }
+    .ug-hero-box h1 {
+      font-size: 44px; color: #222; margin: 0 0 15px;
+      font-family: var(--serif-font); line-height: 1.2;
+      font-weight: normal;
+    }
+    .ug-hero-box p {
+      color: #555; font-size: 18px; margin: 0;
+      border-left: 4px solid var(--soet-gold);
+      padding-left: 15px; line-height: 1.6;
+    }
 
+    /* ── PORTAL WRAPPER ── */
+    .ug-portal { max-width: 1100px; margin: 0 auto; padding: 0 20px 100px; }
+
+    /* ── SWISS SECTION HEADER ── */
+    .ug-section-head {
+      border-top: 3px solid #111;
+      padding-top: 22px;
+      margin-bottom: 12px;
+      display: flex; justify-content: space-between; align-items: flex-end;
+    }
+    .ug-section-head h2 {
+      font-size: 42px; font-weight: 900; letter-spacing: -1px;
+      color: #111; margin: 0; line-height: 1;
+    }
+    .ug-section-head span {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+      color: #555; font-weight: 700; padding-bottom: 5px;
+    }
+    .ug-intro-text {
+      font-family: var(--serif-font);
+      font-size: 20px; line-height: 1.65; color: #111;
+      margin-bottom: 14px; max-width: 820px;
+    }
+    .ug-accent-line { width: 60px; height: 4px; background: var(--soet-gold); margin-bottom: 50px; border-radius: 2px; }
+
+    /* ── BRANCH TAB PILLS ── */
+    .ug-branch-tabs {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #eaeaea;
+    }
+    .ug-tab-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 10px 20px;
+      background: #fff;
+      border: 1.5px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: var(--sans-font);
+      font-size: .84rem; font-weight: 700;
+      color: var(--text-gray); letter-spacing: .3px;
+      transition: all .2s ease;
+    }
+    .ug-tab-btn:hover { border-color: var(--soet-maroon); color: var(--soet-maroon); background: #fff5f5; }
+    .ug-tab-btn.active {
+      background: var(--soet-maroon); border-color: var(--soet-maroon);
+      color: #fff; box-shadow: 0 4px 14px rgba(128,0,0,.22);
+    }
+
+    /* ── BRANCH PANEL ── */
+    .ug-branch-panel { display: none; }
+    .ug-branch-panel.active { display: block; animation: ugFadeUp .28s ease; }
+    @keyframes ugFadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .ug-branch-header {
+      background: #fff; border: 1px solid #f0f0f0;
+      border-top: 4px solid var(--soet-maroon);
+      border-radius: 8px 8px 0 0;
+      padding: 30px 32px;
+      display: flex; align-items: center; gap: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,.04);
+    }
+    .ug-branch-icon {
+      width: 56px; height: 56px;
+      background: rgba(128,0,0,.07); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.35rem; color: var(--soet-maroon); flex-shrink: 0;
+      transition: transform .3s;
+    }
+    .ug-branch-header:hover .ug-branch-icon { transform: scale(1.08); background: var(--soet-maroon); color: #fff; }
+    .ug-branch-header h2 { font-family: var(--serif-font); font-size: 1.45rem; font-weight: normal; color: #111; margin: 0; }
+    .ug-branch-header p { margin: 5px 0 0; font-size: .75rem; color: #888; text-transform: uppercase; letter-spacing: 1.2px; }
+
+    /* ── SEMESTER LIST ── */
+    .ug-sem-list {
+      background: #fff; border: 1px solid #f0f0f0; border-top: none;
+      border-radius: 0 0 8px 8px; overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,.04); margin-bottom: 60px;
+    }
+
+    .ug-sem-toggle {
+      width: 100%; border: none; background: #fafafa;
+      border-bottom: 1px solid #eaeaea; padding: 17px 28px;
+      text-align: left; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: var(--sans-font); font-size: .92rem; font-weight: 700;
+      color: #111; letter-spacing: .2px; transition: background .15s;
+    }
+    .ug-sem-toggle:hover { background: #fff5f5; }
+    .ug-sem-toggle.open { background: var(--soet-maroon); color: #fff; }
+
+    .ug-sem-label { display: flex; align-items: center; gap: 10px; }
+    .ug-sem-badge {
+      font-size: .68rem; font-weight: 800; letter-spacing: .6px;
+      text-transform: uppercase; background: var(--soet-gold); color: #111;
+      padding: 2px 9px; border-radius: 2px;
+    }
+    .ug-sem-toggle.open .ug-sem-badge { background: rgba(255,255,255,.2); color: #fff; }
+    .ug-chevron { transition: transform .2s; font-size: .78rem; opacity: .5; }
+    .ug-sem-toggle.open .ug-chevron { transform: rotate(180deg); opacity: 1; }
+
+    .ug-sem-body { display: none; }
+    .ug-sem-body.open { display: block; }
+
+    /* ── NEW: SINGLE SYLLABUS BAR ── */
+    .sem-syllabus-bar {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      padding: 16px 28px; background: rgba(128,0,0,0.03); 
+      border-bottom: 1px solid rgba(128,0,0,0.08);
+    }
+    .sem-syllabus-info {
+      display: flex; align-items: center; gap: 10px;
+      color: var(--soet-maroon); font-size: 0.95rem;
+    }
+    .solid-syl-btn {
+      background: var(--soet-maroon) !important; color: #fff !important; border-color: var(--soet-maroon) !important;
+    }
+    .solid-syl-btn:hover {
+      background: #5a0000 !important; border-color: #5a0000 !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* ── SUBJECT ROW ── */
+    .ug-subject-row {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+      gap: 12px; padding: 16px 28px; border-bottom: 1px solid #f5f5f5; transition: background .14s;
+    }
+    .ug-subject-row:last-child { border-bottom: none; }
+    .ug-subject-row:hover { background: #fffbee; }
+
+    .ug-sub-info { flex: 1; min-width: 200px; }
+    .ug-sub-code {
+      font-size: .72rem; font-weight: 800; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--soet-maroon); margin-bottom: 3px;
+    }
+    .ug-sub-name { font-size: .93rem; font-weight: 600; color: #1a1a1a; }
+
+    .ug-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .ug-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 14px; border-radius: 4px;
+      font-family: var(--sans-font); font-size: .78rem; font-weight: 600;
+      text-decoration: none; letter-spacing: .2px;
+      border: 1.5px solid transparent; transition: all .2s ease; cursor: pointer;
+    }
+    .ug-btn-not { color: #1a6e35; border-color: #1a6e35; background: transparent; }
+    .ug-btn-not:hover { background: #1a6e35; color: #fff; }
+    .ug-btn-pyq { color: #7a5800; border-color: #c49a00; background: transparent; }
+    .ug-btn-pyq:hover { background: #c49a00; color: #fff; }
+
+    .ug-info-strip {
+      padding: 15px 28px; background: #fffbec; border-left: 4px solid var(--soet-gold);
+      font-size: .87rem; color: #7a5c00; display: flex; align-items: center; gap: 9px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .ug-hero-box { padding: 28px 24px; bottom: -20px; }
+      .ug-hero-box h1 { font-size: 28px; }
+      .ug-section-head { flex-direction: column; align-items: flex-start; gap: 5px; }
+      .ug-section-head h2 { font-size: 28px; }
+      .ug-tab-btn { font-size: .78rem; padding: 8px 12px; }
+      .ug-subject-row { flex-direction: column; align-items: flex-start; }
+      .ug-branch-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .ug-intro-text { font-size: 17px; }
+      .ug-hero { background-attachment: scroll; }
+    }
+  </style>
 </head>
-
 <body>
 
-  
-
-<!-- PRELOADER -->
 <div id="preloader">
-
-    <div class="loader-content">
-
-        <img src="images/logo.png" class="logo">
-
-        <h2>School of Engineering and Technology</h2>
-
-        <div class="spinner"></div>
-
-    </div>
-
+  <div class="loader-content">
+    <img src="images/logo.png" class="logo">
+    <h2>School of Engineering and Technology</h2>
+    <div class="spinner"></div>
+  </div>
 </div>
-
 
 <div class="SOET-Topstrip">
-
-<div class="topbar">
-
-<div class="topbar-left">
-<a href="student-login.html">Students</a> |
-<a href="teacher-login.html">Faculty & Staff</a> |
-<a href="alumni.html">Alumni</a> |
-<a href="placement.html">Industry</a> |
-<a href="about.html#about-contact">Directory</a> |
-<a href="contact.html">Contact</a>
-</div>
-
-<div class="topbar-right">
-<span onclick="changeFontSize(-1)">A-</span>
-<span onclick="changeFontSize(0)">A</span>
-<span onclick="changeFontSize(1)">A+</span>
-
-<span onclick="translatePage('hi')">हिंदी</span> |
-<span onclick="translatePage('en')">ENG</span>
-<button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
-
-<div id="google_translate_element"></div>
-</div>
-
-</div>
-
+  <div class="topbar">
+    <div class="topbar-left">
+      <a href="student-login.html">Students</a> |
+      <a href="teacher-login.html">Faculty & Staff</a> |
+      <a href="alumni.html">Alumni</a> |
+      <a href="placement.html">Industry</a> |
+      <a href="about.html#about-contact">Directory</a> |
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="topbar-right">
+      <span onclick="changeFontSize(-1)">A-</span>
+      <span onclick="changeFontSize(0)">A</span>
+      <span onclick="changeFontSize(1)">A+</span>
+      <span onclick="translatePage('hi')">हिंदी</span> |
+      <span onclick="translatePage('en')">ENG</span>
+      <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
+      <div id="google_translate_element"></div>
+    </div>
   </div>
+</div>
 
-
-<!-- MAIN WEBSITE -->
 <div id="content">
-
 <header>
-
-<!-- TOP BAR -->
-
-
-<div class="top-right">
-</div>
-
-</div>
-<header>
-
-
-
-<!-- LOGO AREA -->
-<div class="logo-area">
-<div class="left-header">
-
-
-<a href="index.html">
-<img src="images/logo.png" class="logo">
-</a>
-<div class="title">
-<h2>Samrat Vikramaditya Vishwavidayalaya</h2>
-<h1>School of Engineering and Technology</h1>
-</div>
-</div>
-
-<div class="right-emblems">
-<img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
-<a href="https://www.india.gov.in" target="blank">
-<img src="images/const.png" class="constitution">
-</a>
-</div>
-</div>
-
-
-<!-- NAVBAR -->
-<nav class="navbar">
-
-<a href="index.html" class="home-icon">
-<i class="fa-solid fa-house"></i>
-</a>
-
-<li class="nav-item">
-    <a href="about.html">About us</a>
-
-  <div class="dropdown-menu">
-
-    <a href="about.html#about-overview">Overview</a>
-    <a href="about.html#about-vision">Vision & Mission</a>
-    <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
-    <a href="about.html#about-history">History</a>
-    <a href="about.html#about-administration">Administration and Organization HOD details</a>
-    <a href="about.html#about-contact">Contact US / How to reach</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="campus-life.html">Campus Life</a>
-
-  <div class="dropdown-menu">
-
-    <a href="dean-office.html">Office of the Dean</a>
-    <a href="hostels-dining.html">Hostels and Dining faclities</a>
-    <a href="ncc-nss.html">NCC & NSS</a>
-    <a href="clubs-society.html">Clubs and Societies</a>
-    <a href="sports.html">Sports Infrastructure and Teams</a>
-    <a href="annual-fests.html">Annual Fests</a>
-    <a href="campus-facilities.html">Campus Facilities</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="academics.html">Academics</a>
-
-  <div class="dropdown-menu">
-
-    <a href="programs.html">Programs Offered</a>
-    <a href="undergraduate.html">Under-Graduate</a>
-    <a href="postgraduate.html">Post-Graduate</a>
-    <a href="nptel.html">NPTEL/MOOCS</a>
-    <a href="library.html">Central and College Library</a>
-    <a href="exam-cell.html">Examination Cell</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="admission.html">Admissions</a>
-
-  <div class="dropdown-menu">
-
-    <a href="why-soet.html">Why SOET Ujjain?</a>
-    <a href="life-in-ujjain.html">Life in Ujjain</a>
-    <a href="btech-admissions.html">B.TECH Admissions</a>
-    <a href="mtech-programs.html">M.TECH/PHD Admissions</a>
-    <a href="fees-scholarships.html">Fee Structure & Scholarships</a>
-    <a href="admissions-faq.html">Admission FAQ</a>
-    <a href="anti-ragging.html">Anti-Ragging Policy</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="research.html">Research and Innovations</a>
-
-  <div class="dropdown-menu">
-
-    <a href="research.html#rnd-dean">Dean of R&D</a>
-    <a href="research.html#rnd-projects">Sponsored Projects and Grants</a>
-    <a href="research.html#rnd-patents">Patents & Publications</a>
-    <a href="research.html#rnd-facilities">Central Research Facilities</a>
-    <a href="research.html#rnd-incubation">Incubation Center & E-Cell</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="placement.html">Training & Placement cell</a>
-
-  <div class="dropdown-menu">
-    <a href="placement.html#tp-message">Message from T&P Officer</a>
-    <a href="placement.html#tp-stats">Placement Statistics and Annual Report</a>
-    <a href="placement.html#tp-brochure">Official Placement Brochure</a>
-    <a href="placement.html#tp-procedure">Recruitment Procedure</a>
-    <a href="placement.html#tp-skills">Student Skill Development</a>
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="alumni.html">Alumni</a>
-</li>
-
-<a href="contact.html">Contact Us</a>
-<li>
-<a href="#" onclick="openSearch()">
-<i class="fa-solid fa-magnifying-glass search-icon"></i>
-</a>
-</li>
-
-</nav>
-
-<section class="ug-banner">
-    <div class="banner-content">
-        <h1>B.Tech Resource Portal</h1>
-        <p><a href="index.html">Home</a> / <a href="academics.html">Academics</a> / Undergraduate</p>
+  <div class="logo-area">
+    <div class="left-header">
+      <a href="index.html"><img src="images/logo.png" class="logo"></a>
+      <div class="title">
+        <h2>Samrat Vikramaditya Vishwavidayalaya</h2>
+        <h1>School of Engineering and Technology</h1>
+      </div>
     </div>
-</section>
-
-<section class="ug-intro">
-    <div class="container text-center">
-        <h2 class="section-title">B.Tech Study Materials & PYQs</h2>
-        <p>
-            Select your engineering branch from the sidebar to access the official university syllabus, professor's lecture notes, and previous year question papers for all 8 semesters.
-        </p>
+    <div class="right-emblems">
+      <img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
+      <a href="https://www.india.gov.in" target="_blank"><img src="images/const.png" class="constitution"></a>
     </div>
-</section>
+  </div>
 
-<section class="ug-master-container">
-    
-    <aside class="ug-side-menu">
-        <h3>B.Tech Branches</h3>
-        <ul>
-            <li><a href="#cs"><i class="fa-solid fa-laptop-code"></i> Computer Science</a></li>
-            <li><a href="#me"><i class="fa-solid fa-gears"></i> Mechanical Engg.</a></li>
-            <li><a href="#ec"><i class="fa-solid fa-microchip"></i> Electronics & Comm.</a></li>
-            <li><a href="#ce"><i class="fa-solid fa-building"></i> Civil Engg.</a></li>
-        </ul>
-    </aside>
+  <nav class="navbar">
+    <a href="index.html" class="home-icon"><i class="fa-solid fa-house"></i></a>
+    <li class="nav-item">
+      <a href="about.html">About us</a>
+      <div class="dropdown-menu">
+        <a href="about.html#about-overview">Overview</a>
+        <a href="about.html#about-vision">Vision & Mission</a>
+        <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
+        <a href="about.html#about-history">History</a>
+        <a href="about.html#about-administration">Administration and Organization HOD details</a>
+        <a href="about.html#about-contact">Contact US / How to reach</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="campus-life.html">Campus Life</a>
+      <div class="dropdown-menu">
+        <a href="dean-office.html">Office of the Dean</a>
+        <a href="hostels-dining.html">Hostels and Dining facilities</a>
+        <a href="ncc-nss.html">NCC & NSS</a>
+        <a href="clubs-society.html">Clubs and Societies</a>
+        <a href="sports.html">Sports Infrastructure and Teams</a>
+        <a href="annual-fests.html">Annual Fests</a>
+        <a href="campus-facilities.html">Campus Facilities</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="academics.html">Academics</a>
+      <div class="dropdown-menu">
+        <a href="programs.html">Programs Offered</a>
+        <a href="undergraduate.html">Under-Graduate</a>
+        <a href="postgraduate.html">Post-Graduate</a>
+        <a href="nptel.html">NPTEL/MOOCS</a>
+        <a href="library.html">Central and College Library</a>
+        <a href="exam-cell.html">Examination Cell</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="admission.html">Admissions</a>
+      <div class="dropdown-menu">
+        <a href="why-soet.html">Why SOET Ujjain?</a>
+        <a href="life-in-ujjain.html">Life in Ujjain</a>
+        <a href="btech-admissions.html">B.TECH Admissions</a>
+        <a href="mtech-programs.html">M.TECH/PHD Admissions</a>
+        <a href="fees-scholarships.html">Fee Structure & Scholarships</a>
+        <a href="admissions-faq.html">Admission FAQ</a>
+        <a href="anti-ragging.html">Anti-Ragging Policy</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="research.html">Research and Innovations</a>
+      <div class="dropdown-menu">
+        <a href="research.html#rnd-dean">Dean of R&D</a>
+        <a href="research.html#rnd-projects">Sponsored Projects and Grants</a>
+        <a href="research.html#rnd-patents">Patents & Publications</a>
+        <a href="research.html#rnd-facilities">Central Research Facilities</a>
+        <a href="research.html#rnd-incubation">Incubation Center & E-Cell</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="placement.html">Training & Placement cell</a>
+      <div class="dropdown-menu">
+        <a href="placement.html#tp-message">Message from T&P Officer</a>
+        <a href="placement.html#tp-stats">Placement Statistics and Annual Report</a>
+        <a href="placement.html#tp-brochure">Official Placement Brochure</a>
+        <a href="placement.html#tp-procedure">Recruitment Procedure</a>
+        <a href="placement.html#tp-skills">Student Skill Development</a>
+      </div>
+    </li>
+    <li class="nav-item"><a href="alumni.html">Alumni</a></li>
+    <li class="nav-item"><a href="contact.html">Contact Us</a></li>
+    <li><a href="#" onclick="openSearch()"><i class="fa-solid fa-magnifying-glass search-icon"></i></a></li>
+  </nav>
+</header>
 
-    <main class="ug-content-area">
+<div class="ug-main">
+  <section class="ug-hero">
+    <div class="ug-hero-overlay"></div>
+    <div class="ug-hero-box">
+      <div class="ug-breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="academics.html">Academics</a>
+        <span class="sep">/</span>
+        <span style="color:#333;">Undergraduate</span>
+      </div>
+      <h1>B.Tech Resource Portal</h1>
+      <p>Syllabus &nbsp;·&nbsp; Lecture Notes &nbsp;·&nbsp; Previous Year Questions &nbsp;— all branches, all semesters.</p>
+    </div>
+  </section>
 
-        <div id="cs" class="ug-branch-block">
-            <div class="ug-branch-header">
-                <h2>Computer Science Engineering</h2>
-                <p>8 Semesters • 4-Year Degree Program</p>
+  <div class="ug-portal">
+    <div class="ug-section-head">
+      <h2>Undergraduate Programs</h2>
+      <span>B.Tech &nbsp;·&nbsp; 4-Year Degree</span>
+    </div>
+
+    <p class="ug-intro-text">
+      Select your engineering branch, then expand any semester to access the official university syllabus, professor's lecture notes, and previous year question papers — all linked directly from Google Drive.
+    </p>
+    <div class="ug-accent-line"></div>
+
+    <div class="ug-branch-tabs">
+      <button class="ug-tab-btn active" onclick="showBranch('cs', this)"><i class="fa-solid fa-laptop-code"></i> Computer Science</button>
+      <button class="ug-tab-btn" onclick="showBranch('ecs', this)"><i class="fa-solid fa-network-wired"></i> ECS</button>
+      <button class="ug-tab-btn" onclick="showBranch('ece', this)"><i class="fa-solid fa-microchip"></i> Electronics &amp; Comm.</button>
+      <button class="ug-tab-btn" onclick="showBranch('ee', this)"><i class="fa-solid fa-bolt"></i> Electrical Engg.</button>
+      <button class="ug-tab-btn" onclick="showBranch('me', this)"><i class="fa-solid fa-gears"></i> Mechanical Engg.</button>
+      <button class="ug-tab-btn" onclick="showBranch('ce', this)"><i class="fa-solid fa-building-columns"></i> Civil Engg.</button>
+      <button class="ug-tab-btn" onclick="showBranch('ag', this)"><i class="fa-solid fa-wheat-awn"></i> Agricultural &amp; Dairy</button>
+    </div>
+
+    <div id="branch-cs" class="ug-branch-panel active">
+      <div class="ug-branch-header">
+        <div class="ug-branch-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <div>
+          <h2>Computer Science Engineering</h2>
+          <p>8 Semesters &nbsp;·&nbsp; 4-Year Program &nbsp;·&nbsp; AICTE Approved</p>
+        </div>
+      </div>
+      <div class="ug-sem-list">
+
+        <div class="ug-sem-item">
+          <button class="ug-sem-toggle" onclick="toggleSem(this)">
+            <span class="ug-sem-label"><i class="fa-solid fa-layer-group"></i>&nbsp; Semester 1 <span class="ug-sem-badge">5 Subjects</span></span>
+            <i class="fa-solid fa-chevron-down ug-chevron"></i>
+          </button>
+          <div class="ug-sem-body">
+            
+            <div class="sem-syllabus-bar">
+              <div class="sem-syllabus-info">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span><strong>Official Semester Syllabus</strong> (Combined PDF)</span>
+              </div>
+              <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn solid-syl-btn">
+                <i class="fa-solid fa-download"></i> Download PDF
+              </a>
+            </div>
+
+            <div class="ug-subject-row">
+              <div class="ug-sub-info"><div class="ug-sub-code">BT-101</div><div class="ug-sub-name">Engineering Mathematics – I</div></div>
+              <div class="ug-actions">
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
+              </div>
             </div>
             
-            <div class="ug-sem-grid">
-                <div class="ug-sem-card">
-                    <div class="ug-sem-header">Semester 1</div>
-                    <ul class="ug-sub-list">
-                        <li>
-                            <div class="ug-sub-title"><strong>BT-101:</strong> Engineering Mathematics-I</div>
-                            <div class="ug-action-row">
-                                <a href="#" class="ug-btn ug-btn-syl"><i class="fa-solid fa-file-pdf"></i> Syllabus</a>
-                                <a href="#" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
-                                <a href="#" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="ug-sub-title"><strong>BT-105:</strong> Basic Computer Engineering</div>
-                            <div class="ug-action-row">
-                                <a href="#" class="ug-btn ug-btn-syl"><i class="fa-solid fa-file-pdf"></i> Syllabus</a>
-                                <a href="#" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
-                                <a href="#" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="ug-sem-card">
-                    <div class="ug-sem-header">Semester 2</div>
-                    <ul class="ug-sub-list">
-                        <li>
-                            <div class="ug-sub-title"><strong>BT-201:</strong> Engineering Mathematics-II</div>
-                            <div class="ug-action-row">
-                                <a href="#" class="ug-btn ug-btn-syl"><i class="fa-solid fa-file-pdf"></i> Syllabus</a>
-                                <a href="#" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
-                                <a href="#" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+            <div class="ug-subject-row">
+              <div class="ug-sub-info"><div class="ug-sub-code">BT-102</div><div class="ug-sub-name">Engineering Physics</div></div>
+              <div class="ug-actions">
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
+              </div>
             </div>
+
+            <div class="ug-subject-row">
+              <div class="ug-sub-info"><div class="ug-sub-code">BT-103</div><div class="ug-sub-name">Communication Skills</div></div>
+              <div class="ug-actions">
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
+              </div>
+            </div>
+
+            <div class="ug-subject-row">
+              <div class="ug-sub-info"><div class="ug-sub-code">BT-104</div><div class="ug-sub-name">Basic Electrical & Electronics</div></div>
+              <div class="ug-actions">
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
+              </div>
+            </div>
+
+            <div class="ug-subject-row">
+              <div class="ug-sub-info"><div class="ug-sub-code">BT-105</div><div class="ug-sub-name">Basic Computer Engineering</div></div>
+              <div class="ug-actions">
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
+                <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div id="me" class="ug-branch-block">
-            <div class="ug-branch-header">
-                <h2>Mechanical Engineering</h2>
-                <p>8 Semesters • 4-Year Degree Program</p>
-            </div>
+        <div class="ug-sem-item">
+          <button class="ug-sem-toggle" onclick="toggleSem(this)">
+            <span class="ug-sem-label"><i class="fa-solid fa-layer-group"></i>&nbsp; Semester 2 <span class="ug-sem-badge">5 Subjects</span></span>
+            <i class="fa-solid fa-chevron-down ug-chevron"></i>
+          </button>
+          <div class="ug-sem-body">
             
-            <div class="ug-sem-grid">
-                <div class="ug-sem-card">
-                    <div class="ug-sem-header">Semester 1</div>
-                    <ul class="ug-sub-list">
-                        <li>
-                            <div class="ug-sub-title"><strong>BT-101:</strong> Engineering Mathematics-I</div>
-                            <div class="ug-action-row">
-                                <a href="#" class="ug-btn ug-btn-syl"><i class="fa-solid fa-file-pdf"></i> Syllabus</a>
-                                <a href="#" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a>
-                                <a href="#" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+            <div class="sem-syllabus-bar">
+              <div class="sem-syllabus-info">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span><strong>Official Semester Syllabus</strong> (Combined PDF)</span>
+              </div>
+              <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn solid-syl-btn">
+                <i class="fa-solid fa-download"></i> Download PDF
+              </a>
             </div>
+
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">BT-201</div><div class="ug-sub-name">Engineering Mathematics – II</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-201</div><div class="ug-sub-name">Programming in C</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-202</div><div class="ug-sub-name">Digital Electronics</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-203</div><div class="ug-sub-name">Data Structures</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-204</div><div class="ug-sub-name">Computer Organization</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+          </div>
         </div>
 
-    </main>
-</section>
-<!-- FOOTER -->
-<footer class="elite-footer">
-    <div class="footer-top-grid">
-        
-        <div class="footer-col">
-            <h4>School of Engineering & Technology</h4>
-            <div class="contact-details">
-                <p>Samrat Vikramaditya Vishwavidyalaya<br>Ujjain, Madhya Pradesh, India</p>
-                <p><i class="fa-solid fa-phone" style="width: 25px; color: #8892b0;"></i> <a href="tel:+918770122362">+91-8770122362</a></p>
-                <p><i class="fa-solid fa-envelope" style="width: 25px; color: #8892b0;"></i> <a href="mailto:soet@vikramuniv.ac.in">soet@vikramuniv.ac.in</a></p>
-                <p><i class="fa-solid fa-globe" style="width: 25px; color: #8892b0;"></i> <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
+        <div class="ug-sem-item">
+          <button class="ug-sem-toggle" onclick="toggleSem(this)">
+            <span class="ug-sem-label"><i class="fa-solid fa-layer-group"></i>&nbsp; Semester 4 <span class="ug-sem-badge">5 Subjects</span></span>
+            <i class="fa-solid fa-chevron-down ug-chevron"></i>
+          </button>
+          <div class="ug-sem-body">
+            <div class="sem-syllabus-bar">
+              <div class="sem-syllabus-info">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span><strong>Official Semester Syllabus</strong> (Combined PDF)</span>
+              </div>
+              <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn solid-syl-btn">
+                <i class="fa-solid fa-download"></i> Download PDF
+              </a>
             </div>
+
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-401</div><div class="ug-sub-name">Design & Analysis of Algorithms</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-402</div><div class="ug-sub-name">Database Management Systems</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-403</div><div class="ug-sub-name">Operating Systems</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-404</div><div class="ug-sub-name">Theory of Computation</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-405</div><div class="ug-sub-name">Software Engineering</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+          </div>
         </div>
 
-        <div class="footer-col">
-            <h4>Academics</h4>
-            <ul class="elite-links">
-                <li><a href="#">Departments</a></li>
-                <li><a href="programs.html">Educational Programmes</a></li>
-                <li><a href="#">Rules & Regulations</a></li>
-                <li><a href="https://vikram.mponline.gov.in">Online Services</a></li>
-                <li><a href="campus-life.html">Campus Life</a></li>
-            </ul>
+        <div class="ug-sem-item">
+          <button class="ug-sem-toggle" onclick="toggleSem(this)">
+            <span class="ug-sem-label"><i class="fa-solid fa-layer-group"></i>&nbsp; Semester 6 <span class="ug-sem-badge">5 Subjects</span></span>
+            <i class="fa-solid fa-chevron-down ug-chevron"></i>
+          </button>
+          <div class="ug-sem-body">
+            <div class="sem-syllabus-bar">
+              <div class="sem-syllabus-info">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span><strong>Official Semester Syllabus</strong> (Combined PDF)</span>
+              </div>
+              <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn solid-syl-btn">
+                <i class="fa-solid fa-download"></i> Download PDF
+              </a>
+            </div>
+
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-601</div><div class="ug-sub-name">Machine Learning</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-602</div><div class="ug-sub-name">Cloud Computing</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-603</div><div class="ug-sub-name">Information & Network Security</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-604</div><div class="ug-sub-name">Big Data Analytics</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-605</div><div class="ug-sub-name">Internet of Things (IoT)</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+          </div>
         </div>
 
-        <div class="footer-col">
-            <h4>Institutional</h4>
-            <ul class="elite-links">
-                <li><a href="#">NIRF Ranking</a></li>
-                <li><a href="#">NAAC Accreditation</a></li>
-                <li><a href="anti-ragging.html">Anti-Ragging Committee</a></li>
-                <li><a href="#">Internal Complaints & Women Cell</a></li>
-                <li><a href="contact.html">Contact Directory</a></li>
-            </ul>
+        <div class="ug-sem-item">
+          <button class="ug-sem-toggle" onclick="toggleSem(this)">
+            <span class="ug-sem-label"><i class="fa-solid fa-layer-group"></i>&nbsp; Semester 8 <span class="ug-sem-badge">3 Subjects</span></span>
+            <i class="fa-solid fa-chevron-down ug-chevron"></i>
+          </button>
+          <div class="ug-sem-body">
+            <div class="sem-syllabus-bar">
+              <div class="sem-syllabus-info">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span><strong>Official Semester Syllabus</strong> (Combined PDF)</span>
+              </div>
+              <a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn solid-syl-btn">
+                <i class="fa-solid fa-download"></i> Download PDF
+              </a>
+            </div>
+
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-801</div><div class="ug-sub-name">Blockchain Technology</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-802</div><div class="ug-sub-name">Professional Ethics & Cyber Law</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+            <div class="ug-subject-row"><div class="ug-sub-info"><div class="ug-sub-code">CS-803</div><div class="ug-sub-name">Major Project / Dissertation</div></div><div class="ug-actions"><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-not"><i class="fa-solid fa-book"></i> Notes</a><a href="YOUR_GDRIVE_LINK" target="_blank" class="ug-btn ug-btn-pyq"><i class="fa-solid fa-clock-rotate-left"></i> PYQs</a></div></div>
+          </div>
         </div>
 
-        <div class="footer-col live-campus-widget">
-            <h4>Campus Live</h4>
-            <div class="data-row">
-                <span class="data-label">Date & Time</span>
-                <span class="data-value"><span id="date">--</span> | <span id="time">--</span></span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">Location</span>
-                <span class="data-value" style="font-size: 12px;">स्वामी विवेकानन्द स्नातक भवन</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">Conditions</span>
-                <span class="data-value"><span id="weather">--</span>, <span id="temp">--</span></span>
-            </div>
-        </div>
-
+      </div>
     </div>
 
-    <div class="footer-bottom-bar">
-        <div class="bottom-bar-content">
-            <div class="legal-text">
-                &copy; 2026 Student Tech Team SOET.<br>All rights reserved.
-            </div>
-            
-            <div class="footer-logo-center">
-                <a href="index.html">
-                    <img src="images/logo2.png" alt="SOET University Logo">
-                </a>
-            </div>
-
-            <div class="visitor-stats">
-                Last Updated: <span id="lastUpdated"></span><br>
-                Unique Visitors: <span id="visitorCount"></span>
-            </div>
-        </div>
+    <div id="branch-ecs" class="ug-branch-panel">
+      <div class="ug-branch-header"><div class="ug-branch-icon"><i class="fa-solid fa-network-wired"></i></div><div><h2>Electronics & Computer Science (ECS)</h2><p>8 Semesters &nbsp;·&nbsp; 4-Year Program &nbsp;·&nbsp; AICTE Approved</p></div></div>
+      <div class="ug-sem-list">
+        <div class="ug-info-strip"><i class="fa-solid fa-circle-info"></i>&nbsp; ECS subjects are being added. Check back soon.</div>
+      </div>
     </div>
+
+    <div id="branch-ece" class="ug-branch-panel">
+      <div class="ug-branch-header"><div class="ug-branch-icon"><i class="fa-solid fa-microchip"></i></div><div><h2>Electronics & Communication (ECE)</h2><p>8 Semesters &nbsp;·&nbsp; 4-Year Program &nbsp;·&nbsp; AICTE Approved</p></div></div>
+      <div class="ug-sem-list">
+        <div class="ug-info-strip"><i class="fa-solid fa-circle-info"></i>&nbsp; ECE subjects are being added. Check back soon.</div>
+      </div>
+    </div>
+
+    <div id="branch-ee" class="ug-branch-panel">
+      <div class="ug-branch-header"><div class="ug-branch-icon"><i class="fa-solid fa-bolt"></i></div><div><h2>Electrical Engineering (EE)</h2><p>8 Semesters &nbsp;·&nbsp; 4-Year Program &nbsp;·&nbsp; AICTE Approved</p></div></div>
+      <div class="ug-sem-list">
+        <div class="ug-info-strip"><i class="fa-solid fa-circle-info"></i>&nbsp; EE subjects are being added. Check back soon.</div>
+      </div>
+    </div>
+
+    <div id="branch-me" class="ug-branch-panel">
+      <div class="ug-branch-header"><div class="ug-branch-icon"><i class="fa-solid fa-gears"></i></div><div><h2>Mechanical Engineering (ME)</h2><p>8 Semesters &nbsp;·&nbsp; 4-Year Program &nbsp;·&nbsp; AICTE Approved</p></div></div>
+      <div class="ug-sem-list">
+        <div class="ug-info-strip"><i class="fa-solid fa-circle-info"></i>&nbsp; ME subjects are being added. Check back soon.</div>
+      </div>
+    </div>
+
+    <div id="branch-ce" class="ug-branch-panel">
+      <div class="ug-branch-header"><div class="ug-branch-icon"><i class="fa-solid fa-building-columns"></i></div><div><h2>Civil Engineering (CE)</h2><p>8 Semesters &nbsp;·&nbsp; 4-Year Program &nbsp;·&nbsp; AICTE Approved</p></div></div>
+      <div class="ug-sem-list">
+        <div class="ug-info-strip"><i class="fa-solid fa-circle-info"></i>&nbsp; Civil Engg. subjects are being added. Check back soon.</div>
+      </div>
+    </div>
+
+    <div id="branch-ag" class="ug-branch-panel">
+      <div class="ug-branch-header"><div class="ug-branch-icon"><i class="fa-solid fa-wheat-awn"></i></div><div><h2>Agricultural & Dairy Engineering</h2><p>8 Semesters &nbsp;·&nbsp; 4-Year Program &nbsp;·&nbsp; AICTE Approved</p></div></div>
+      <div class="ug-sem-list">
+        <div class="ug-info-strip"><i class="fa-solid fa-circle-info"></i>&nbsp; Agricultural Engg. subjects are being added. Check back soon.</div>
+      </div>
+    </div>
+
+  </div> </div> <footer class="elite-footer">
+  <div class="footer-top-grid">
+    <div class="footer-col">
+      <h4>School of Engineering & Technology</h4>
+      <div class="contact-details">
+        <p>Samrat Vikramaditya Vishwavidyalaya<br>Ujjain, Madhya Pradesh, India</p>
+        <p><i class="fa-solid fa-phone" style="width: 25px; color: #8892b0;"></i> <a href="tel:+918770122362">+91-8770122362</a></p>
+        <p><i class="fa-solid fa-envelope" style="width: 25px; color: #8892b0;"></i> <a href="mailto:soet@vikramuniv.ac.in">soet@vikramuniv.ac.in</a></p>
+        <p><i class="fa-solid fa-globe" style="width: 25px; color: #8892b0;"></i> <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Academics</h4>
+      <ul class="elite-links">
+        <li><a href="#">Departments</a></li>
+        <li><a href="programs.html">Educational Programmes</a></li>
+        <li><a href="#">Rules & Regulations</a></li>
+        <li><a href="https://vikram.mponline.gov.in">Online Services</a></li>
+        <li><a href="campus-life.html">Campus Life</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Institutional</h4>
+      <ul class="elite-links">
+        <li><a href="#">NIRF Ranking</a></li>
+        <li><a href="#">NAAC Accreditation</a></li>
+        <li><a href="anti-ragging.html">Anti-Ragging Committee</a></li>
+        <li><a href="#">Internal Complaints & Women Cell</a></li>
+        <li><a href="contact.html">Contact Directory</a></li>
+      </ul>
+    </div>
+    <div class="footer-col live-campus-widget">
+      <h4>Campus Live</h4>
+      <div class="data-row"><span class="data-label">Date & Time</span><span class="data-value"><span id="date">--</span> | <span id="time">--</span></span></div>
+      <div class="data-row"><span class="data-label">Location</span><span class="data-value" style="font-size:12px;">स्वामी विवेकानन्द स्नातक भवन</span></div>
+      <div class="data-row"><span class="data-label">Conditions</span><span class="data-value"><span id="weather">--</span>, <span id="temp">--</span></span></div>
+    </div>
+  </div>
+  <div class="footer-bottom-bar">
+    <div class="bottom-bar-content">
+      <div class="legal-text">&copy; 2026 Student Tech Team SOET.<br>All rights reserved.</div>
+      <div class="footer-logo-center"><a href="index.html"><img src="images/logo2.png" alt="SOET University Logo"></a></div>
+      <div class="visitor-stats">Last Updated: <span id="lastUpdated"></span><br>Unique Visitors: <span id="visitorCount"></span></div>
+    </div>
+  </div>
 </footer>
+
 <script src="js/script.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    // 1. Date & Time
+  function showBranch(branchId, btn) {
+    document.querySelectorAll('.ug-tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.ug-branch-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('branch-' + branchId).classList.add('active');
+  }
+
+  function toggleSem(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    const allBtns = btn.closest('.ug-sem-list').querySelectorAll('.ug-sem-toggle');
+    allBtns.forEach(b => {
+      b.classList.remove('open');
+      b.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) { btn.classList.add('open'); body.classList.add('open'); }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
     const dateEl = document.getElementById("date");
     const timeEl = document.getElementById("time");
-    
-    if(dateEl) dateEl.innerHTML = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-    
-    setInterval(function(){
-        if(timeEl) timeEl.innerHTML = new Date().toLocaleTimeString('en-US', { hour12: false });
-    }, 1000);
-
-    // 2. Weather API
-    const apiKey = "6ab4623b616a1ea162cf45d73c2dcb32";
-    const city = "Ujjain";
-
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
-    .then(response => response.json())
-    .then(data => {
-        if (data.weather && data.weather.length > 0) {
-            let desc = data.weather[0].description;
-            document.getElementById("weather").innerHTML = desc.charAt(0).toUpperCase() + desc.slice(1);
-            document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
+    if (dateEl) dateEl.innerHTML = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    setInterval(() => { if (timeEl) timeEl.innerHTML = new Date().toLocaleTimeString('en-US', { hour12: false }); }, 1000);
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=Ujjain&units=metric&appid=6ab4623b616a1ea162cf45d73c2dcb32')
+      .then(r => r.json()).then(data => {
+        if (data.weather) {
+          let d = data.weather[0].description;
+          document.getElementById("weather").innerHTML = d.charAt(0).toUpperCase() + d.slice(1);
+          document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
         }
-    })
-    .catch(err => console.log("Weather error:", err));
-
-    // 3. Stats
+      }).catch(() => {});
     const lastUp = document.getElementById("lastUpdated");
-    if(lastUp) lastUp.innerHTML = document.lastModified;
-
+    if (lastUp) lastUp.innerHTML = document.lastModified;
     let count = localStorage.getItem("visitorCount");
     count = count === null ? 1 : Number(count) + 1;
     localStorage.setItem("visitorCount", count);
-    
     const visCount = document.getElementById("visitorCount");
-    if(visCount) visCount.innerText = count.toLocaleString();
-});
+    if (visCount) visCount.innerText = count.toLocaleString();
+  });
 </script>
-</HTML>
+</body>
+</html>
