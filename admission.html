@@ -2,39 +2,439 @@
 <html>
 
 <head>
-<title>School Of Engineering and Technology</title>
-
+<title>Admissions 2026–27 — School of Engineering and Technology</title>
 <link rel="stylesheet" href="css/style.css">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<style>
+/* ── Page-scoped variables (do NOT override global style.css) ── */
+.adm-wrap {
+    font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+    background: #f8f9fa;
+    color: #111;
+    overflow-x: hidden;
+}
 
+/* Alert banner */
+.adm-alert {
+    background: linear-gradient(90deg, #fff3f3 0%, #fff8f8 100%);
+    border-bottom: 1px solid #f5c6c6;
+    padding: 10px 20px;
+    font-size: 12.5px;
+    color: #8b1a1a;
+    text-align: center;
+    letter-spacing: .2px;
+}
+.adm-alert strong { color: #6b0f0f; font-weight: 700; }
+.adm-alert a { color: #800000; text-decoration: underline; }
+
+/* Hero */
+.adm-hero {
+    position: relative;
+    width: 100%;
+    height: 52vh;
+    min-height: 420px;
+    background: url('https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 5%;
+    margin-bottom: 80px;
+    box-sizing: border-box;
+}
+.adm-hero-overlay {
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,.08) 0%, rgba(0,0,0,.62) 100%);
+    z-index: 1;
+}
+.adm-hero-box {
+    position: relative; z-index: 2;
+    background: rgba(255,255,255,.97);
+    backdrop-filter: blur(12px);
+    padding: 40px 48px;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0,0,0,.14);
+    max-width: 820px;
+    border-top: 6px solid #800000;
+    bottom: -40px;
+}
+.adm-breadcrumb {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+    color: #666; margin-bottom: 14px; font-weight: 700;
+}
+.adm-breadcrumb a { color: #800000; text-decoration: none; }
+.adm-breadcrumb span { margin: 0 8px; color: #ccc; }
+.adm-hero-box h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(32px, 4.5vw, 52px);
+    color: #1a1a1a; margin: 0 0 12px;
+    font-weight: 700; line-height: 1.15;
+}
+.adm-hero-box h1 em { font-style: normal; color: #800000; }
+.adm-hero-box p {
+    color: #555; font-size: 16px; margin: 0;
+    border-left: 4px solid #ffcc00;
+    padding-left: 14px; line-height: 1.65; max-width: 600px;
+}
+.adm-pills {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;
+}
+.adm-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(128,0,0,.06); border: 1px solid rgba(128,0,0,.18);
+    color: #800000; padding: 5px 14px; border-radius: 100px;
+    font-size: 12px; font-weight: 600; letter-spacing: .3px;
+}
+.adm-pill::before {
+    content: ''; width: 5px; height: 5px;
+    background: #800000; border-radius: 50%; flex-shrink: 0;
+}
+
+/* ── Stats strip ── */
+.adm-stats-strip {
+    display: flex;
+    border-top: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 0;
+}
+.adm-stat {
+    flex: 1; padding: 46px 20px; text-align: center;
+    border-right: 1px solid #e8e8e8;
+}
+.adm-stat:last-child { border-right: none; }
+.adm-stat .num {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 64px; font-weight: 700; color: #800000;
+    line-height: 1; margin-bottom: 8px; letter-spacing: -2px;
+}
+.adm-stat .lbl {
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 1.5px; color: #666; font-weight: 600;
+}
+
+/* ── Section wrapper ── */
+.adm-section { max-width: 1200px; margin: 0 auto; padding: 70px 24px; }
+.adm-section-bordered { border-bottom: 1px solid #e8e8e8; }
+.adm-eyebrow {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px;
+    color: #800000; font-weight: 700; margin-bottom: 10px;
+}
+.adm-section h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 700; color: #111; line-height: 1.15; margin: 0 0 10px;
+}
+.adm-section-desc {
+    color: #555; font-size: 15px; line-height: 1.75;
+    max-width: 620px; margin-bottom: 44px;
+}
+.adm-accent { width: 52px; height: 4px; background: #ffcc00; border-radius: 2px; margin: 16px 0 40px; }
+
+/* ── Program cards ── */
+.adm-prog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.adm-prog-card {
+    background: #fff; border: 1px solid #ebebeb;
+    border-radius: 12px; padding: 30px 26px;
+    display: flex; flex-direction: column; gap: 12px;
+    position: relative; overflow: hidden;
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+    border-bottom: 4px solid transparent;
+}
+.adm-prog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px rgba(128,0,0,.1);
+    border-bottom-color: #800000;
+}
+.adm-prog-card.featured {
+    grid-column: span 2; flex-direction: row; gap: 28px; align-items: flex-start;
+}
+.adm-prog-img {
+    width: 200px; min-height: 180px; flex-shrink: 0;
+    background: #f4f4f4; border-radius: 8px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px dashed #ddd; color: #aaa; font-size: 12px; text-align: center;
+}
+.adm-prog-img img { width: 100%; height: 100%; object-fit: cover; }
+.adm-prog-body { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+.adm-badge {
+    display: inline-block;
+    background: rgba(128,0,0,.07); border: 1px solid rgba(128,0,0,.15);
+    color: #800000; font-size: 10.5px; font-weight: 700;
+    padding: 3px 10px; border-radius: 100px; letter-spacing: .5px;
+    text-transform: uppercase; width: fit-content;
+}
+.adm-prog-card h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 22px; font-weight: 700; color: #111; line-height: 1.2; margin: 0;
+}
+.adm-prog-card p { font-size: 13.5px; color: #555; line-height: 1.65; margin: 0; flex: 1; }
+.adm-prog-meta { border-top: 1px solid #f0f0f0; padding-top: 12px; display: flex; flex-direction: column; gap: 7px; }
+.adm-prog-meta-row { display: flex; justify-content: space-between; font-size: 12.5px; }
+.adm-prog-meta-row .k { color: #999; }
+.adm-prog-meta-row .v { color: #333; font-weight: 600; }
+.adm-cta-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: #800000; font-size: 13px; font-weight: 700;
+    margin-top: 4px; transition: gap .2s; text-decoration: none;
+}
+.adm-cta-link:hover { gap: 10px; }
+
+/* ── Process steps ── */
+.adm-process-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+.adm-step {
+    background: #fff; border-radius: 14px; padding: 36px 26px;
+    position: relative; overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,.05);
+    border: 1px solid #f0f0f0; border-bottom: 4px solid transparent;
+    transition: all .35s cubic-bezier(.165,.84,.44,1);
+    text-align: center;
+}
+.adm-step:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(128,0,0,.1);
+    border-bottom-color: #800000;
+}
+.adm-step-bg {
+    position: absolute; top: -14px; right: -8px;
+    font-size: 110px; font-weight: 900;
+    color: rgba(128,0,0,.04); line-height: 1; pointer-events: none;
+    transition: color .3s;
+}
+.adm-step:hover .adm-step-bg { color: rgba(128,0,0,.08); }
+.adm-step-icon {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: rgba(255,204,0,.12);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 22px;
+    font-size: 28px; color: #800000;
+    transition: background .3s, color .3s;
+}
+.adm-step:hover .adm-step-icon { background: #800000; color: #fff; }
+.adm-step h4 { font-size: 16px; font-weight: 700; color: #111; margin: 0 0 10px; }
+.adm-step p { font-size: 13.5px; color: #666; line-height: 1.6; margin: 0; }
+
+/* ── Eligibility tables ── */
+.adm-elig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.adm-elig-card {
+    background: #fff; border: 1px solid #e8e8e8;
+    border-radius: 12px; overflow: hidden;
+}
+.adm-elig-head {
+    padding: 18px 24px; border-bottom: 1px solid #f0f0f0;
+    display: flex; align-items: center; gap: 12px;
+    background: #fafafa;
+}
+.adm-elig-head h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 20px; font-weight: 700; color: #111; margin: 0;
+}
+.adm-elig-table { width: 100%; border-collapse: collapse; }
+.adm-elig-table tr { border-bottom: 1px solid #f0f0f0; }
+.adm-elig-table tr:last-child { border-bottom: none; }
+.adm-elig-table td { padding: 13px 22px; font-size: 13.5px; vertical-align: top; }
+.adm-elig-table td:first-child {
+    color: #999; width: 38%; font-size: 11.5px;
+    text-transform: uppercase; letter-spacing: .5px; padding-top: 16px; font-weight: 600;
+}
+.adm-elig-table td:last-child { color: #222; }
+
+/* ── Dates list ── */
+.adm-dates-list { display: flex; flex-direction: column; gap: 2px; background: #e8e8e8; border-radius: 12px; overflow: hidden; border: 1px solid #e8e8e8; }
+.adm-date-row {
+    background: #fff; display: flex; align-items: center;
+    gap: 20px; padding: 18px 24px; transition: background .2s;
+}
+.adm-date-row:hover { background: #fafafa; }
+.adm-date-box {
+    text-align: center; background: #f8f8f8;
+    border: 1px solid #eaeaea; border-radius: 6px;
+    padding: 8px 14px; min-width: 68px; flex-shrink: 0;
+}
+.adm-date-box .mo { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #800000; font-weight: 700; }
+.adm-date-box .dy { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; font-weight: 700; color: #111; line-height: 1; }
+.adm-date-info { flex: 1; }
+.adm-date-info .ev { font-weight: 700; color: #111; font-size: 14px; margin-bottom: 3px; }
+.adm-date-info .desc { font-size: 12.5px; color: #777; }
+.adm-status { font-size: 11px; padding: 4px 10px; border-radius: 100px; font-weight: 700; flex-shrink: 0; }
+.s-open { background: #e6f9ee; border: 1px solid #b7e9cb; color: #1a7a3d; }
+.s-soon { background: #fff4e0; border: 1px solid #ffd98a; color: #9a5d00; }
+.s-upcoming { background: #e8eeff; border: 1px solid #b8c8f8; color: #2042a8; }
+
+/* ── Documents checklist ── */
+.adm-docs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.adm-doc-card {
+    background: #fff; border: 1px solid #e8e8e8;
+    border-radius: 12px; padding: 28px 30px;
+}
+.adm-doc-card h4 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 20px; font-weight: 700; color: #111; margin: 0 0 18px;
+    padding-bottom: 14px; border-bottom: 2px solid #ffcc00;
+}
+.adm-doc-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.adm-doc-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: #444; }
+.adm-doc-list li i { color: #800000; margin-top: 3px; flex-shrink: 0; }
+
+/* ── Why SOET cards ── */
+.adm-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.adm-why-card {
+    background: #fff; border: 1px solid #ebebeb;
+    border-radius: 12px; padding: 28px 24px;
+    transition: border-color .25s, box-shadow .25s;
+}
+.adm-why-card:hover { border-color: rgba(128,0,0,.25); box-shadow: 0 8px 30px rgba(128,0,0,.07); }
+.adm-why-icon {
+    width: 52px; height: 52px; background: rgba(128,0,0,.07);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: #800000; margin-bottom: 16px;
+}
+.adm-why-card h4 { font-size: 15px; font-weight: 700; color: #111; margin: 0 0 8px; }
+.adm-why-card p { font-size: 13px; color: #666; line-height: 1.65; margin: 0; }
+
+/* ── FAQ ── */
+.adm-faq-list { display: flex; flex-direction: column; gap: 2px; background: #e8e8e8; border-radius: 12px; overflow: hidden; border: 1px solid #e8e8e8; }
+.adm-faq-item { background: #fff; }
+.adm-faq-q {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 24px; cursor: pointer; transition: background .2s; gap: 16px;
+}
+.adm-faq-q:hover { background: #fafafa; }
+.adm-faq-q h4 { font-size: 14px; font-weight: 600; color: #111; flex: 1; margin: 0; }
+.adm-faq-arrow { color: #800000; font-size: 18px; transition: transform .25s; flex-shrink: 0; }
+.adm-faq-item.open .adm-faq-arrow { transform: rotate(45deg); }
+.adm-faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height .3s ease, padding .3s;
+    padding: 0 24px; font-size: 13.5px; color: #555; line-height: 1.7;
+    border-top: 0px solid #f0f0f0;
+}
+.adm-faq-item.open .adm-faq-a {
+    max-height: 300px; padding: 14px 24px 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* ── Helpdesk + Form ── */
+.adm-contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 36px; align-items: start; }
+.adm-helpdesk-card { background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; overflow: hidden; }
+.adm-helpdesk-head { padding: 22px 24px; border-bottom: 1px solid #f0f0f0; background: #fafafa; }
+.adm-helpdesk-head h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; font-weight: 700; color: #111; margin: 0 0 4px; }
+.adm-helpdesk-head p { font-size: 13px; color: #666; margin: 0; }
+.adm-open-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 11.5px; color: #1a7a3d;
+    background: #e6f9ee; border: 1px solid #b7e9cb;
+    padding: 5px 12px; border-radius: 100px; margin: 14px 24px;
+}
+.adm-open-badge::before {
+    content: ''; width: 6px; height: 6px; background: #1a7a3d;
+    border-radius: 50%; animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+.adm-contact-row {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 24px; border-bottom: 1px solid #f0f0f0; transition: background .2s;
+}
+.adm-contact-row:last-child { border-bottom: none; }
+.adm-contact-row:hover { background: #fafafa; }
+.adm-contact-ico {
+    width: 40px; height: 40px; background: rgba(128,0,0,.07);
+    border: 1px solid rgba(128,0,0,.14); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; color: #800000; flex-shrink: 0;
+}
+.adm-contact-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .8px; color: #999; margin-bottom: 2px; font-weight: 600; }
+.adm-contact-val { font-size: 14px; font-weight: 600; color: #111; }
+.adm-contact-val a { color: #800000; text-decoration: none; }
+.adm-quick-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.adm-quick-link {
+    display: flex; align-items: center; gap: 10px;
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 8px;
+    padding: 14px; font-size: 13px; color: #555; text-decoration: none;
+    transition: border-color .2s, color .2s;
+}
+.adm-quick-link:hover { border-color: #800000; color: #800000; }
+.adm-quick-link i { font-size: 15px; color: #800000; }
+
+/* ── Enquiry Form ── */
+.adm-form-card { background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; padding: 32px; }
+.adm-form-card h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26px; font-weight: 700; color: #111; margin: 0 0 6px; }
+.adm-form-card .form-sub { font-size: 13px; color: #666; margin-bottom: 26px; }
+.adm-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.adm-form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+.adm-form-group.full { grid-column: span 2; }
+.adm-form-group label { font-size: 11.5px; text-transform: uppercase; letter-spacing: .7px; color: #555; font-weight: 700; }
+.adm-form-group label .req { color: #800000; }
+.adm-form-group input, .adm-form-group select, .adm-form-group textarea {
+    background: #fafafa; border: 1px solid #ddd; border-radius: 7px;
+    color: #111; font-family: inherit; font-size: 14px;
+    padding: 11px 14px; transition: border-color .2s, box-shadow .2s;
+    outline: none; width: 100%;
+}
+.adm-form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
+}
+.adm-form-group textarea { resize: vertical; min-height: 110px; }
+.adm-form-group input:focus, .adm-form-group select:focus, .adm-form-group textarea:focus {
+    border-color: #800000; box-shadow: 0 0 0 3px rgba(128,0,0,.08);
+}
+.adm-btn-submit {
+    width: 100%; background: #800000; border: none; color: #fff;
+    font-family: inherit; font-size: 14px; font-weight: 700;
+    padding: 14px 24px; border-radius: 7px; cursor: pointer;
+    letter-spacing: .3px; transition: background .2s, transform .15s; margin-top: 6px;
+}
+.adm-btn-submit:hover { background: #9a0000; transform: translateY(-1px); }
+.adm-form-note { font-size: 11.5px; color: #999; text-align: center; margin-top: 12px; }
+.adm-form-success { display: none; text-align: center; padding: 40px 20px; }
+.adm-form-success .s-icon { font-size: 52px; color: #1a7a3d; margin-bottom: 16px; }
+.adm-form-success h4 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26px; color: #1a7a3d; margin-bottom: 8px; }
+.adm-form-success p { font-size: 14px; color: #555; line-height: 1.7; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .adm-prog-grid, .adm-process-grid, .adm-why-grid { grid-template-columns: 1fr 1fr; }
+    .adm-prog-card.featured { grid-column: span 2; }
+    .adm-elig-grid, .adm-docs-grid { grid-template-columns: 1fr; }
+    .adm-contact-layout { grid-template-columns: 1fr; }
+    .adm-stats-strip { flex-wrap: wrap; }
+    .adm-stat { flex: 1 1 50%; }
+}
+@media (max-width: 600px) {
+    .adm-prog-grid, .adm-process-grid, .adm-why-grid { grid-template-columns: 1fr; }
+    .adm-prog-card.featured { grid-column: span 1; flex-direction: column; }
+    .adm-prog-img { width: 100%; min-height: 140px; }
+    .adm-hero-box { padding: 28px 22px; }
+    .adm-form-row { grid-template-columns: 1fr; }
+    .adm-form-group.full { grid-column: span 1; }
+    .adm-stat { flex: 1 1 100%; }
+}
+</style>
 </head>
 
 <body>
 
-  
-
 <!-- PRELOADER -->
 <div id="preloader">
-
     <div class="loader-content">
-
         <img src="images/logo.png" class="logo">
-
         <h2>School of Engineering and Technology</h2>
-
         <div class="spinner"></div>
-
     </div>
-
 </div>
 
-
+<!-- TOP STRIP -->
 <div class="SOET-Topstrip">
-
 <div class="topbar">
-
 <div class="topbar-left">
 <a href="student-login.html">Students</a> |
 <a href="teacher-login.html">Faculty & Staff</a> |
@@ -43,45 +443,30 @@
 <a href="about.html#about-contact">Directory</a> |
 <a href="contact.html">Contact</a>
 </div>
-
 <div class="topbar-right">
 <span onclick="changeFontSize(-1)">A-</span>
 <span onclick="changeFontSize(0)">A</span>
 <span onclick="changeFontSize(1)">A+</span>
-
 <span onclick="translatePage('hi')">हिंदी</span> |
 <span onclick="translatePage('en')">ENG</span>
 <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
-
 <div id="google_translate_element"></div>
 </div>
-
 </div>
-
-  </div>
-
+</div>
 
 <!-- MAIN WEBSITE -->
 <div id="content">
 
 <header>
+<div class="top-right"></div>
+</header>
 
-<!-- TOP BAR -->
-
-
-<div class="top-right">
-</div>
-
-</div>
 <header>
-
-
 
 <!-- LOGO AREA -->
 <div class="logo-area">
 <div class="left-header">
-
-
 <a href="index.html">
 <img src="images/logo.png" class="logo">
 </a>
@@ -90,7 +475,6 @@
 <h1>School of Engineering and Technology</h1>
 </div>
 </div>
-
 <div class="right-emblems">
 <img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
 <a href="https://www.india.gov.in" target="blank">
@@ -99,265 +483,600 @@
 </div>
 </div>
 
-
 <!-- NAVBAR -->
 <nav class="navbar">
-
-<a href="index.html" class="home-icon">
-<i class="fa-solid fa-house"></i>
-</a>
+<a href="index.html" class="home-icon"><i class="fa-solid fa-house"></i></a>
 
 <li class="nav-item">
     <a href="about.html">About us</a>
-
-  <div class="dropdown-menu">
-
-    <a href="about.html#about-overview">Overview</a>
-    <a href="about.html#about-vision">Vision & Mission</a>
-    <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
-    <a href="about.html#about-history">History</a>
-    <a href="about.html#about-administration">Administration and Organization HOD details</a>
-    <a href="about.html#about-contact">Contact US / How to reach</a>
-
-  </div>
+    <div class="dropdown-menu">
+        <a href="about.html#about-overview">Overview</a>
+        <a href="about.html#about-vision">Vision & Mission</a>
+        <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
+        <a href="about.html#about-history">History</a>
+        <a href="about.html#about-administration">Administration and Organization HOD details</a>
+        <a href="about.html#about-contact">Contact US / How to reach</a>
+    </div>
 </li>
 
 <li class="nav-item">
-  <a href="campus-life.html">Campus Life</a>
-
-  <div class="dropdown-menu">
-
-    <a href="dean-office.html">Office of the Dean</a>
-    <a href="hostels-dining.html">Hostels and Dining faclities</a>
-    <a href="ncc-nss.html">NCC & NSS</a>
-    <a href="clubs-society.html">Clubs and Societies</a>
-    <a href="sports.html">Sports Infrastructure and Teams</a>
-    <a href="annual-fests.html">Annual Fests</a>
-    <a href="campus-facilities.html">Campus Facilities</a>
-
-  </div>
+    <a href="campus-life.html">Campus Life</a>
+    <div class="dropdown-menu">
+        <a href="dean-office.html">Office of the Dean</a>
+        <a href="hostels-dining.html">Hostels and Dining faclities</a>
+        <a href="ncc-nss.html">NCC & NSS</a>
+        <a href="clubs-society.html">Clubs and Societies</a>
+        <a href="sports.html">Sports Infrastructure and Teams</a>
+        <a href="annual-fests.html">Annual Fests</a>
+        <a href="campus-facilities.html">Campus Facilities</a>
+    </div>
 </li>
 
 <li class="nav-item">
-  <a href="academics.html">Academics</a>
-
-  <div class="dropdown-menu">
-
-    <a href="programs.html">Programs Offered</a>
-    <a href="undergraduate.html">Under-Graduate</a>
-    <a href="postgraduate.html">Post-Graduate</a>
-    <a href="nptel.html">NPTEL/MOOCS</a>
-    <a href="library.html">Central and College Library</a>
-    <a href="exam-cell.html">Examination Cell</a>
-
-  </div>
+    <a href="academics.html">Academics</a>
+    <div class="dropdown-menu">
+        <a href="programs.html">Programs Offered</a>
+        <a href="undergraduate.html">Under-Graduate</a>
+        <a href="postgraduate.html">Post-Graduate</a>
+        <a href="nptel.html">NPTEL/MOOCS</a>
+        <a href="library.html">Central and College Library</a>
+        <a href="exam-cell.html">Examination Cell</a>
+    </div>
 </li>
 
 <li class="nav-item">
-  <a href="admission.html">Admissions</a>
-
-  <div class="dropdown-menu">
-
-    <a href="why-soet.html">Why SOET Ujjain?</a>
-    <a href="life-in-ujjain.html">Life in Ujjain</a>
-    <a href="btech-admissions.html">B.TECH Admissions</a>
-    <a href="mtech-programs.html">M.TECH/PHD Admissions</a>
-    <a href="fees-scholarships.html">Fee Structure & Scholarships</a>
-    <a href="admissions-faq.html">Admission FAQ</a>
-    <a href="anti-ragging.html">Anti-Ragging Policy</a>
-
-  </div>
+    <a href="admission.html">Admissions</a>
+    <div class="dropdown-menu">
+        <a href="why-soet.html">Why SOET Ujjain?</a>
+        <a href="life-in-ujjain.html">Life in Ujjain</a>
+        <a href="btech-admissions.html">B.TECH Admissions</a>
+        <a href="mtech-programs.html">M.TECH/PHD Admissions</a>
+        <a href="fees-scholarships.html">Fee Structure & Scholarships</a>
+        <a href="admissions-faq.html">Admission FAQ</a>
+        <a href="anti-ragging.html">Anti-Ragging Policy</a>
+    </div>
 </li>
 
 <li class="nav-item">
-  <a href="research.html">Research and Innovations</a>
-
-  <div class="dropdown-menu">
-
-    <a href="research.html#rnd-dean">Dean of R&D</a>
-    <a href="research.html#rnd-projects">Sponsored Projects and Grants</a>
-    <a href="research.html#rnd-patents">Patents & Publications</a>
-    <a href="research.html#rnd-facilities">Central Research Facilities</a>
-    <a href="research.html#rnd-incubation">Incubation Center & E-Cell</a>
-
-  </div>
+    <a href="research.html">Research and Innovations</a>
+    <div class="dropdown-menu">
+        <a href="research.html#rnd-dean">Dean of R&D</a>
+        <a href="research.html#rnd-projects">Sponsored Projects and Grants</a>
+        <a href="research.html#rnd-patents">Patents & Publications</a>
+        <a href="research.html#rnd-facilities">Central Research Facilities</a>
+        <a href="research.html#rnd-incubation">Incubation Center & E-Cell</a>
+    </div>
 </li>
 
 <li class="nav-item">
-  <a href="placement.html">Training & Placement cell</a>
-
-  <div class="dropdown-menu">
-    <a href="placement.html#tp-message">Message from T&P Officer</a>
-    <a href="placement.html#tp-stats">Placement Statistics and Annual Report</a>
-    <a href="placement.html#tp-brochure">Official Placement Brochure</a>
-    <a href="placement.html#tp-procedure">Recruitment Procedure</a>
-    <a href="placement.html#tp-skills">Student Skill Development</a>
-  </div>
+    <a href="placement.html">Training & Placement cell</a>
+    <div class="dropdown-menu">
+        <a href="placement.html#tp-message">Message from T&P Officer</a>
+        <a href="placement.html#tp-stats">Placement Statistics and Annual Report</a>
+        <a href="placement.html#tp-brochure">Official Placement Brochure</a>
+        <a href="placement.html#tp-procedure">Recruitment Procedure</a>
+        <a href="placement.html#tp-skills">Student Skill Development</a>
+    </div>
 </li>
 
 <li class="nav-item">
-  <a href="alumni.html">Alumni</a>
+    <a href="alumni.html">Alumni</a>
 </li>
 
 <a href="contact.html">Contact Us</a>
 <li>
-<a href="#" onclick="openSearch()">
-<i class="fa-solid fa-magnifying-glass search-icon"></i>
-</a>
+    <a href="#" onclick="openSearch()">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    </a>
 </li>
-
 </nav>
 
+</header>
 
-<section class="admission-hub-banner" style="background: linear-gradient(rgba(128, 0, 0, 0.8), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=600&fit=crop') center/cover;">
-    <div class="banner-content">
-        <h1>Admissions 2026-27</h1>
-        <p><a href="index.html" style="color: #ffcc00; text-decoration: none;">Home</a> / Admissions</p>
-    </div>
-</section>
+<!-- ════════════════════════════════════════════════════════
+     PAGE CONTENT
+════════════════════════════════════════════════════════ -->
+<div class="adm-wrap">
 
-<div class="notification-bar" style="background-color: #ffcc00; color: #800000; padding: 12px 20px; text-align: center; font-weight: bold; font-size: 15px;">
-    <marquee behavior="scroll" direction="left" scrollamount="6">
-        🚨 UPDATE: MPDTE B.Tech & M.Tech Counseling Dates will be announced soon. Keep your JEE/GATE scorecards ready! For direct CLC inquiry, fill the form below. 🚨
-    </marquee>
+<!-- Alert Banner -->
+<div class="adm-alert">
+    <i class="fa-solid fa-triangle-exclamation" style="margin-right:6px;"></i>
+    <strong>UPDATE:</strong> MPDTE B.Tech &amp; M.Tech Counseling Dates will be announced soon. Keep your JEE / GATE scorecards ready! &nbsp;·&nbsp;
+    For direct CLC inquiry, <a href="#adm-helpdesk">fill the form below</a>.
 </div>
 
-<section class="hub-intro" style="padding: 60px 5%; background-color: #fff;">
-    <div class="container text-center" style="max-width: 900px; margin: 0 auto;">
-        <h2 class="section-title text-center" style="text-align: center;">Begin Your Engineering Journey</h2>
-        <p style="font-size: 18px; color: #555; line-height: 1.8;">
-            Welcome to the Admission Portal of the School of Engineering & Technology, Ujjain. We are thrilled that you are considering joining our legacy of innovation and excellence. Please choose your desired program below to view specific eligibility criteria, seat matrices, and application processes.
-        </p>
-    </div>
-</section>
-
-<section class="gateway-section" style="padding: 40px 5% 80px; background-color: #f4f6f9;">
-    <div class="container" style="max-width: 1200px; margin: 0 auto;">
-        <div class="gateway-grid">
-            
-            <a href="btech-admissions.html" class="gateway-card">
-                <i class="fa-solid fa-laptop-code"></i>
-                <h3>B.Tech Admissions</h3>
-                <p>Explore our 4-year undergraduate programs, JEE pathways, and branch specializations.</p>
-                <span class="view-link">View Details &rarr;</span>
-            </a>
-
-            <a href="mtech-programs.html" class="gateway-card">
-                <i class="fa-solid fa-microscope"></i>
-                <h3>M.Tech Admissions</h3>
-                <p>Discover our 2-year postgraduate research programs and GATE eligibility requirements.</p>
-                <span class="view-link">View Details &rarr;</span>
-            </a>
-
-            <a href="fees-scholarships.html" class="gateway-card">
-                <i class="fa-solid fa-hand-holding-dollar"></i>
-                <h3>Fees & Scholarships</h3>
-                <p>View detailed semester fee structures and MP Government financial aid options.</p>
-                <span class="view-link">View Details &rarr;</span>
-            </a>
-
-            <a href="admissions-faq.html" class="gateway-card">
-                <i class="fa-solid fa-circle-question"></i>
-                <h3>Admissions FAQ</h3>
-                <p>Have questions about hostels, counseling, or eligibility? Find quick answers here.</p>
-                <span class="view-link">View Details &rarr;</span>
-            </a>
-
+<!-- ── HERO ── -->
+<section class="adm-hero">
+    <div class="adm-hero-overlay"></div>
+    <div class="adm-hero-box">
+        <div class="adm-breadcrumb">
+            <a href="index.html">Home</a><span>/</span><span style="color:#333;">Admissions</span>
+        </div>
+        <h1>Admissions <em>2026–27</em></h1>
+        <p>Begin your journey at Samrat Vikramaditya Vishwavidyalaya's premier engineering school — rigorous programs, industry-aligned curriculum, and a campus that forges tomorrow's innovators.</p>
+        <div class="adm-pills">
+            <span class="adm-pill">AICTE Approved</span>
+            <span class="adm-pill">NAAC A+ Accredited</span>
+            <span class="adm-pill">MPDTE Affiliated</span>
+            <span class="adm-pill">Applications Open 2026-27</span>
         </div>
     </div>
 </section>
 
-<section class="enquiry-section" style="padding: 80px 5%; background-color: #fff;">
-    <div class="container" style="max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 50px; background: #ffffff; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); overflow: hidden;">
-        
-        <div class="enquiry-info" style="flex: 1; min-width: 300px; background: linear-gradient(135deg, #800000, #b30000); color: white; padding: 50px 40px;">
-            <h3 style="font-size: 28px; margin-bottom: 20px; color: #ffcc00;">Admission Helpdesk</h3>
-            <p style="margin-bottom: 30px; font-size: 16px; opacity: 0.9;">Need immediate assistance? Our counselors are ready to guide you through the MPDTE process.</p>
-            
-            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-                <i class="fa-solid fa-phone" style="font-size: 24px; color: #ffcc00;"></i>
-                <div>
-                    <h5 style="margin: 0; font-size: 14px; opacity: 0.8;">Call Us</h5>
-                    <p style="margin: 0; font-size: 18px; font-weight: bold;">+91 98765 43210</p>
-                </div>
-            </div>
-            
-            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-                <i class="fa-solid fa-envelope" style="font-size: 24px; color: #ffcc00;"></i>
-                <div>
-                    <h5 style="margin: 0; font-size: 14px; opacity: 0.8;">Email Us</h5>
-                    <p style="margin: 0; font-size: 18px; font-weight: bold;">admissions@soetujjain.ac.in</p>
-                </div>
-            </div>
+<!-- ── STATS STRIP ── -->
+<div style="background:#fff; border-top:1px solid #e8e8e8; border-bottom:1px solid #e8e8e8; margin-bottom:0;">
+    <div style="max-width:1200px; margin:0 auto;">
+        <div class="adm-stats-strip">
+            <div class="adm-stat"><div class="num">11+</div><div class="lbl">Programs Offered</div></div>
+            <div class="adm-stat"><div class="num">2200+</div><div class="lbl">Active Students</div></div>
+            <div class="adm-stat"><div class="num">95%</div><div class="lbl">Placement Rate</div></div>
+            <div class="adm-stat"><div class="num">A+</div><div class="lbl">NAAC Grade</div></div>
+        </div>
+    </div>
+</div>
 
-            <div style="display: flex; align-items: center; gap: 15px;">
-                <i class="fa-solid fa-location-dot" style="font-size: 24px; color: #ffcc00;"></i>
-                <div>
-                    <h5 style="margin: 0; font-size: 14px; opacity: 0.8;">Visit Campus</h5>
-                    <p style="margin: 0; font-size: 16px;">SOET Campus, Ujjain, Madhya Pradesh 456010</p>
+<!-- ── SECTION 1 — PROGRAMS ── -->
+<div style="border-bottom:1px solid #e8e8e8; background:#fff;">
+<div class="adm-section">
+    <div class="adm-eyebrow">Our Programs</div>
+    <h2>Choose Your Engineering Path</h2>
+    <div class="adm-accent"></div>
+    <p class="adm-section-desc">From four-year undergraduate programs to advanced research degrees, SOET offers a full spectrum of engineering education tailored to the demands of modern industry.</p>
+
+    <div class="adm-prog-grid">
+
+        <!-- B.Tech — Featured -->
+        <div class="adm-prog-card featured">
+            <div class="adm-prog-img">
+                <img src="images/btech-campus.jpg" alt="B.Tech at SOET"
+                    onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-image\' style=\'font-size:32px;color:#ccc\'></i><br><span style=\'font-size:11px;margin-top:8px;display:block;color:#aaa\'>Add campus photo</span>'">
+            </div>
+            <div class="adm-prog-body">
+                <span class="adm-badge">★ Most Popular</span>
+                <h3>B.Tech — Bachelor of Technology</h3>
+                <p>Our flagship 4-year undergraduate program, sanctioned by AICTE and affiliated with MPDTE. Choose from six specializations: Computer Science, Electronics &amp; Communication, Mechanical, Civil, Electrical, and Information Technology.</p>
+                <div class="adm-prog-meta">
+                    <div class="adm-prog-meta-row"><span class="k">Duration</span><span class="v">4 Years (8 Semesters)</span></div>
+                    <div class="adm-prog-meta-row"><span class="k">Eligibility</span><span class="v">10+2 PCM · JEE / MPDTE Counseling</span></div>
+                    <div class="adm-prog-meta-row"><span class="k">Total Seats</span><span class="v">Refer branch-wise seat matrix →</span></div>
                 </div>
+                <a href="btech-admissions.html" class="adm-cta-link">View B.Tech Details →</a>
             </div>
         </div>
 
-        <div class="enquiry-form" style="flex: 1.5; min-width: 320px; padding: 50px 40px;">
-            <h3 style="font-size: 24px; margin-bottom: 10px; color: #333;">Request a Callback</h3>
-            <p style="color: #666; margin-bottom: 30px; font-size: 15px;">Fill out this quick form and our admission cell will contact you shortly.</p>
-            
-            <form action="#" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
-                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                    <div style="flex: 1; min-width: 200px;">
-                        <label style="font-size: 14px; font-weight: bold; color: #555; margin-bottom: 5px; display: block;">Full Name *</label>
-                        <input type="text" required style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 15px; outline: none; transition: border-color 0.3s;">
-                    </div>
-                    <div style="flex: 1; min-width: 200px;">
-                        <label style="font-size: 14px; font-weight: bold; color: #555; margin-bottom: 5px; display: block;">Phone Number *</label>
-                        <input type="tel" required style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 15px; outline: none; transition: border-color 0.3s;">
+        <!-- M.Tech -->
+        <div class="adm-prog-card">
+            <span class="adm-badge">Post-Graduate</span>
+            <h3>M.Tech — Master of Technology</h3>
+            <p>Advanced 2-year research-intensive programs in Structural Engineering, Thermal Engineering, and Power Systems. Designed for GATE-qualified engineers seeking specialization.</p>
+            <div class="adm-prog-meta">
+                <div class="adm-prog-meta-row"><span class="k">Duration</span><span class="v">2 Years (4 Semesters)</span></div>
+                <div class="adm-prog-meta-row"><span class="k">Eligibility</span><span class="v">B.E./B.Tech + GATE Score</span></div>
+            </div>
+            <a href="mtech-programs.html" class="adm-cta-link">View M.Tech Details →</a>
+        </div>
+
+        <!-- Ph.D. -->
+        <div class="adm-prog-card">
+            <span class="adm-badge">Research</span>
+            <h3>Ph.D. — Doctoral Program</h3>
+            <p>Pursue original research under distinguished faculty at SOET, spanning all core engineering disciplines with access to advanced research facilities and the Incubation Center.</p>
+            <div class="adm-prog-meta">
+                <div class="adm-prog-meta-row"><span class="k">Duration</span><span class="v">3–5 Years (Full / Part-time)</span></div>
+                <div class="adm-prog-meta-row"><span class="k">Eligibility</span><span class="v">M.Tech / M.E. with 55% aggregate</span></div>
+            </div>
+            <a href="mtech-programs.html" class="adm-cta-link">View Ph.D. Details →</a>
+        </div>
+
+    </div>
+</div>
+</div>
+
+<!-- ── SECTION 2 — ADMISSION PROCESS ── -->
+<div style="border-bottom:1px solid #e8e8e8; background:#f9f9f9;">
+<div class="adm-section" id="adm-process">
+    <div style="text-align:center; margin-bottom:50px;">
+        <div class="adm-eyebrow" style="text-align:center;">How to Apply</div>
+        <h2 style="text-align:center;">The Admission Process</h2>
+        <div class="adm-accent" style="margin:14px auto 0;"></div>
+        <p style="color:#555; font-size:15px; margin-top:18px; max-width:600px; margin-left:auto; margin-right:auto; line-height:1.7;">A clear, four-step pathway through the MPDTE counseling process to your seat at SOET.</p>
+    </div>
+
+    <div class="adm-process-grid">
+        <div class="adm-step">
+            <div class="adm-step-bg">01</div>
+            <div class="adm-step-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+            <h4>Appear in Qualifying Exam</h4>
+            <p>Register and appear in JEE Main (for B.Tech) or GATE (for M.Tech). Obtain your scorecard — this is your primary admission credential.</p>
+        </div>
+        <div class="adm-step">
+            <div class="adm-step-bg">02</div>
+            <div class="adm-step-icon"><i class="fa-solid fa-globe"></i></div>
+            <h4>MPDTE Online Registration</h4>
+            <p>Register on the official MPDTE counseling portal at <strong>dte.mponline.gov.in</strong>. Fill in your details, upload documents, and pay the counseling fee.</p>
+        </div>
+        <div class="adm-step">
+            <div class="adm-step-bg">03</div>
+            <div class="adm-step-icon"><i class="fa-solid fa-bullseye"></i></div>
+            <h4>Choice Filling &amp; Allotment</h4>
+            <p>Fill your preferred institute-branch combinations in order of priority. Seat allotment is done based on rank, category, and availability across counseling rounds.</p>
+        </div>
+        <div class="adm-step">
+            <div class="adm-step-bg">04</div>
+            <div class="adm-step-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <h4>Document Verification &amp; Reporting</h4>
+            <p>Report to SOET with original documents for physical verification. Pay the semester fee and complete your enrollment to confirm your seat.</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- ── SECTION 3 — ELIGIBILITY ── -->
+<div style="border-bottom:1px solid #e8e8e8; background:#fff;">
+<div class="adm-section" id="adm-eligibility">
+    <div class="adm-eyebrow">Eligibility Criteria</div>
+    <h2>Who Can Apply</h2>
+    <div class="adm-accent"></div>
+    <p class="adm-section-desc">Detailed eligibility requirements for each program. Candidates must meet these criteria to be considered for admission through the MPDTE counseling process.</p>
+
+    <div class="adm-elig-grid">
+        <div class="adm-elig-card">
+            <div class="adm-elig-head">
+                <span class="adm-badge">B.Tech</span>
+                <h3>Undergraduate Eligibility</h3>
+            </div>
+            <table class="adm-elig-table">
+                <tr><td>Qualification</td><td>10+2 or equivalent with Physics, Chemistry, and Mathematics (PCM)</td></tr>
+                <tr><td>Minimum Marks</td><td>45% aggregate in PCM (40% for SC/ST/OBC candidates)</td></tr>
+                <tr><td>Entrance Exam</td><td>JEE Main (preferred) or MPDTE State Counseling rank</td></tr>
+                <tr><td>Age Limit</td><td>Minimum 17 years as on 31st December of the admission year</td></tr>
+                <tr><td>Domicile</td><td>MP domicile preferred for state quota; All India seats open to all</td></tr>
+            </table>
+        </div>
+        <div class="adm-elig-card">
+            <div class="adm-elig-head">
+                <span class="adm-badge">M.Tech / Ph.D.</span>
+                <h3>Postgraduate Eligibility</h3>
+            </div>
+            <table class="adm-elig-table">
+                <tr><td>Qualification</td><td>B.E. / B.Tech in relevant engineering discipline from a recognized university</td></tr>
+                <tr><td>Minimum Marks</td><td>55% aggregate (50% for SC/ST candidates)</td></tr>
+                <tr><td>Entrance Exam</td><td>Valid GATE score (M.Tech) · M.Tech degree with 55% for Ph.D.</td></tr>
+                <tr><td>Specializations</td><td>Structural Engineering, Thermal Engineering, Power Systems (M.Tech)</td></tr>
+                <tr><td>Ph.D. Mode</td><td>Full-time and Part-time (sponsored) available; Interview mandatory</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- ── SECTION 4 — IMPORTANT DATES ── -->
+<div style="border-bottom:1px solid #e8e8e8; background:#f9f9f9;">
+<div class="adm-section" id="adm-dates">
+    <div class="adm-eyebrow">Academic Calendar</div>
+    <h2>Important Dates 2026–27</h2>
+    <div class="adm-accent"></div>
+    <p class="adm-section-desc">Key milestones for the upcoming admission cycle. Dates are subject to official MPDTE notifications — keep your documents ready.</p>
+
+    <div class="adm-dates-list">
+        <div class="adm-date-row">
+            <div class="adm-date-box"><div class="mo">Apr</div><div class="dy">15</div></div>
+            <div class="adm-date-info">
+                <div class="ev">JEE Main Session 2 Results</div>
+                <div class="desc">Download your JEE Main scorecard from jeemain.nta.nic.in</div>
+            </div>
+            <span class="adm-status s-open">Open</span>
+        </div>
+        <div class="adm-date-row">
+            <div class="adm-date-box"><div class="mo">May</div><div class="dy">10</div></div>
+            <div class="adm-date-info">
+                <div class="ev">MPDTE B.Tech Counseling Registration Opens</div>
+                <div class="desc">Online registration begins at dte.mponline.gov.in</div>
+            </div>
+            <span class="adm-status s-soon">Upcoming</span>
+        </div>
+        <div class="adm-date-row">
+            <div class="adm-date-box"><div class="mo">Jun</div><div class="dy">05</div></div>
+            <div class="adm-date-info">
+                <div class="ev">Round 1 — Seat Allotment</div>
+                <div class="desc">First round allotment result published on the MPDTE portal</div>
+            </div>
+            <span class="adm-status s-upcoming">Scheduled</span>
+        </div>
+        <div class="adm-date-row">
+            <div class="adm-date-box"><div class="mo">Jun</div><div class="dy">20</div></div>
+            <div class="adm-date-info">
+                <div class="ev">Document Verification at SOET Campus</div>
+                <div class="desc">Report with original documents. Refer to document checklist below</div>
+            </div>
+            <span class="adm-status s-upcoming">Scheduled</span>
+        </div>
+        <div class="adm-date-row">
+            <div class="adm-date-box"><div class="mo">Jul</div><div class="dy">14</div></div>
+            <div class="adm-date-info">
+                <div class="ev">Commencement of Classes — AY 2026-27</div>
+                <div class="desc">First day of the new academic year for all programs</div>
+            </div>
+            <span class="adm-status s-upcoming">Scheduled</span>
+        </div>
+        <div class="adm-date-row">
+            <div class="adm-date-box"><div class="mo">Jul</div><div class="dy">31</div></div>
+            <div class="adm-date-info">
+                <div class="ev">CLC / Stray Vacancy Round (if applicable)</div>
+                <div class="desc">College-level counseling for remaining vacant seats after all MPDTE rounds</div>
+            </div>
+            <span class="adm-status s-upcoming">Scheduled</span>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- ── SECTION 5 — DOCUMENTS ── -->
+<div style="border-bottom:1px solid #e8e8e8; background:#fff;">
+<div class="adm-section" id="adm-documents">
+    <div class="adm-eyebrow">Document Checklist</div>
+    <h2>What to Bring on Reporting Day</h2>
+    <div class="adm-accent"></div>
+    <p class="adm-section-desc">Carry originals plus two self-attested photocopies of each document listed below. Incomplete documentation will result in cancellation of the allotted seat.</p>
+
+    <div class="adm-docs-grid">
+        <div class="adm-doc-card">
+            <h4>Academic Documents</h4>
+            <ul class="adm-doc-list">
+                <li><i class="fa-solid fa-check"></i> 10th Board Marksheet &amp; Certificate</li>
+                <li><i class="fa-solid fa-check"></i> 12th Board Marksheet &amp; Certificate (PCM)</li>
+                <li><i class="fa-solid fa-check"></i> JEE Main Scorecard / Admit Card</li>
+                <li><i class="fa-solid fa-check"></i> MPDTE Allotment Letter (from portal)</li>
+                <li><i class="fa-solid fa-check"></i> Migration Certificate (from previous school/college)</li>
+                <li><i class="fa-solid fa-check"></i> Transfer Certificate (TC)</li>
+            </ul>
+        </div>
+        <div class="adm-doc-card">
+            <h4>Personal &amp; Identity Documents</h4>
+            <ul class="adm-doc-list">
+                <li><i class="fa-solid fa-check"></i> Aadhaar Card (original)</li>
+                <li><i class="fa-solid fa-check"></i> Domicile Certificate (Madhya Pradesh)</li>
+                <li><i class="fa-solid fa-check"></i> Caste Certificate (SC/ST/OBC — if applicable)</li>
+                <li><i class="fa-solid fa-check"></i> Income Certificate (for scholarship eligibility)</li>
+                <li><i class="fa-solid fa-check"></i> Passport-size photographs (6 copies, recent)</li>
+                <li><i class="fa-solid fa-check"></i> Medical Fitness Certificate from registered doctor</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- ── SECTION 6 — WHY SOET ── -->
+<div style="border-bottom:1px solid #e8e8e8; background:#f9f9f9;">
+<div class="adm-section" id="adm-whysoet">
+    <div style="text-align:center; margin-bottom:50px;">
+        <div class="adm-eyebrow" style="text-align:center;">Why Choose Us</div>
+        <h2 style="text-align:center;">Why SOET, Ujjain?</h2>
+        <div class="adm-accent" style="margin:14px auto 0;"></div>
+        <p style="color:#555; font-size:15px; margin-top:18px; max-width:620px; margin-left:auto; margin-right:auto; line-height:1.7;">Beyond accreditation and placements, here's what makes SOET a transformative choice for your engineering education.</p>
+    </div>
+
+    <div class="adm-why-grid">
+        <div class="adm-why-card">
+            <div class="adm-why-icon"><i class="fa-solid fa-landmark"></i></div>
+            <h4>Historic University, Modern Curriculum</h4>
+            <p>Part of Samrat Vikramaditya Vishwavidyalaya — one of Madhya Pradesh's most prestigious universities, with an AICTE-aligned, industry-updated curriculum.</p>
+        </div>
+        <div class="adm-why-card">
+            <div class="adm-why-icon"><i class="fa-solid fa-handshake"></i></div>
+            <h4>Strong Industry Partnerships</h4>
+            <p>Tie-ups with 150+ companies including TCS, Infosys, L&amp;T, Qualcomm, and IBM for internships, live projects, and direct recruitment drives on campus.</p>
+        </div>
+        <div class="adm-why-card">
+            <div class="adm-why-icon"><i class="fa-solid fa-flask"></i></div>
+            <h4>Advanced Research Facilities</h4>
+            <p>State-of-the-art AI &amp; Robotics Lab, Central Research Facility, and an active E-Cell incubating student startups from concept to market.</p>
+        </div>
+        <div class="adm-why-card">
+            <div class="adm-why-icon"><i class="fa-solid fa-trophy"></i></div>
+            <h4>95% Placement Record</h4>
+            <p>Highest package of 18 LPA and an average of 4.5 LPA. Our dedicated T&amp;P Cell runs year-round training and ensures every student is placement-ready.</p>
+        </div>
+        <div class="adm-why-card">
+            <div class="adm-why-icon"><i class="fa-solid fa-city"></i></div>
+            <h4>Life in Ujjain</h4>
+            <p>One of India's safest and most affordable cities. Rich culture, low cost of living, excellent connectivity, and a student-friendly environment.</p>
+        </div>
+        <div class="adm-why-card">
+            <div class="adm-why-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h4>Scholarships &amp; Financial Aid</h4>
+            <p>MP Government scholarships, fee waivers for SC/ST/OBC students, merit scholarships, and AICTE PRAGATI &amp; SAKSHAM schemes available to eligible students.</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- ── SECTION 7 — FAQ ── -->
+<div style="border-bottom:1px solid #e8e8e8; background:#fff;">
+<div class="adm-section" id="adm-faq">
+    <div class="adm-eyebrow">Quick Answers</div>
+    <h2>Frequently Asked Questions</h2>
+    <div class="adm-accent"></div>
+    <p class="adm-section-desc">Answers to the most common queries from prospective students and parents.</p>
+
+    <div class="adm-faq-list">
+        <div class="adm-faq-item open">
+            <div class="adm-faq-q" onclick="toggleFaq(this)">
+                <h4>Is JEE Main mandatory for B.Tech admission at SOET?</h4>
+                <span class="adm-faq-arrow">+</span>
+            </div>
+            <div class="adm-faq-a">JEE Main is the primary route. Admissions are conducted through MPDTE counseling based on your JEE Main rank. However, students who have not appeared in JEE Main may still be considered in later rounds based on 10+2 marks, subject to seat availability.</div>
+        </div>
+        <div class="adm-faq-item">
+            <div class="adm-faq-q" onclick="toggleFaq(this)">
+                <h4>Can I apply for B.Tech without an MP domicile?</h4>
+                <span class="adm-faq-arrow">+</span>
+            </div>
+            <div class="adm-faq-a">Yes. A portion of seats in each branch are designated as "All India" quota seats, open to students from any state. However, the majority of seats fall under the state quota, which requires MP domicile. Non-MP students are advised to check the MPDTE seat matrix for the latest all-India seat count per branch.</div>
+        </div>
+        <div class="adm-faq-item">
+            <div class="adm-faq-q" onclick="toggleFaq(this)">
+                <h4>Are hostel facilities available for all students?</h4>
+                <span class="adm-faq-arrow">+</span>
+            </div>
+            <div class="adm-faq-a">Yes. SOET and the parent university provide separate hostel accommodations for male and female students on campus. Rooms are allotted on a first-come, first-served basis after confirmation of admission. Contact the Dean's Office for the current hostel fee structure.</div>
+        </div>
+        <div class="adm-faq-item">
+            <div class="adm-faq-q" onclick="toggleFaq(this)">
+                <h4>What scholarships are available for B.Tech students?</h4>
+                <span class="adm-faq-arrow">+</span>
+            </div>
+            <div class="adm-faq-a">Several schemes are available: (1) MP Government Post-Matric Scholarship for SC/ST/OBC students, (2) AICTE PRAGATI Scholarship for girl students, (3) AICTE SAKSHAM Scholarship for specially-abled students, and (4) Merit-based fee waivers offered by the university.</div>
+        </div>
+        <div class="adm-faq-item">
+            <div class="adm-faq-q" onclick="toggleFaq(this)">
+                <h4>When does the MPDTE counseling process typically begin?</h4>
+                <span class="adm-faq-arrow">+</span>
+            </div>
+            <div class="adm-faq-a">MPDTE B.Tech counseling typically begins in May–June each year, after JEE Main results are declared. The exact schedule is announced by MPDTE on dte.mponline.gov.in. Keep your JEE Main scorecard, 12th marksheet, and Aadhaar card ready.</div>
+        </div>
+        <div class="adm-faq-item">
+            <div class="adm-faq-q" onclick="toggleFaq(this)">
+                <h4>Is there a direct admission option (without counseling)?</h4>
+                <span class="adm-faq-arrow">+</span>
+            </div>
+            <div class="adm-faq-a">After all MPDTE rounds are complete, any remaining vacant seats are filled through College-Level Counseling (CLC). Students who missed the main counseling rounds can apply directly to the SOET admissions office. Fill the enquiry form below and our admissions team will guide you through the CLC process.</div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- ── SECTION 8 — HELPDESK + FORM ── -->
+<div style="background:#f9f9f9;">
+<div class="adm-section" id="adm-helpdesk">
+    <div style="text-align:center; margin-bottom:50px;">
+        <div class="adm-eyebrow" style="text-align:center;">Get in Touch</div>
+        <h2 style="text-align:center;">Admission Helpdesk</h2>
+        <div class="adm-accent" style="margin:14px auto 0;"></div>
+        <p style="color:#555; font-size:15px; margin-top:18px; max-width:580px; margin-left:auto; margin-right:auto; line-height:1.7;">Have questions? Reach out directly or submit an enquiry and we will contact you within one working day.</p>
+    </div>
+
+    <div class="adm-contact-layout">
+
+        <!-- Helpdesk Info -->
+        <div>
+            <div class="adm-helpdesk-card">
+                <div class="adm-helpdesk-head">
+                    <h3>Contact the Admissions Cell</h3>
+                    <p>Our counselors are available Mon–Fri, 9:00 AM – 5:00 PM</p>
+                </div>
+                <div class="adm-open-badge">Admissions Cell — Open Today</div>
+                <div class="adm-contact-row">
+                    <div class="adm-contact-ico"><i class="fa-solid fa-phone"></i></div>
+                    <div>
+                        <div class="adm-contact-lbl">Call Us</div>
+                        <div class="adm-contact-val"><a href="tel:+918770122362">+91-8770122362</a></div>
                     </div>
                 </div>
-                
-                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                    <div style="flex: 1; min-width: 200px;">
-                        <label style="font-size: 14px; font-weight: bold; color: #555; margin-bottom: 5px; display: block;">Email Address</label>
-                        <input type="email" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 15px; outline: none; transition: border-color 0.3s;">
+                <div class="adm-contact-row">
+                    <div class="adm-contact-ico"><i class="fa-solid fa-envelope"></i></div>
+                    <div>
+                        <div class="adm-contact-lbl">Email Us</div>
+                        <div class="adm-contact-val"><a href="mailto:admissions@soet.ac.in">admissions@soet.ac.in</a></div>
                     </div>
-                    <div style="flex: 1; min-width: 200px;">
-                        <label style="font-size: 14px; font-weight: bold; color: #555; margin-bottom: 5px; display: block;">Interested Program *</label>
-                        <select required style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 15px; outline: none; background: white; transition: border-color 0.3s;">
-                            <option value="">Select a Program...</option>
-                            <option value="btech">B.Tech (Undergraduate)</option>
-                            <option value="mtech">M.Tech (Postgraduate)</option>
-                            <option value="phd">Ph.D.</option>
-                            <option value="other">Other Inquiry</option>
+                </div>
+                <div class="adm-contact-row">
+                    <div class="adm-contact-ico"><i class="fa-solid fa-location-dot"></i></div>
+                    <div>
+                        <div class="adm-contact-lbl">Visit Campus</div>
+                        <div class="adm-contact-val" style="font-size:13px; font-weight:500; color:#333;">SOET, Samrat Vikramaditya Vishwavidyalaya<br>Ujjain, Madhya Pradesh — 456010</div>
+                    </div>
+                </div>
+                <div class="adm-contact-row">
+                    <div class="adm-contact-ico"><i class="fa-solid fa-globe"></i></div>
+                    <div>
+                        <div class="adm-contact-lbl">MPDTE Portal</div>
+                        <div class="adm-contact-val"><a href="https://dte.mponline.gov.in" target="_blank">dte.mponline.gov.in</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="adm-quick-links">
+                <a href="fees-scholarships.html" class="adm-quick-link"><i class="fa-solid fa-indian-rupee-sign"></i> Fees &amp; Scholarships</a>
+                <a href="btech-admissions.html" class="adm-quick-link"><i class="fa-solid fa-drafting-compass"></i> B.Tech Details</a>
+                <a href="admissions-faq.html" class="adm-quick-link"><i class="fa-solid fa-circle-question"></i> Full FAQ Page</a>
+                <a href="anti-ragging.html" class="adm-quick-link"><i class="fa-solid fa-shield-halved"></i> Anti-Ragging Policy</a>
+            </div>
+        </div>
+
+        <!-- Enquiry Form -->
+        <div class="adm-form-card">
+            <h3>Request a Callback</h3>
+            <p class="form-sub">Fill in your details and our admissions counselor will reach out within one working day.</p>
+
+            <div id="adm-form-fields">
+                <div class="adm-form-row">
+                    <div class="adm-form-group">
+                        <label>Full Name <span class="req">*</span></label>
+                        <input type="text" id="fname" placeholder="Your full name" />
+                    </div>
+                    <div class="adm-form-group">
+                        <label>Phone Number <span class="req">*</span></label>
+                        <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" />
+                    </div>
+                </div>
+                <div class="adm-form-row">
+                    <div class="adm-form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="email" placeholder="you@email.com" />
+                    </div>
+                    <div class="adm-form-group">
+                        <label>Interested Program <span class="req">*</span></label>
+                        <select id="program">
+                            <option value="" disabled selected>Select a Program…</option>
+                            <option>B.Tech — Computer Science &amp; Engineering</option>
+                            <option>B.Tech — Electronics &amp; Communication</option>
+                            <option>B.Tech — Mechanical Engineering</option>
+                            <option>B.Tech — Civil Engineering</option>
+                            <option>B.Tech — Electrical Engineering</option>
+                            <option>B.Tech — Information Technology</option>
+                            <option>M.Tech — Structural Engineering</option>
+                            <option>M.Tech — Thermal Engineering</option>
+                            <option>M.Tech — Power Systems</option>
+                            <option>Ph.D. Program</option>
+                            <option>Other / General Inquiry</option>
                         </select>
                     </div>
                 </div>
-
-                <div>
-                    <label style="font-size: 14px; font-weight: bold; color: #555; margin-bottom: 5px; display: block;">Your Query / Message</label>
-                    <textarea rows="4" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 15px; outline: none; resize: vertical; transition: border-color 0.3s;"></textarea>
+                <div class="adm-form-group full">
+                    <label>Your Query / Message</label>
+                    <textarea id="message" placeholder="Ask us anything — counseling dates, hostel availability, seat matrix, scholarships…"></textarea>
                 </div>
+                <button class="adm-btn-submit" onclick="submitAdmForm()">Submit Enquiry →</button>
+                <p class="adm-form-note"><i class="fa-solid fa-lock" style="margin-right:4px;"></i> Your details are kept confidential and used only for admission-related communication.</p>
+            </div>
 
-                <button type="submit" style="background: #800000; color: white; padding: 15px 30px; font-size: 16px; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; transition: background 0.3s ease; margin-top: 10px;">Submit Enquiry</button>
-            </form>
+            <div class="adm-form-success" id="adm-form-success">
+                <div class="s-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <h4>Enquiry Received!</h4>
+                <p>Thank you. Our admissions counselor will call you back within one working day.<br>For urgent queries call <strong>+91-8770122362</strong>.</p>
+            </div>
         </div>
-        
+
     </div>
-</section>
+</div>
+</div>
+
+</div><!-- /adm-wrap -->
+</div><!-- /content -->
 
 <!-- FOOTER -->
 <footer class="elite-footer">
     <div class="footer-top-grid">
-        
         <div class="footer-col">
             <h4>School of Engineering & Technology</h4>
             <div class="contact-details">
                 <p>Samrat Vikramaditya Vishwavidyalaya<br>Ujjain, Madhya Pradesh, India</p>
-                <p><i class="fa-solid fa-phone" style="width: 25px; color: #8892b0;"></i> <a href="tel:+918770122362">+91-8770122362</a></p>
-                <p><i class="fa-solid fa-envelope" style="width: 25px; color: #8892b0;"></i> <a href="mailto:soet@vikramuniv.ac.in">soet@vikramuniv.ac.in</a></p>
-                <p><i class="fa-solid fa-globe" style="width: 25px; color: #8892b0;"></i> <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
+                <p><i class="fa-solid fa-phone" style="width:25px;color:#8892b0;"></i> <a href="tel:+918770122362">+91-8770122362</a></p>
+                <p><i class="fa-solid fa-envelope" style="width:25px;color:#8892b0;"></i> <a href="mailto:admissions@soet.ac.in">admissions@soet.ac.in</a></p>
+                <p><i class="fa-solid fa-globe" style="width:25px;color:#8892b0;"></i> <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
             </div>
         </div>
-
         <div class="footer-col">
             <h4>Academics</h4>
             <ul class="elite-links">
@@ -368,7 +1087,6 @@
                 <li><a href="campus-life.html">Campus Life</a></li>
             </ul>
         </div>
-
         <div class="footer-col">
             <h4>Institutional</h4>
             <ul class="elite-links">
@@ -379,7 +1097,6 @@
                 <li><a href="contact.html">Contact Directory</a></li>
             </ul>
         </div>
-
         <div class="footer-col live-campus-widget">
             <h4>Campus Live</h4>
             <div class="data-row">
@@ -388,28 +1105,20 @@
             </div>
             <div class="data-row">
                 <span class="data-label">Location</span>
-                <span class="data-value" style="font-size: 12px;">स्वामी विवेकानन्द स्नातक भवन</span>
+                <span class="data-value" style="font-size:12px;">स्वामी विवेकानन्द स्नातक भवन</span>
             </div>
             <div class="data-row">
                 <span class="data-label">Conditions</span>
                 <span class="data-value"><span id="weather">--</span>, <span id="temp">--</span></span>
             </div>
         </div>
-
     </div>
-
     <div class="footer-bottom-bar">
         <div class="bottom-bar-content">
-            <div class="legal-text">
-                &copy; 2026 Student Tech Team SOET.<br>All rights reserved.
-            </div>
-            
+            <div class="legal-text">&copy; 2026 Student Tech Team SOET.<br>All rights reserved.</div>
             <div class="footer-logo-center">
-                <a href="index.html">
-                    <img src="images/logo2.png" alt="SOET University Logo">
-                </a>
+                <a href="index.html"><img src="images/logo2.png" alt="SOET University Logo"></a>
             </div>
-
             <div class="visitor-stats">
                 Last Updated: <span id="lastUpdated"></span><br>
                 Unique Visitors: <span id="visitorCount"></span>
@@ -417,44 +1126,59 @@
         </div>
     </div>
 </footer>
+
 <script src="js/script.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    // 1. Date & Time
+// FAQ toggle
+function toggleFaq(el) {
+    const item = el.parentElement;
+    item.classList.toggle('open');
+}
+
+// Form submit
+function submitAdmForm() {
+    const fname = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const program = document.getElementById('program').value;
+    if (!fname || !phone || !program) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+    document.getElementById('adm-form-fields').style.display = 'none';
+    document.getElementById('adm-form-success').style.display = 'block';
+}
+
+// Footer: Date & Time
+document.addEventListener("DOMContentLoaded", function () {
     const dateEl = document.getElementById("date");
     const timeEl = document.getElementById("time");
-    
-    if(dateEl) dateEl.innerHTML = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-    
-    setInterval(function(){
-        if(timeEl) timeEl.innerHTML = new Date().toLocaleTimeString('en-US', { hour12: false });
+    if (dateEl) dateEl.innerHTML = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    setInterval(function () {
+        if (timeEl) timeEl.innerHTML = new Date().toLocaleTimeString('en-US', { hour12: false });
     }, 1000);
 
-    // 2. Weather API
+    // Weather
     const apiKey = "6ab4623b616a1ea162cf45d73c2dcb32";
-    const city = "Ujjain";
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=Ujjain&units=metric&appid=${apiKey}`)
+        .then(r => r.json())
+        .then(data => {
+            if (data.weather) {
+                let desc = data.weather[0].description;
+                document.getElementById("weather").innerHTML = desc.charAt(0).toUpperCase() + desc.slice(1);
+                document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
+            }
+        }).catch(() => {});
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
-    .then(response => response.json())
-    .then(data => {
-        if (data.weather && data.weather.length > 0) {
-            let desc = data.weather[0].description;
-            document.getElementById("weather").innerHTML = desc.charAt(0).toUpperCase() + desc.slice(1);
-            document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
-        }
-    })
-    .catch(err => console.log("Weather error:", err));
-
-    // 3. Stats
+    // Stats
     const lastUp = document.getElementById("lastUpdated");
-    if(lastUp) lastUp.innerHTML = document.lastModified;
-
+    if (lastUp) lastUp.innerHTML = document.lastModified;
     let count = localStorage.getItem("visitorCount");
     count = count === null ? 1 : Number(count) + 1;
     localStorage.setItem("visitorCount", count);
-    
     const visCount = document.getElementById("visitorCount");
-    if(visCount) visCount.innerText = count.toLocaleString();
+    if (visCount) visCount.innerText = count.toLocaleString();
 });
 </script>
-</HTML>
+
+</body>
+</html>
