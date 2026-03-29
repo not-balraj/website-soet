@@ -45,8 +45,8 @@
    NOTICE TICKER
 ───────────────────────────────────────── */
 .hp-ticker {
-  background: #fff9f0;
-  border-bottom: 1px solid #f0dfc0;
+  background: #f2e4cf;
+  border-bottom: 1px solid #dcc29a;
   padding: 9px 0;
   overflow: hidden;
   white-space: nowrap;
@@ -73,19 +73,26 @@
 .hp-ticker-item a:hover { color: var(--hp-red); }
 .hp-ticker-dot { color: #ccc; }
 
-/* Govt-style notice board */
-.hp-notice-wrap {
-  background: #fff;
-  border-bottom: 1px solid var(--hp-border);
-  padding: 24px 0 18px;
+/* Popup notice board */
+.hp-notice-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+  padding: 14px;
 }
-.hp-notice-board {
-  width: min(1180px, 92%);
-  margin: 0 auto;
+.hp-notice-overlay.show { display: flex; }
+.hp-notice-modal {
+  width: min(900px, 96vw);
+  max-height: 88vh;
+  overflow: auto;
   border: 1px solid #d8c6a6;
-  border-radius: 8px;
+  border-radius: 10px;
   background: #fffcf5;
-  overflow: hidden;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.32);
 }
 .hp-notice-head {
   background: #7a0000;
@@ -105,6 +112,21 @@
   font-size: 12px;
   font-weight: 600;
   color: #ffe7a8;
+}
+.hp-notice-close {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+.hp-notice-close:hover {
+  background: rgba(255, 255, 255, 0.24);
 }
 .hp-notice-list {
   margin: 0;
@@ -616,6 +638,7 @@
   .hp-accred-row { flex-wrap: wrap; }
   .hp-accred-cell { flex: 1 1 33%; border-bottom: 1px solid var(--hp-border); }
   .hp-notice-item { grid-template-columns: 1fr; gap: 6px; }
+  .hp-notice-meta { display: none; }
 }
 </style>
 </head>
@@ -765,6 +788,38 @@
 ═══════════════════════════════════════════════════════════ -->
 <div class="hp-body">
 
+  <div class="hp-notice-overlay" id="hpNoticeOverlay" aria-hidden="true">
+    <div class="hp-notice-modal" role="dialog" aria-modal="true" aria-labelledby="hp-notice-title">
+      <div class="hp-notice-head">
+        <h2 id="hp-notice-title">Important Notice Board</h2>
+        <span class="hp-notice-meta">Latest and important updates first</span>
+        <button class="hp-notice-close" id="hpNoticeClose" aria-label="Close notice board">&times;</button>
+      </div>
+      <ul class="hp-notice-list">
+        <li class="hp-notice-item">
+          <span class="hp-notice-date">29 Mar 2026</span>
+          <span class="hp-notice-tag hp-tag-important">Important</span>
+          <a href="admission.html">B.Tech and M.Tech admission registration window is now open for session 2026-27.</a>
+        </li>
+        <li class="hp-notice-item">
+          <span class="hp-notice-date">27 Mar 2026</span>
+          <span class="hp-notice-tag hp-tag-latest">Latest</span>
+          <a href="exam-cell.html">Mid-semester examination schedule has been published by the Examination Cell.</a>
+        </li>
+        <li class="hp-notice-item">
+          <span class="hp-notice-date">24 Mar 2026</span>
+          <span class="hp-notice-tag hp-tag-important">Important</span>
+          <a href="fees-scholarships.html">Last date for scholarship verification on the institute portal is 05 Apr 2026.</a>
+        </li>
+        <li class="hp-notice-item">
+          <span class="hp-notice-date">20 Mar 2026</span>
+          <span class="hp-notice-tag hp-tag-event">Event</span>
+          <a href="annual-fests.html">Annual technical and cultural fest schedule released for April 2026 activities.</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <!-- TICKER -->
   <div class="hp-ticker">
     <div class="hp-ticker-inner">
@@ -793,37 +848,6 @@
       <span class="hp-ticker-item">🔬 New Advanced Research Lab inaugurated — AI & Machine Learning Center</span>
     </div>
   </div>
-
-  <section class="hp-notice-wrap" aria-labelledby="hp-notice-title">
-    <div class="hp-notice-board">
-      <div class="hp-notice-head">
-        <h2 id="hp-notice-title">Important Notice Board</h2>
-        <span class="hp-notice-meta">Latest and important updates first</span>
-      </div>
-      <ul class="hp-notice-list">
-        <li class="hp-notice-item">
-          <span class="hp-notice-date">29 Mar 2026</span>
-          <span class="hp-notice-tag hp-tag-important">Important</span>
-          <a href="admission.html">B.Tech and M.Tech admission registration window is now open for session 2026-27.</a>
-        </li>
-        <li class="hp-notice-item">
-          <span class="hp-notice-date">27 Mar 2026</span>
-          <span class="hp-notice-tag hp-tag-latest">Latest</span>
-          <a href="exam-cell.html">Mid-semester examination schedule has been published by the Examination Cell.</a>
-        </li>
-        <li class="hp-notice-item">
-          <span class="hp-notice-date">24 Mar 2026</span>
-          <span class="hp-notice-tag hp-tag-important">Important</span>
-          <a href="fees-scholarships.html">Last date for scholarship verification on the institute portal is 05 Apr 2026.</a>
-        </li>
-        <li class="hp-notice-item">
-          <span class="hp-notice-date">20 Mar 2026</span>
-          <span class="hp-notice-tag hp-tag-event">Event</span>
-          <a href="annual-fests.html">Annual technical and cultural fest schedule released for April 2026 activities.</a>
-        </li>
-      </ul>
-    </div>
-  </section>
 
   <!-- ═══ HERO ═══ -->
   <div class="hp-hero">
@@ -1292,7 +1316,8 @@
         <li><a href="#">NAAC Accreditation</a></li>
         <li><a href="anti-ragging.html">Anti-Ragging Committee</a></li>
          
-        <li><a href="contact.html">Contact Directory</a></li>`r`n        <li><a href="sitemap.html">Sitemap</a></li>
+        <li><a href="contact.html">Contact Directory</a></li>
+        <li><a href="sitemap.html">Sitemap</a></li>
       </ul>
     </div>
     <div class="footer-col live-campus-widget">
@@ -1316,6 +1341,40 @@
 <script src="js/script.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+  const noticeOverlay = document.getElementById("hpNoticeOverlay");
+  const noticeClose = document.getElementById("hpNoticeClose");
+
+  if (noticeOverlay) {
+    noticeOverlay.classList.add("show");
+    noticeOverlay.setAttribute("aria-hidden", "false");
+  }
+
+  function closeNoticePopup() {
+    if (!noticeOverlay) {
+      return;
+    }
+    noticeOverlay.classList.remove("show");
+    noticeOverlay.setAttribute("aria-hidden", "true");
+  }
+
+  if (noticeClose) {
+    noticeClose.addEventListener("click", closeNoticePopup);
+  }
+
+  if (noticeOverlay) {
+    noticeOverlay.addEventListener("click", function (event) {
+      if (event.target === noticeOverlay) {
+        closeNoticePopup();
+      }
+    });
+  }
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeNoticePopup();
+    }
+  });
+
   /* Date & Time */
   const de = document.getElementById("date"), te = document.getElementById("time");
   if (de) de.innerHTML = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
