@@ -77,56 +77,61 @@
 .hp-notice-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.52);
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 9998;
-  padding: 14px;
+  padding: 16px;
 }
 .hp-notice-overlay.show { display: flex; }
 .hp-notice-modal {
-  width: min(900px, 96vw);
-  max-height: 88vh;
+  position: relative;
+  width: min(550px, 100%);
+  max-height: 90vh;
   overflow: auto;
   border: 1px solid #d8c6a6;
   border-radius: 10px;
   background: #fffcf5;
+  padding: 28px;
   box-shadow: 0 18px 60px rgba(0, 0, 0, 0.32);
 }
 .hp-notice-head {
-  background: #7a0000;
-  color: #fff;
-  padding: 12px 16px;
+  color: #121212;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 12px;
+  margin-bottom: 14px;
 }
 .hp-notice-head h2 {
-  font-size: 18px;
+  font-size: 24px;
   font-family: var(--hp-serif);
   letter-spacing: .2px;
+  line-height: 1.1;
 }
 .hp-notice-meta {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  color: #ffe7a8;
+  color: #5f5f5f;
 }
 .hp-notice-close {
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  width: 32px;
-  height: 32px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border: 1px solid #d3d3d3;
+  background: #f5f5f5;
+  color: #202020;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1;
 }
 .hp-notice-close:hover {
-  background: rgba(255, 255, 255, 0.24);
+  background: #e7e7e7;
 }
 .hp-notice-list {
   margin: 0;
@@ -165,6 +170,26 @@
   color: #161616;
 }
 .hp-notice-item a:hover { color: var(--hp-red); }
+.hp-notice-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+.hp-notice-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--hp-red);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 6px;
+}
+.hp-notice-cta:hover {
+  background: #9a0000;
+  color: #fff;
+}
 
 /* ─────────────────────────────────────────
    HERO
@@ -638,7 +663,7 @@
   .hp-accred-row { flex-wrap: wrap; }
   .hp-accred-cell { flex: 1 1 33%; border-bottom: 1px solid var(--hp-border); }
   .hp-notice-item { grid-template-columns: 1fr; gap: 6px; }
-  .hp-notice-meta { display: none; }
+  .hp-notice-modal { padding: 24px 20px; }
 }
 </style>
 </head>
@@ -650,138 +675,16 @@
 <!-- ═══════════════════════════════════════
      TOP STRIP — unchanged
 ═══════════════════════════════════════ -->
-<div class="SOET-Topstrip">
-  <div class="topbar">
-    <div class="topbar-left">
-      <a href="student-login.html">Students</a> |
-      <a href="teacher-login.html">Faculty & Staff</a> |
-      <a href="alumni.html">Alumni</a> |
-      <a href="placement.html">Industry</a> |
-      <a href="about.html#about-contact">Directory</a> |
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="topbar-right">
-      <span onclick="changeFontSize(-1)">A-</span>
-      <span onclick="changeFontSize(0)">A</span>
-      <span onclick="changeFontSize(1)">A+</span>
-      <span onclick="translatePage('hi')">हिंदी</span> |
-      <span onclick="translatePage('en')">ENG</span>
-      <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
-      <div id="google_translate_element"></div>
-    </div>
-  </div>
-</div>
+<div id="topbar-placeholder"></div>
 
-<!-- ═══════════════════════════════════════
-     MAIN CONTENT WRAPPER — unchanged
-═══════════════════════════════════════ -->
 <div id="content">
 
 <!-- ═══════════════════════════════════════
      HEADER + LOGO AREA — unchanged
 ═══════════════════════════════════════ -->
-<header>
-  <div class="top-right"></div>
-</header>
-<header>
-  <div class="logo-area">
-    <div class="left-header">
-      <a href="index.html">
-        <img src="images/logo.png" class="logo">
-      </a>
-      <div class="title">
-        <h2>Samrat Vikramaditya Vishwavidyalaya</h2>
-        <h1>School of Engineering and Technology</h1>
-      </div>
-    </div>
-    <div class="right-emblems">
-      <img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
-      <a href="https://www.india.gov.in" target="_blank">
-        <img src="images/const.png" class="constitution">
-      </a>
-    </div>
-  </div>
+<div id="header-placeholder"></div>
+<div id="navbar-placeholder"></div>
 
-  <!-- ═══════════════════════════════════════
-       NAVBAR — unchanged from your site
-  ═══════════════════════════════════════ -->
-  <nav class="navbar">
-    <a href="index.html" class="home-icon"><i class="fa-solid fa-house"></i></a>
-    <li class="nav-item">
-      <a href="about.html">About us</a>
-      <div class="dropdown-menu">
-        <a href="about.html#about-overview">Overview</a>
-        <a href="about.html#about-vision">Vision & Mission</a>
-        <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
-        <a href="about.html#about-history">History</a>
-        <a href="about.html#about-administration">Administration and Organization HOD details</a>
-        <a href="about.html#about-contact">Contact US / How to reach</a>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a href="campus-life.html">Campus Life</a>
-      <div class="dropdown-menu">
-        <a href="dean-office.html">Office of the Dean</a>
-        <a href="hostels-dining.html">Hostels and Dining facilities</a>
-        <a href="ncc-nss.html">NCC & NSS</a>
-        <a href="clubs-society.html">Clubs and Societies</a>
-        <a href="sports.html">Sports Infrastructure and Teams</a>
-        <a href="annual-fests.html">Annual Fests</a>
-         
-      </div>
-    </li>
-    <li class="nav-item">
-      <a href="academics.html">Academics</a>
-      <div class="dropdown-menu">
-        <a href="programs.html">Programs Offered</a>
-        <a href="undergraduate.html">Under-Graduate</a>
-        <a href="postgraduate.html">Post-Graduate</a>
-        <a href="nptel.html">NPTEL/MOOCS</a>
-        <a href="library.html">Central and College Library</a>
-        <a href="exam-cell.html">Examination Cell</a>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a href="admission.html">Admissions</a>
-      <div class="dropdown-menu">
-        <a href="why-soet.html">Why SOET Ujjain?</a>
-        <a href="life-in-ujjain.html">Life in Ujjain</a>
-        <a href="btech-admissions.html">B.TECH Admissions</a>
-        <a href="mtech-programs.html">M.TECH/PHD Admissions</a>
-         
-        <a href="admissions-faq.html">Admission FAQ</a>
-        <a href="anti-ragging.html">Anti-Ragging Policy</a>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a href="research.html">Research and Innovations</a>
-      <div class="dropdown-menu">
-        <a href="research.html#rnd-dean">Dean of R&D</a>
-        <a href="research.html#rnd-projects">Sponsored Projects and Grants</a>
-        <a href="research.html#rnd-patents">Patents & Publications</a>
-        <a href="research.html#rnd-facilities">Central Research Facilities</a>
-        <a href="research.html#rnd-incubation">Incubation Center & E-Cell</a>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a href="placement.html">Training & Placement cell</a>
-      <div class="dropdown-menu">
-        <a href="placement.html#tp-message">Message from T&P Officer</a>
-        <a href="placement.html#tp-stats">Placement Statistics and Annual Report</a>
-        <a href="placement.html#tp-brochure">Official Placement Brochure</a>
-        <a href="placement.html#tp-procedure">Recruitment Procedure</a>
-        <a href="placement.html#tp-skills">Student Skill Development</a>
-      </div>
-    </li>
-    <li class="nav-item"><a href="alumni.html">Alumni</a></li>
-    <a href="contact.html">Contact Us</a>
-    <li>
-      <a href="#" onclick="openSearch()">
-        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-      </a>
-    </li>
-  </nav>
-</header>
 
 <!-- ═══════════════════════════════════════════════════════════
      HOME PAGE CONTENT — all inside .hp-body to scope styles
@@ -790,10 +693,10 @@
 
   <div class="hp-notice-overlay" id="hpNoticeOverlay" aria-hidden="true">
     <div class="hp-notice-modal" role="dialog" aria-modal="true" aria-labelledby="hp-notice-title">
+      <button class="hp-notice-close" id="hpNoticeClose" aria-label="Close notice board">&times;</button>
       <div class="hp-notice-head">
         <h2 id="hp-notice-title">Important Notice Board</h2>
         <span class="hp-notice-meta">Latest and important updates first</span>
-        <button class="hp-notice-close" id="hpNoticeClose" aria-label="Close notice board">&times;</button>
       </div>
       <ul class="hp-notice-list">
         <li class="hp-notice-item">
@@ -817,6 +720,9 @@
           <a href="annual-fests.html">Annual technical and cultural fest schedule released for April 2026 activities.</a>
         </li>
       </ul>
+      <div class="hp-notice-actions">
+        <a href="admission.html" class="hp-notice-cta">View Notice <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
     </div>
   </div>
 
@@ -1288,57 +1194,12 @@
 <!-- ═══════════════════════════════════════
      FOOTER — unchanged from your site
 ═══════════════════════════════════════ -->
-<footer class="elite-footer">
-  <div class="footer-top-grid">
-    <div class="footer-col">
-      <h4>School of Engineering & Technology</h4>
-      <div class="contact-details">
-        <p>Samrat Vikramaditya Vishwavidyalaya<br>Ujjain, Madhya Pradesh, India</p>
-        <p><i class="fa-solid fa-phone" style="width:25px;color:#8892b0;"></i> <a href="tel:+918770122362">+91-8770122362</a></p>
-        <p><i class="fa-solid fa-envelope" style="width:25px;color:#8892b0;"></i> <a href="mailto:soet@vikramuniv.ac.in">soet@vikramuniv.ac.in</a></p>
-        <p><i class="fa-solid fa-globe" style="width:25px;color:#8892b0;"></i> <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Academics</h4>
-      <ul class="elite-links">
-        <li><a href="#">Departments</a></li>
-        <li><a href="programs.html">Educational Programmes</a></li>
-        <li><a href="#">Rules & Regulations</a></li>
-        <li><a href="https://vikram.mponline.gov.in">Online Services</a></li>
-        <li><a href="campus-life.html">Campus Life</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Institutional</h4>
-      <ul class="elite-links">
-        <li><a href="#">NIRF Ranking</a></li>
-        <li><a href="#">NAAC Accreditation</a></li>
-        <li><a href="anti-ragging.html">Anti-Ragging Committee</a></li>
-         
-        <li><a href="contact.html">Contact Directory</a></li>
-        <li><a href="sitemap.html">Sitemap</a></li>
-      </ul>
-    </div>
-    <div class="footer-col live-campus-widget">
-      <h4>Campus Live</h4>
-      <div class="data-row"><span class="data-label">Date & Time</span><span class="data-value"><span id="date">--</span> | <span id="time">--</span></span></div>
-      <div class="data-row"><span class="data-label">Location</span><span class="data-value" style="font-size:12px;">स्वामी विवेकानन्द स्नातक भवन</span></div>
-      <div class="data-row"><span class="data-label">Conditions</span><span class="data-value"><span id="weather">--</span>, <span id="temp">--</span></span></div>
-    </div>
-  </div>
-  <div class="footer-bottom-bar">
-    <div class="bottom-bar-content">
-      <div class="legal-text">&copy; 2026 Student Tech Team SOET.<br>All rights reserved.</div>
-      <div class="footer-logo-center"><a href="index.html"><img src="images/logo2.png" alt="SOET University Logo"></a></div>
-      <div class="visitor-stats">Last Updated: <span id="lastUpdated"></span><br>Unique Visitors: <span id="visitorCount"></span></div>
-    </div>
-  </div>
-</footer>
+<div id="footer-placeholder"></div>
 
 </div><!-- /content -->
 
 <script src="js/script.js"></script>
+<script src="js/components-loader.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const noticeOverlay = document.getElementById("hpNoticeOverlay");
@@ -1374,33 +1235,7 @@ document.addEventListener("DOMContentLoaded", function () {
       closeNoticePopup();
     }
   });
-
-  /* Date & Time */
-  const de = document.getElementById("date"), te = document.getElementById("time");
-  if (de) de.innerHTML = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
-  setInterval(() => { if (te) te.innerHTML = new Date().toLocaleTimeString('en-US', { hour12:false }); }, 1000);
-
-  /* Weather */
-  fetch('https://api.openweathermap.org/data/2.5/weather?q=Ujjain&units=metric&appid=6ab4623b616a1ea162cf45d73c2dcb32')
-    .then(r => r.json()).then(d => {
-      if (d.weather) {
-        let w = d.weather[0].description;
-        const we = document.getElementById("weather"), tm = document.getElementById("temp");
-        if (we) we.innerHTML = w.charAt(0).toUpperCase() + w.slice(1);
-        if (tm) tm.innerHTML = Math.round(d.main.temp) + "°C";
-      }
-    }).catch(() => {});
-
-  /* Visitor count */
-  const lu = document.getElementById("lastUpdated");
-  if (lu) lu.innerHTML = document.lastModified;
-  let c = localStorage.getItem("visitorCount");
-  c = c === null ? 1 : Number(c) + 1;
-  localStorage.setItem("visitorCount", c);
-  const vc = document.getElementById("visitorCount");
-  if (vc) vc.innerText = c.toLocaleString();
-     }
-     );
+});
 </script>
 </body>
 </html>
