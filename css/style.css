@@ -207,6 +207,125 @@ body.dark-mode .theme-toggle-btn:hover{
 background:#555;
 }
 
+/* Content-wide dark mode coverage */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6{
+color:#f3f4f6;
+}
+
+body.dark-mode p,
+body.dark-mode li,
+body.dark-mode td,
+body.dark-mode th,
+body.dark-mode label,
+body.dark-mode small,
+body.dark-mode strong,
+body.dark-mode span{
+color:#d1d5db;
+}
+
+body.dark-mode main,
+body.dark-mode section,
+body.dark-mode article,
+body.dark-mode aside,
+body.dark-mode .section,
+body.dark-mode .container,
+body.dark-mode .content,
+body.dark-mode .card,
+body.dark-mode .panel,
+body.dark-mode .box{
+background-color:transparent;
+}
+
+body.dark-mode [class*="card"],
+body.dark-mode [class*="tile"],
+body.dark-mode [class*="panel"],
+body.dark-mode [class*="box"],
+body.dark-mode [class*="feature"],
+body.dark-mode [class*="stat"]{
+background:#21262d;
+border-color:#3f4854;
+box-shadow:none;
+}
+
+body.dark-mode table,
+body.dark-mode tr,
+body.dark-mode th,
+body.dark-mode td{
+border-color:#3f4854;
+}
+
+body.dark-mode table{
+background:#1c2128;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea,
+body.dark-mode button{
+background:#1c2128;
+color:#e5e7eb;
+border-color:#3f4854;
+}
+
+body.dark-mode a{
+color:#facc15;
+}
+
+body.dark-mode a:hover{
+color:#fde68a;
+}
+
+body.dark-mode [style*="background: #fff"],
+body.dark-mode [style*="background:#fff"],
+body.dark-mode [style*="background-color: #fff"],
+body.dark-mode [style*="background-color:#fff"],
+body.dark-mode [style*="background: #f4f4f4"],
+body.dark-mode [style*="background:#f4f4f4"],
+body.dark-mode [style*="background: #f5f5f5"],
+body.dark-mode [style*="background:#f5f5f5"]{
+background:#1c2128 !important;
+color:#e5e7eb !important;
+}
+
+body.dark-mode .hp-body,
+body.dark-mode .hp-section.bg-white,
+body.dark-mode .hp-section.bg-grey,
+body.dark-mode .hp-stats-bar,
+body.dark-mode .hp-quicklinks,
+body.dark-mode .hp-prog-card,
+body.dark-mode .hp-news-item,
+body.dark-mode .hp-event-item,
+body.dark-mode .hp-accred-cell{
+background:#1c2128 !important;
+color:#e5e7eb !important;
+border-color:#3f4854 !important;
+}
+
+body.dark-mode .hp-body p,
+body.dark-mode .hp-body span,
+body.dark-mode .hp-body li,
+body.dark-mode .hp-body .ns,
+body.dark-mode .hp-body .ed,
+body.dark-mode .hp-body .sl,
+body.dark-mode .hp-body .pk{
+color:#cbd5e1 !important;
+}
+
+body.dark-mode .hp-btn-outline{
+border-color:#facc15;
+color:#facc15;
+}
+
+body.dark-mode .hp-btn-outline:hover{
+border-color:#fde68a;
+color:#fde68a;
+}
+
 
 /* ---------------- LOGO AREA ---------------- */
 
