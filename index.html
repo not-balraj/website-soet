@@ -45,8 +45,8 @@
    NOTICE TICKER
 ───────────────────────────────────────── */
 .hp-ticker {
-  background: #fff9f0;
-  border-bottom: 1px solid #f0dfc0;
+  background: #f2e4cf;
+  border-bottom: 1px solid #dcc29a;
   padding: 9px 0;
   overflow: hidden;
   white-space: nowrap;
@@ -68,10 +68,103 @@
   background: var(--hp-red); animation: hp-blink 1.4s infinite;
 }
 @keyframes hp-blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-.hp-ticker-item { font-size: 13px; color: #333; flex-shrink: 0; }
-.hp-ticker-item a { color: #333; }
+.hp-ticker-item { font-size: 13px; color: #1f1f1f; flex-shrink: 0; }
+.hp-ticker-item a { color: #1f1f1f; }
 .hp-ticker-item a:hover { color: var(--hp-red); }
 .hp-ticker-dot { color: #ccc; }
+
+/* Popup notice board */
+.hp-notice-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+  padding: 14px;
+}
+.hp-notice-overlay.show { display: flex; }
+.hp-notice-modal {
+  width: min(900px, 96vw);
+  max-height: 88vh;
+  overflow: auto;
+  border: 1px solid #d8c6a6;
+  border-radius: 10px;
+  background: #fffcf5;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.32);
+}
+.hp-notice-head {
+  background: #7a0000;
+  color: #fff;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.hp-notice-head h2 {
+  font-size: 18px;
+  font-family: var(--hp-serif);
+  letter-spacing: .2px;
+}
+.hp-notice-meta {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffe7a8;
+}
+.hp-notice-close {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+.hp-notice-close:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+.hp-notice-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hp-notice-item {
+  display: grid;
+  grid-template-columns: 120px 88px 1fr;
+  gap: 12px;
+  padding: 12px 16px;
+  border-top: 1px solid #eadfc7;
+  align-items: center;
+}
+.hp-notice-date {
+  font-size: 12px;
+  font-weight: 700;
+  color: #5f5f5f;
+}
+.hp-notice-tag {
+  display: inline-block;
+  text-align: center;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  text-transform: uppercase;
+}
+.hp-tag-important { background: #8b0000; color: #fff; }
+.hp-tag-latest { background: #d49400; color: #1d1300; }
+.hp-tag-event { background: #ececec; color: #222; }
+.hp-notice-item a,
+.hp-notice-item span {
+  font-size: 14px;
+  color: #161616;
+}
+.hp-notice-item a:hover { color: var(--hp-red); }
 
 /* ─────────────────────────────────────────
    HERO
@@ -544,6 +637,8 @@
   .hp-qlink:nth-child(odd) { border-right: 1px solid var(--hp-border); }
   .hp-accred-row { flex-wrap: wrap; }
   .hp-accred-cell { flex: 1 1 33%; border-bottom: 1px solid var(--hp-border); }
+  .hp-notice-item { grid-template-columns: 1fr; gap: 6px; }
+  .hp-notice-meta { display: none; }
 }
 </style>
 </head>
@@ -552,14 +647,6 @@
 <!-- ═══════════════════════════════════════
      PRELOADER — unchanged from your site
 ═══════════════════════════════════════ -->
-<div id="preloader">
-  <div class="loader-content">
-    <img src="images/logo.png" class="logo">
-    <h2>School of Engineering and Technology</h2>
-    <div class="spinner"></div>
-  </div>
-</div>
-
 <!-- ═══════════════════════════════════════
      TOP STRIP — unchanged
 ═══════════════════════════════════════ -->
@@ -701,6 +788,38 @@
 ═══════════════════════════════════════════════════════════ -->
 <div class="hp-body">
 
+  <div class="hp-notice-overlay" id="hpNoticeOverlay" aria-hidden="true">
+    <div class="hp-notice-modal" role="dialog" aria-modal="true" aria-labelledby="hp-notice-title">
+      <div class="hp-notice-head">
+        <h2 id="hp-notice-title">Important Notice Board</h2>
+        <span class="hp-notice-meta">Latest and important updates first</span>
+        <button class="hp-notice-close" id="hpNoticeClose" aria-label="Close notice board">&times;</button>
+      </div>
+      <ul class="hp-notice-list">
+        <li class="hp-notice-item">
+          <span class="hp-notice-date">29 Mar 2026</span>
+          <span class="hp-notice-tag hp-tag-important">Important</span>
+          <a href="admission.html">B.Tech and M.Tech admission registration window is now open for session 2026-27.</a>
+        </li>
+        <li class="hp-notice-item">
+          <span class="hp-notice-date">27 Mar 2026</span>
+          <span class="hp-notice-tag hp-tag-latest">Latest</span>
+          <a href="exam-cell.html">Mid-semester examination schedule has been published by the Examination Cell.</a>
+        </li>
+        <li class="hp-notice-item">
+          <span class="hp-notice-date">24 Mar 2026</span>
+          <span class="hp-notice-tag hp-tag-important">Important</span>
+          <a href="fees-scholarships.html">Last date for scholarship verification on the institute portal is 05 Apr 2026.</a>
+        </li>
+        <li class="hp-notice-item">
+          <span class="hp-notice-date">20 Mar 2026</span>
+          <span class="hp-notice-tag hp-tag-event">Event</span>
+          <a href="annual-fests.html">Annual technical and cultural fest schedule released for April 2026 activities.</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <!-- TICKER -->
   <div class="hp-ticker">
     <div class="hp-ticker-inner">
@@ -806,7 +925,7 @@
         <div class="hp-prog-card">
           <div class="hp-prog-card-bg">CS</div>
           <span class="hp-prog-badge">B.Tech · 4 Years</span>
-          <h3>Computer Science Engineering</h3>
+          <h3>Electronics and Computer Science</h3>
           <p>Algorithms, AI & Machine Learning, Database Systems, Networks, and Full-Stack Development. Prepares graduates for top-tier tech roles globally.</p>
           <div class="hp-prog-meta">
             <div class="hp-prog-row"><span class="pk">Intake</span><span class="pv">120 Seats</span></div>
@@ -1198,6 +1317,7 @@
         <li><a href="anti-ragging.html">Anti-Ragging Committee</a></li>
          
         <li><a href="contact.html">Contact Directory</a></li>
+        <li><a href="sitemap.html">Sitemap</a></li>
       </ul>
     </div>
     <div class="footer-col live-campus-widget">
@@ -1221,6 +1341,40 @@
 <script src="js/script.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+  const noticeOverlay = document.getElementById("hpNoticeOverlay");
+  const noticeClose = document.getElementById("hpNoticeClose");
+
+  if (noticeOverlay) {
+    noticeOverlay.classList.add("show");
+    noticeOverlay.setAttribute("aria-hidden", "false");
+  }
+
+  function closeNoticePopup() {
+    if (!noticeOverlay) {
+      return;
+    }
+    noticeOverlay.classList.remove("show");
+    noticeOverlay.setAttribute("aria-hidden", "true");
+  }
+
+  if (noticeClose) {
+    noticeClose.addEventListener("click", closeNoticePopup);
+  }
+
+  if (noticeOverlay) {
+    noticeOverlay.addEventListener("click", function (event) {
+      if (event.target === noticeOverlay) {
+        closeNoticePopup();
+      }
+    });
+  }
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeNoticePopup();
+    }
+  });
+
   /* Date & Time */
   const de = document.getElementById("date"), te = document.getElementById("time");
   if (de) de.innerHTML = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });

@@ -2,8 +2,15 @@ window.addEventListener("load", function(){
 
 setTimeout(function(){
 
-document.getElementById("preloader").style.display = "none";
-document.getElementById("content").style.display = "block";
+let preloader = document.getElementById("preloader");
+if(preloader){
+preloader.style.display = "none";
+}
+
+let content = document.getElementById("content");
+if(content){
+content.style.display = "block";
+}
 
 },1000);
 
