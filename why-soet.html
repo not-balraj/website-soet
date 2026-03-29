@@ -2,39 +2,650 @@
 <html>
 
 <head>
-<title>School Of Engineering and Technology</title>
+<title>Why SOET Ujjain? — School of Engineering and Technology</title>
 
 <link rel="stylesheet" href="css/style.css">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<style>
 
+/* ============================================================
+   CSS VARIABLES — matching admission.html exactly
+   ============================================================ */
+:root {
+  --clr-bg:        #f4f6f9;
+  --clr-surface:   #ffffff;
+  --clr-surface2:  #eef1f5;
+  --clr-border:    #d6dbe4;
+  --clr-gold:      #a07828;
+  --clr-gold-lt:   #b8922e;
+  --clr-red:       #c0392b;
+  --clr-text:      #1a1e26;
+  --clr-text-dim:  #4a5568;
+  --clr-text-faint:#8a95a3;
+  --clr-white:     #1a1e26;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'DM Sans', sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+
+  --container: 1160px;
+  --gap: 28px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+ul { list-style: none; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ============================================================
+   ALERT BANNER — copied from admission.html
+   ============================================================ */
+.alert-banner {
+  background: linear-gradient(90deg, rgba(192,57,43,.12) 0%, rgba(192,57,43,.05) 100%);
+  border-bottom: 1px solid rgba(192,57,43,.25);
+  padding: 11px 0;
+  font-size: 12.5px;
+  color: #922b21;
+  text-align: center;
+  letter-spacing: .3px;
+}
+.alert-banner strong { color: #7b241c; }
+.alert-banner a { color: #7b241c; text-decoration: underline; }
+
+/* ============================================================
+   PAGE HERO — copied from admission.html
+   ============================================================ */
+.page-hero {
+  background: #eef1f6;
+  border-bottom: 1px solid var(--clr-border);
+  padding: 60px 0 50px;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(160,120,40,.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(192,57,43,.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; top:0; right:0;
+  width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--clr-gold), transparent);
+  opacity: .2;
+}
+.breadcrumb {
+  font-size: 12px; color: var(--clr-text-faint);
+  margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+}
+.breadcrumb a { color: var(--clr-text-dim); transition: color .2s; }
+.breadcrumb a:hover { color: var(--clr-gold); }
+.breadcrumb span { color: var(--clr-text-faint); }
+
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 700; color: var(--clr-text);
+  line-height: 1.1; margin-bottom: 14px;
+}
+.page-hero h1 em { font-style: normal; color: var(--clr-gold); }
+.page-hero .hero-sub {
+  font-size: 15px; color: var(--clr-text-dim);
+  max-width: 580px; line-height: 1.7; margin-bottom: 28px;
+}
+.hero-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(201,168,76,.08); border: 1px solid rgba(201,168,76,.22);
+  color: var(--clr-gold-lt); padding: 6px 14px; border-radius: 100px;
+  font-size: 12.5px; font-weight: 500;
+}
+.hero-pill .dot {
+  width: 6px; height: 6px; background: var(--clr-gold);
+  border-radius: 50%; flex-shrink: 0;
+}
+
+/* ============================================================
+   SECTION SYSTEM — from admission.html
+   ============================================================ */
+.section { padding: 72px 0; border-bottom: 1px solid var(--clr-border); }
+.section:last-of-type { border-bottom: none; }
+.section-label {
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--clr-gold);
+  font-weight: 600; margin-bottom: 10px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 700; color: var(--clr-text);
+  line-height: 1.15; margin-bottom: 12px;
+}
+.section-desc {
+  color: var(--clr-text-dim); max-width: 620px;
+  font-size: 14.5px; line-height: 1.75; margin-bottom: 40px;
+}
+
+/* ============================================================
+   1. OPENING STATEMENT — Big editorial pull-quote split
+   ============================================================ */
+.statement-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 64px;
+  align-items: center;
+}
+.statement-left {}
+.statement-kicker {
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: 3px; color: var(--clr-gold);
+  font-weight: 700; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.statement-kicker::before {
+  content: ''; display: block; width: 32px; height: 2px;
+  background: var(--clr-gold);
+}
+.statement-left h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700; color: var(--clr-text);
+  line-height: 1.12; margin-bottom: 24px;
+}
+.statement-left h2 em { font-style: italic; color: var(--clr-gold); }
+.statement-left p {
+  font-size: 15px; color: var(--clr-text-dim); line-height: 1.8;
+  margin-bottom: 32px;
+}
+.statement-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--clr-gold); color: #fff;
+  padding: 13px 28px; border-radius: var(--radius-md);
+  font-size: 14px; font-weight: 700;
+  transition: background .2s, transform .15s;
+}
+.statement-cta:hover { background: var(--clr-gold-lt); transform: translateY(-2px); }
+.statement-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.mini-stat-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .25s, transform .25s;
+}
+.mini-stat-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--clr-gold), transparent);
+  opacity: 0; transition: opacity .25s;
+}
+.mini-stat-card:hover { border-color: rgba(160,120,40,.35); transform: translateY(-3px); }
+.mini-stat-card:hover::before { opacity: 1; }
+.mini-stat-card .big-num {
+  font-family: var(--font-display);
+  font-size: 48px; font-weight: 700; color: var(--clr-gold);
+  line-height: 1; margin-bottom: 6px; letter-spacing: -1px;
+}
+.mini-stat-card .lbl {
+  font-size: 12px; color: var(--clr-text-dim);
+  text-transform: uppercase; letter-spacing: .8px; font-weight: 600;
+}
+.mini-stat-card .sub {
+  font-size: 11.5px; color: var(--clr-text-faint); margin-top: 4px;
+}
+.mini-stat-card.accent {
+  background: var(--clr-gold);
+  border-color: var(--clr-gold);
+}
+.mini-stat-card.accent .big-num { color: #fff; }
+.mini-stat-card.accent .lbl { color: rgba(255,255,255,.85); }
+.mini-stat-card.accent .sub { color: rgba(255,255,255,.65); }
+.mini-stat-card.accent::before { display: none; }
+
+/* ============================================================
+   2. PILLARS — Alternating split sections
+   ============================================================ */
+.pillar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 64px 0;
+  border-bottom: 1px solid var(--clr-border);
+}
+.pillar:last-of-type { border-bottom: none; }
+.pillar.reverse { direction: rtl; }
+.pillar.reverse > * { direction: ltr; }
+
+.pillar-visual {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4/3;
+  background: var(--clr-surface2);
+  display: flex; align-items: center; justify-content: center;
+}
+.pillar-visual img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.pillar-visual .visual-placeholder {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 16px;
+  color: var(--clr-text-faint); font-size: 13px;
+  text-align: center; padding: 24px;
+  width: 100%; height: 100%;
+}
+.pillar-visual .visual-placeholder i {
+  font-size: 48px; color: var(--clr-gold); opacity: .4;
+}
+.pillar-visual .vis-badge {
+  position: absolute; bottom: 16px; left: 16px;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.1);
+}
+.pillar-visual .vis-badge .num {
+  font-family: var(--font-display);
+  font-size: 26px; font-weight: 700; color: var(--clr-gold);
+  line-height: 1;
+}
+.pillar-visual .vis-badge .txt {
+  font-size: 11.5px; color: var(--clr-text-dim); font-weight: 500;
+}
+
+.pillar-content {}
+.pillar-number {
+  font-family: var(--font-display);
+  font-size: 80px; font-weight: 700;
+  color: rgba(160,120,40,.08); line-height: 1;
+  letter-spacing: -4px; margin-bottom: -20px;
+  display: block;
+}
+.pillar-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(160,120,40,.08); border: 1px solid rgba(160,120,40,.2);
+  color: var(--clr-gold); font-size: 11px; font-weight: 700;
+  padding: 4px 12px; border-radius: 100px; letter-spacing: 1px;
+  text-transform: uppercase; margin-bottom: 14px;
+}
+.pillar-content h3 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 700; color: var(--clr-text);
+  line-height: 1.2; margin-bottom: 16px;
+}
+.pillar-content p {
+  font-size: 14.5px; color: var(--clr-text-dim);
+  line-height: 1.8; margin-bottom: 24px;
+}
+.pillar-bullets {
+  display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px;
+}
+.pillar-bullet {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 13.5px; color: var(--clr-text-dim);
+}
+.pillar-bullet i {
+  color: var(--clr-gold); margin-top: 2px; flex-shrink: 0; font-size: 13px;
+}
+.pillar-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--clr-gold); font-size: 13.5px; font-weight: 700;
+  transition: gap .2s;
+}
+.pillar-link:hover { gap: 12px; }
+
+/* ============================================================
+   3. TESTIMONIAL / STUDENT VOICES — horizontal scroll cards
+   ============================================================ */
+.voices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+.voice-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: 30px 28px;
+  display: flex; flex-direction: column; gap: 18px;
+  position: relative;
+  transition: border-color .25s, box-shadow .25s;
+}
+.voice-card:hover {
+  border-color: rgba(160,120,40,.3);
+  box-shadow: 0 12px 40px rgba(0,0,0,.06);
+}
+.voice-card .quote-mark {
+  font-family: var(--font-display);
+  font-size: 72px; line-height: .8;
+  color: rgba(160,120,40,.15); font-weight: 700;
+  margin-bottom: -10px;
+}
+.voice-card blockquote {
+  font-family: var(--font-display);
+  font-size: 17px; font-style: italic;
+  color: var(--clr-text); line-height: 1.65;
+  flex: 1;
+}
+.voice-card .stars {
+  display: flex; gap: 3px; color: var(--clr-gold); font-size: 12px;
+}
+.voice-author {
+  display: flex; align-items: center; gap: 12px;
+  padding-top: 16px; border-top: 1px solid var(--clr-border);
+}
+.voice-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(160,120,40,.1); border: 1px solid rgba(160,120,40,.2);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: var(--clr-gold); font-size: 15px; flex-shrink: 0;
+}
+.voice-author-name { font-size: 13.5px; font-weight: 700; color: var(--clr-text); }
+.voice-author-detail { font-size: 11.5px; color: var(--clr-text-faint); margin-top: 1px; }
+
+/* ============================================================
+   4. ACCOLADES — horizontal strip with logos/numbers
+   ============================================================ */
+.accolade-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  background: var(--clr-border);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.accolade-item {
+  background: var(--clr-surface);
+  padding: 32px 20px;
+  text-align: center;
+  transition: background .2s;
+}
+.accolade-item:hover { background: var(--clr-surface2); }
+.accolade-item .acc-icon {
+  font-size: 28px; color: var(--clr-gold);
+  margin-bottom: 12px; display: block;
+}
+.accolade-item .acc-title {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 700; color: var(--clr-text);
+  line-height: 1.2; margin-bottom: 4px;
+}
+.accolade-item .acc-sub {
+  font-size: 11.5px; color: var(--clr-text-faint);
+  text-transform: uppercase; letter-spacing: .8px;
+}
+
+/* ============================================================
+   5. CAMPUS LIFE MOSAIC — image grid
+   ============================================================ */
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 220px 220px;
+  gap: 12px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.mosaic-cell {
+  position: relative; overflow: hidden;
+  background: var(--clr-surface2);
+  display: flex; align-items: center; justify-content: center;
+}
+.mosaic-cell.tall { grid-row: span 2; }
+.mosaic-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.mosaic-cell:hover img { transform: scale(1.05); }
+.mosaic-cell .mosaic-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 50%);
+  display: flex; align-items: flex-end; padding: 20px;
+  opacity: 0; transition: opacity .3s;
+}
+.mosaic-cell:hover .mosaic-overlay { opacity: 1; }
+.mosaic-overlay span {
+  color: #fff; font-size: 13px; font-weight: 600;
+}
+.mosaic-placeholder {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 10px; color: var(--clr-text-faint);
+  font-size: 12px; text-align: center; padding: 16px;
+  width: 100%; height: 100%;
+}
+.mosaic-placeholder i { font-size: 32px; color: var(--clr-gold); opacity: .35; }
+
+/* ============================================================
+   6. COMPARISON TABLE — SOET vs. Others
+   ============================================================ */
+.compare-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--clr-border);
+  box-shadow: 0 4px 24px rgba(0,0,0,.04);
+}
+.compare-table {
+  width: 100%; border-collapse: collapse; background: var(--clr-surface);
+}
+.compare-table thead tr {
+  background: var(--clr-surface2);
+  border-bottom: 2px solid var(--clr-border);
+}
+.compare-table th {
+  padding: 18px 22px; text-align: left;
+  font-size: 12px; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--clr-text-dim); font-weight: 700;
+}
+.compare-table th.highlight-col {
+  background: rgba(160,120,40,.08);
+  color: var(--clr-gold);
+}
+.compare-table tbody tr {
+  border-bottom: 1px solid var(--clr-border);
+  transition: background .15s;
+}
+.compare-table tbody tr:last-child { border-bottom: none; }
+.compare-table tbody tr:hover { background: var(--clr-surface2); }
+.compare-table td {
+  padding: 15px 22px; font-size: 13.5px; color: var(--clr-text-dim);
+}
+.compare-table td.feature-name {
+  color: var(--clr-text); font-weight: 600; font-size: 14px;
+}
+.compare-table td.highlight-col {
+  background: rgba(160,120,40,.04);
+  color: var(--clr-text); font-weight: 600;
+}
+.compare-table .check { color: #16a34a; font-size: 16px; }
+.compare-table .cross { color: #dc2626; font-size: 14px; }
+.compare-table .partial { color: var(--clr-gold); font-size: 14px; }
+
+/* ============================================================
+   7. LOCATION CALLOUT — Ujjain advantage
+   ============================================================ */
+.location-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.location-content h3 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700; color: var(--clr-text);
+  line-height: 1.2; margin-bottom: 16px;
+}
+.location-content p {
+  font-size: 14.5px; color: var(--clr-text-dim); line-height: 1.8; margin-bottom: 28px;
+}
+.location-facts {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.loc-fact {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  display: flex; gap: 12px; align-items: flex-start;
+  transition: border-color .2s;
+}
+.loc-fact:hover { border-color: rgba(160,120,40,.3); }
+.loc-fact i { color: var(--clr-gold); font-size: 18px; margin-top: 2px; flex-shrink: 0; }
+.loc-fact-text .t { font-size: 13px; font-weight: 700; color: var(--clr-text); margin-bottom: 2px; }
+.loc-fact-text .s { font-size: 12px; color: var(--clr-text-faint); line-height: 1.5; }
+
+.location-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.location-map-placeholder {
+  height: 240px; background: var(--clr-surface2);
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 12px; color: var(--clr-text-faint);
+  font-size: 13px; text-align: center;
+}
+.location-map-placeholder i { font-size: 40px; color: var(--clr-gold); opacity: .4; }
+.location-distances { padding: 0; }
+.location-dist-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 20px; border-bottom: 1px solid var(--clr-border);
+  font-size: 13px;
+}
+.location-dist-row:last-child { border-bottom: none; }
+.location-dist-row .place { color: var(--clr-text); font-weight: 600; }
+.location-dist-row .dist { color: var(--clr-text-faint); }
+.location-dist-row .mode { color: var(--clr-gold); font-size: 12px; }
+
+/* ============================================================
+   8. CTA BANNER — bottom action strip
+   ============================================================ */
+.cta-banner {
+  background: linear-gradient(135deg, #1a1e26 0%, #2d3340 100%);
+  border-radius: var(--radius-lg);
+  padding: 56px 52px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 32px; position: relative; overflow: hidden;
+}
+.cta-banner::before {
+  content: '';
+  position: absolute; top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(160,120,40,.18) 0%, transparent 70%);
+  border-radius: 50%; pointer-events: none;
+}
+.cta-banner::after {
+  content: '';
+  position: absolute; bottom: -40px; left: 30%;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(160,120,40,.08) 0%, transparent 70%);
+  border-radius: 50%; pointer-events: none;
+}
+.cta-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 10px;
+}
+.cta-text h2 em { font-style: normal; color: var(--clr-gold); }
+.cta-text p { font-size: 15px; color: rgba(255,255,255,.6); max-width: 480px; line-height: 1.7; }
+.cta-actions { display: flex; gap: 14px; flex-shrink: 0; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--clr-gold); color: #fff;
+  padding: 14px 28px; border-radius: var(--radius-md);
+  font-size: 14px; font-weight: 700;
+  transition: background .2s, transform .15s;
+}
+.btn-primary:hover { background: var(--clr-gold-lt); transform: translateY(-2px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: rgba(255,255,255,.08); color: rgba(255,255,255,.85);
+  border: 1px solid rgba(255,255,255,.15);
+  padding: 14px 28px; border-radius: var(--radius-md);
+  font-size: 14px; font-weight: 600;
+  transition: background .2s, border-color .2s;
+}
+.btn-secondary:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.3); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 960px) {
+  .statement-grid { grid-template-columns: 1fr; gap: 40px; }
+  .statement-right { grid-template-columns: repeat(2, 1fr); }
+  .pillar { grid-template-columns: 1fr; gap: 36px; }
+  .pillar.reverse { direction: ltr; }
+  .pillar-visual { aspect-ratio: 16/9; }
+  .pillar-number { font-size: 56px; margin-bottom: -14px; }
+  .voices-grid { grid-template-columns: 1fr; }
+  .accolade-strip { grid-template-columns: repeat(3, 1fr); }
+  .mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px; }
+  .mosaic-cell.tall { grid-row: span 1; }
+  .compare-table th, .compare-table td { padding: 12px 14px; font-size: 12.5px; }
+  .location-grid { grid-template-columns: 1fr; }
+  .location-facts { grid-template-columns: 1fr 1fr; }
+  .cta-banner { flex-direction: column; align-items: flex-start; padding: 40px 32px; }
+}
+@media (max-width: 600px) {
+  .statement-right { grid-template-columns: 1fr 1fr; }
+  .accolade-strip { grid-template-columns: 1fr 1fr; }
+  .mosaic { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .location-facts { grid-template-columns: 1fr; }
+  .cta-banner { padding: 32px 22px; }
+  .cta-actions { width: 100%; }
+  .btn-primary, .btn-secondary { flex: 1; justify-content: center; }
+}
+
+</style>
 </head>
 
 <body>
 
-  
-
 <!-- PRELOADER -->
 <div id="preloader">
-
-    <div class="loader-content">
-
-        <img src="images/logo.png" class="logo">
-
-        <h2>School of Engineering and Technology</h2>
-
-        <div class="spinner"></div>
-
-    </div>
-
+  <div class="loader-content">
+    <img src="images/logo.png" class="logo">
+    <h2>School of Engineering and Technology</h2>
+    <div class="spinner"></div>
+  </div>
 </div>
 
-
 <div class="SOET-Topstrip">
-
 <div class="topbar">
-
 <div class="topbar-left">
 <a href="student-login.html">Students</a> |
 <a href="teacher-login.html">Faculty & Staff</a> |
@@ -43,45 +654,29 @@
 <a href="about.html#about-contact">Directory</a> |
 <a href="contact.html">Contact</a>
 </div>
-
 <div class="topbar-right">
 <span onclick="changeFontSize(-1)">A-</span>
 <span onclick="changeFontSize(0)">A</span>
 <span onclick="changeFontSize(1)">A+</span>
-
 <span onclick="translatePage('hi')">हिंदी</span> |
 <span onclick="translatePage('en')">ENG</span>
 <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
-
 <div id="google_translate_element"></div>
 </div>
-
 </div>
-
-  </div>
-
+</div>
 
 <!-- MAIN WEBSITE -->
 <div id="content">
 
 <header>
-
-<!-- TOP BAR -->
-
-
-<div class="top-right">
-</div>
-
+<div class="top-right"></div>
 </div>
 <header>
-
-
 
 <!-- LOGO AREA -->
 <div class="logo-area">
 <div class="left-header">
-
-
 <a href="index.html">
 <img src="images/logo.png" class="logo">
 </a>
@@ -90,7 +685,6 @@
 <h1>School of Engineering and Technology</h1>
 </div>
 </div>
-
 <div class="right-emblems">
 <img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
 <a href="https://www.india.gov.in" target="blank">
@@ -99,34 +693,25 @@
 </div>
 </div>
 
-
 <!-- NAVBAR -->
 <nav class="navbar">
-
-<a href="index.html" class="home-icon">
-<i class="fa-solid fa-house"></i>
-</a>
+<a href="index.html" class="home-icon"><i class="fa-solid fa-house"></i></a>
 
 <li class="nav-item">
-    <a href="about.html">About us</a>
-
+  <a href="about.html">About us</a>
   <div class="dropdown-menu">
-
     <a href="about.html#about-overview">Overview</a>
     <a href="about.html#about-vision">Vision & Mission</a>
     <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
     <a href="about.html#about-history">History</a>
     <a href="about.html#about-administration">Administration and Organization HOD details</a>
     <a href="about.html#about-contact">Contact US / How to reach</a>
-
   </div>
 </li>
 
 <li class="nav-item">
   <a href="campus-life.html">Campus Life</a>
-
   <div class="dropdown-menu">
-
     <a href="dean-office.html">Office of the Dean</a>
     <a href="hostels-dining.html">Hostels and Dining faclities</a>
     <a href="ncc-nss.html">NCC & NSS</a>
@@ -134,30 +719,24 @@
     <a href="sports.html">Sports Infrastructure and Teams</a>
     <a href="annual-fests.html">Annual Fests</a>
     <a href="campus-facilities.html">Campus Facilities</a>
-
   </div>
 </li>
 
 <li class="nav-item">
   <a href="academics.html">Academics</a>
-
   <div class="dropdown-menu">
-
     <a href="programs.html">Programs Offered</a>
     <a href="undergraduate.html">Under-Graduate</a>
     <a href="postgraduate.html">Post-Graduate</a>
     <a href="nptel.html">NPTEL/MOOCS</a>
     <a href="library.html">Central and College Library</a>
     <a href="exam-cell.html">Examination Cell</a>
-
   </div>
 </li>
 
 <li class="nav-item">
   <a href="admission.html">Admissions</a>
-
   <div class="dropdown-menu">
-
     <a href="why-soet.html">Why SOET Ujjain?</a>
     <a href="life-in-ujjain.html">Life in Ujjain</a>
     <a href="btech-admissions.html">B.TECH Admissions</a>
@@ -165,27 +744,22 @@
     <a href="fees-scholarships.html">Fee Structure & Scholarships</a>
     <a href="admissions-faq.html">Admission FAQ</a>
     <a href="anti-ragging.html">Anti-Ragging Policy</a>
-
   </div>
 </li>
 
 <li class="nav-item">
   <a href="research.html">Research and Innovations</a>
-
   <div class="dropdown-menu">
-
     <a href="research.html#rnd-dean">Dean of R&D</a>
     <a href="research.html#rnd-projects">Sponsored Projects and Grants</a>
     <a href="research.html#rnd-patents">Patents & Publications</a>
     <a href="research.html#rnd-facilities">Central Research Facilities</a>
     <a href="research.html#rnd-incubation">Incubation Center & E-Cell</a>
-
   </div>
 </li>
 
 <li class="nav-item">
   <a href="placement.html">Training & Placement cell</a>
-
   <div class="dropdown-menu">
     <a href="placement.html#tp-message">Message from T&P Officer</a>
     <a href="placement.html#tp-stats">Placement Statistics and Annual Report</a>
@@ -201,259 +775,688 @@
 
 <a href="contact.html">Contact Us</a>
 <li>
-<a href="#" onclick="openSearch()">
-<i class="fa-solid fa-magnifying-glass search-icon"></i>
-</a>
+  <a href="#" onclick="openSearch()">
+    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+  </a>
 </li>
-
 </nav>
 
+<!-- ALERT BANNER -->
+<div class="alert-banner">
+  <i class="fa-solid fa-triangle-exclamation" style="margin-right:6px;"></i>
+  <strong>UPDATE:</strong> MPDTE B.Tech &amp; M.Tech Counseling Dates will be announced soon. Keep your JEE / GATE scorecards ready! &nbsp;·&nbsp;
+  For admissions enquiry, <a href="admission.html#enquiry-form">fill the form here</a>.
+</div>
 
-<section class="why-banner" style="background: linear-gradient(rgba(128, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&h=600&fit=crop') center/cover;">
-    <div class="banner-content">
-        <h1>Why Choose SOET Ujjain?</h1>
-        <p><a href="index.html" style="color: #ffcc00; text-decoration: none;">Home</a> / Why SOET</p>
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="admission.html">Admissions</a>
+      <span>/</span>
+      <span>Why SOET Ujjain</span>
     </div>
+    <h1>Why <em>SOET Ujjain?</em></h1>
+    <p class="hero-sub">
+      A thousand engineers graduate every year across Madhya Pradesh. The question is — what sets a SOET graduate apart? The answer lies in our people, our infrastructure, our values, and the city we call home.
+    </p>
+    <div class="hero-pills">
+      <span class="hero-pill"><span class="dot"></span> NAAC A+ Accredited</span>
+      <span class="hero-pill"><span class="dot"></span> AICTE Approved</span>
+      <span class="hero-pill"><span class="dot"></span> 95% Placement Rate</span>
+      <span class="hero-pill"><span class="dot"></span> Est. 1957 · 65+ Years of Excellence</span>
+    </div>
+  </div>
 </section>
 
-<section class="trust-bar">
-    <div class="trust-container">
-        <div class="trust-item">
-            <i class="fa-solid fa-award"></i>
-            <div>
-                <h4>NAAC A+ Grade</h4>
-                <p>University Accreditation</p>
-            </div>
+</header>
+
+<main>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 1 — OPENING STATEMENT + KEY NUMBERS
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="why-intro">
+  <div class="container">
+    <div class="statement-grid">
+
+      <div class="statement-left">
+        <div class="statement-kicker">The SOET Difference</div>
+        <h2>Built for the <em>engineers</em> who will define tomorrow</h2>
+        <p>SOET is not just a college — it is an ecosystem. From the moment you step in, you are surrounded by opportunity: world-class labs, a faculty that has worked in industry, a placement cell that fights for every student, and a peer group that pushes you further than any syllabus ever could.</p>
+        <p>We are part of the storied Samrat Vikramaditya Vishwavidyalaya and yet we operate with the hunger of an institution that knows there is always more to prove.</p>
+        <a href="admission.html" class="statement-cta">
+          Apply Now <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="statement-right">
+        <div class="mini-stat-card accent">
+          <div class="big-num">95%</div>
+          <div class="lbl">Placement Rate</div>
+          <div class="sub">Academic Year 2023–24</div>
         </div>
-        <div class="trust-item">
-            <i class="fa-solid fa-certificate"></i>
-            <div>
-                <h4>AICTE Approved</h4>
-                <p>Technical Education</p>
-            </div>
+        <div class="mini-stat-card">
+          <div class="big-num">18<span style="font-size:22px;font-weight:600;"> LPA</span></div>
+          <div class="lbl">Highest Package</div>
+          <div class="sub">Offered by top recruiter</div>
         </div>
-        <div class="trust-item">
+        <div class="mini-stat-card">
+          <div class="big-num">150+</div>
+          <div class="lbl">Recruiting Companies</div>
+          <div class="sub">TCS · Infosys · L&T · Qualcomm</div>
+        </div>
+        <div class="mini-stat-card">
+          <div class="big-num">65+</div>
+          <div class="lbl">Years of Excellence</div>
+          <div class="sub">Est. under Vikram University</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 2 — ACCOLADES STRIP
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="why-accreditation" style="background:var(--clr-surface);">
+  <div class="container">
+    <div class="section-label">Recognition &amp; Rankings</div>
+    <h2 class="section-title">Accreditations &amp; Awards</h2>
+    <p class="section-desc">Our quality is not self-declared — it is independently verified by national bodies and industry partners who hold us to the highest standards.</p>
+
+    <div class="accolade-strip">
+      <div class="accolade-item">
+        <span class="acc-icon"><i class="fa-solid fa-star"></i></span>
+        <div class="acc-title">NAAC A+</div>
+        <div class="acc-sub">National Accreditation</div>
+      </div>
+      <div class="accolade-item">
+        <span class="acc-icon"><i class="fa-solid fa-certificate"></i></span>
+        <div class="acc-title">AICTE</div>
+        <div class="acc-sub">Approved Programs</div>
+      </div>
+      <div class="accolade-item">
+        <span class="acc-icon"><i class="fa-solid fa-ranking-star"></i></span>
+        <div class="acc-title">NIRF</div>
+        <div class="acc-sub">National Ranking</div>
+      </div>
+      <div class="accolade-item">
+        <span class="acc-icon"><i class="fa-solid fa-building-columns"></i></span>
+        <div class="acc-title">UGC</div>
+        <div class="acc-sub">Recognized University</div>
+      </div>
+      <div class="accolade-item">
+        <span class="acc-icon"><i class="fa-solid fa-industry"></i></span>
+        <div class="acc-title">MPDTE</div>
+        <div class="acc-sub">State Affiliated</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 3 — PILLARS (alternating split)
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="why-pillars">
+  <div class="container">
+    <div class="section-label">Our Six Pillars</div>
+    <h2 class="section-title">Six reasons that make us different</h2>
+    <p class="section-desc">Each one is a deliberate investment — in infrastructure, in faculty, in industry ties, and in you.</p>
+
+    <!-- Pillar 1 — Placements -->
+    <div class="pillar">
+      <div class="pillar-visual">
+        <img src="images/placement-lab.jpg" alt="Placement drives at SOET"
+          onerror="this.parentElement.innerHTML='<div class=\'mosaic-placeholder\'><i class=\'fa-solid fa-briefcase\'></i><span>Placement Drive Photo</span></div>'">
+        <div class="vis-badge">
+          <div class="num">95%</div>
+          <div class="txt">Students<br>Placed</div>
+        </div>
+      </div>
+      <div class="pillar-content">
+        <span class="pillar-number">01</span>
+        <span class="pillar-tag"><i class="fa-solid fa-briefcase"></i> Placements</span>
+        <h3>A Placement Cell That Works All Year Long</h3>
+        <p>Our Training &amp; Placement Cell doesn't switch on in the final semester — it runs from Day One. Students receive aptitude training, mock interviews, communication workshops, and live project exposure from their very first year.</p>
+        <div class="pillar-bullets">
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> 150+ companies visit campus annually, including TCS, Infosys, Qualcomm, IBM, L&T and Wipro</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Highest package of <strong>18 LPA</strong> and average of <strong>4.5 LPA</strong> for 2023–24</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Dedicated T&amp;P Officer with direct industry contacts across sectors</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Year-round soft skills, aptitude, and coding bootcamps for all students</div>
+        </div>
+        <a href="placement.html" class="pillar-link">View Placement Stats <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Pillar 2 — Faculty -->
+    <div class="pillar reverse">
+      <div class="pillar-visual">
+        <img src="images/faculty-lab.jpg" alt="Expert Faculty at SOET"
+          onerror="this.parentElement.innerHTML='<div class=\'mosaic-placeholder\'><i class=\'fa-solid fa-chalkboard-user\'></i><span>Faculty &amp; Classroom Photo</span></div>'">
+        <div class="vis-badge">
+          <div class="num">PhD</div>
+          <div class="txt">Qualified<br>Faculty</div>
+        </div>
+      </div>
+      <div class="pillar-content">
+        <span class="pillar-number">02</span>
+        <span class="pillar-tag"><i class="fa-solid fa-chalkboard-user"></i> Faculty</span>
+        <h3>Teachers Who Have Walked the Industry Floor</h3>
+        <p>We believe the best engineering teacher is one who has engineered something. Our faculty roster includes PhD holders, published researchers, and professionals who have worked with the same companies that recruit our students.</p>
+        <div class="pillar-bullets">
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Core faculty with PhDs from premier institutions across India</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Active researchers with published papers in international journals</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Industry guest lectures from professionals at leading tech and core companies</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Open-door mentorship culture — faculty accessible beyond class hours</div>
+        </div>
+        <a href="about.html#about-administration" class="pillar-link">Meet Our Faculty <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Pillar 3 — Labs & Research -->
+    <div class="pillar">
+      <div class="pillar-visual">
+        <img src="images/research-lab.jpg" alt="Research labs at SOET"
+          onerror="this.parentElement.innerHTML='<div class=\'mosaic-placeholder\'><i class=\'fa-solid fa-flask-vial\'></i><span>Research Lab Photo</span></div>'">
+        <div class="vis-badge">
+          <div class="num">AI</div>
+          <div class="txt">Robotics<br>Lab</div>
+        </div>
+      </div>
+      <div class="pillar-content">
+        <span class="pillar-number">03</span>
+        <span class="pillar-tag"><i class="fa-solid fa-flask-vial"></i> Research &amp; Labs</span>
+        <h3>Infrastructure Built for Curiosity</h3>
+        <p>Engineering is learnt by doing — not by reading about doing. Our labs are equipped with modern machinery, simulation software, and real hardware that mirrors what students will encounter in their careers.</p>
+        <div class="pillar-bullets">
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Dedicated AI &amp; Robotics Lab with autonomous systems and embedded platforms</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Central Research Facility open to all departments for inter-disciplinary projects</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> E-Cell &amp; Incubation Center actively supporting student startup ideas</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> NPTEL / MOOC integration for additional technical certification pathways</div>
+        </div>
+        <a href="research.html" class="pillar-link">Explore Research <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Pillar 4 — Campus Life -->
+    <div class="pillar reverse">
+      <div class="pillar-visual">
+        <img src="images/campus-life.jpg" alt="Campus life at SOET"
+          onerror="this.parentElement.innerHTML='<div class=\'mosaic-placeholder\'><i class=\'fa-solid fa-people-roof\'></i><span>Campus Life Photo</span></div>'">
+        <div class="vis-badge">
+          <div class="num">2200+</div>
+          <div class="txt">Active<br>Students</div>
+        </div>
+      </div>
+      <div class="pillar-content">
+        <span class="pillar-number">04</span>
+        <span class="pillar-tag"><i class="fa-solid fa-people-roof"></i> Campus Life</span>
+        <h3>A Campus That Shapes Character, Not Just Careers</h3>
+        <p>Engineering is a demanding journey, but it need not be a joyless one. SOET offers a vibrant ecosystem outside the classroom — from competitive sports to cultural fests, student clubs to NCC &amp; NSS.</p>
+        <div class="pillar-bullets">
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Separate, well-maintained hostels for male and female students on campus</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Annual fests, technical events, and inter-collegiate competitions</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> NCC, NSS, sports teams, and 10+ active clubs and societies</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Central library with digital access to journals and research databases</div>
+        </div>
+        <a href="campus-life.html" class="pillar-link">Explore Campus Life <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Pillar 5 — Scholarships -->
+    <div class="pillar">
+      <div class="pillar-visual">
+        <img src="images/scholarship.jpg" alt="Scholarships at SOET"
+          onerror="this.parentElement.innerHTML='<div class=\'mosaic-placeholder\'><i class=\'fa-solid fa-hand-holding-dollar\'></i><span>Scholarship Program Photo</span></div>'">
+        <div class="vis-badge">
+          <div class="num">₹0</div>
+          <div class="txt">Fee for<br>eligible students</div>
+        </div>
+      </div>
+      <div class="pillar-content">
+        <span class="pillar-number">05</span>
+        <span class="pillar-tag"><i class="fa-solid fa-hand-holding-dollar"></i> Financial Aid</span>
+        <h3>Quality Education That Doesn't Price You Out</h3>
+        <p>A good engineering education should be accessible to every deserving student — not just those who can afford it. SOET actively helps students navigate every available scholarship scheme and financial aid option.</p>
+        <div class="pillar-bullets">
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> MP Government Post-Matric Scholarship for SC / ST / OBC students</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> AICTE PRAGATI Scholarship for girl students (up to ₹50,000/year)</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> AICTE SAKSHAM Scholarship for differently-abled students</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Merit-based fee waivers offered by the university for top performers</div>
+        </div>
+        <a href="fees-scholarships.html" class="pillar-link">View Fee Structure <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Pillar 6 — Heritage & Legacy -->
+    <div class="pillar reverse">
+      <div class="pillar-visual">
+        <img src="images/university-campus.jpg" alt="SOET University"
+          onerror="this.parentElement.innerHTML='<div class=\'mosaic-placeholder\'><i class=\'fa-solid fa-landmark\'></i><span>University Heritage Photo</span></div>'">
+        <div class="vis-badge">
+          <div class="num">1957</div>
+          <div class="txt">Year of<br>Establishment</div>
+        </div>
+      </div>
+      <div class="pillar-content">
+        <span class="pillar-number">06</span>
+        <span class="pillar-tag"><i class="fa-solid fa-landmark"></i> Heritage</span>
+        <h3>The Weight of a Legacy That Keeps You Accountable</h3>
+        <p>Being part of Samrat Vikramaditya Vishwavidyalaya — named after one of history's greatest rulers — means we carry a responsibility to excellence. Our alumni network spans government, academia, and the highest levels of industry.</p>
+        <div class="pillar-bullets">
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> One of the oldest and most respected universities in Madhya Pradesh</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Alumni in senior positions at companies like ISRO, DRDO, Infosys, and NTPC</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Strong alumni association providing mentorship and referral networks</div>
+          <div class="pillar-bullet"><i class="fa-solid fa-check"></i> Active MoUs with industries for collaborative research and internships</div>
+        </div>
+        <a href="alumni.html" class="pillar-link">Meet Our Alumni <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 4 — CAMPUS LIFE MOSAIC
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="why-campus" style="background:var(--clr-surface);">
+  <div class="container">
+    <div class="section-label">Life at SOET</div>
+    <h2 class="section-title">A glimpse of campus life</h2>
+    <p class="section-desc">Engineering happens in the classroom — but growth happens everywhere else too. Here is a slice of what daily life looks like at SOET Ujjain.</p>
+
+    <div class="mosaic">
+      <div class="mosaic-cell tall">
+        <img src="images/campus-main.jpg" alt="SOET Main Building"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="mosaic-placeholder" style="display:none;"><i class="fa-solid fa-school"></i><span>Main Campus</span></div>
+        <div class="mosaic-overlay"><span>Main Campus</span></div>
+      </div>
+      <div class="mosaic-cell">
+        <img src="images/labs.jpg" alt="Computer Labs"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="mosaic-placeholder" style="display:none;"><i class="fa-solid fa-computer"></i><span>Computer Labs</span></div>
+        <div class="mosaic-overlay"><span>Modern Labs</span></div>
+      </div>
+      <div class="mosaic-cell">
+        <img src="images/library.jpg" alt="Central Library"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="mosaic-placeholder" style="display:none;"><i class="fa-solid fa-book-open"></i><span>Library</span></div>
+        <div class="mosaic-overlay"><span>Central Library</span></div>
+      </div>
+      <div class="mosaic-cell">
+        <img src="images/sports.jpg" alt="Sports at SOET"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="mosaic-placeholder" style="display:none;"><i class="fa-solid fa-futbol"></i><span>Sports</span></div>
+        <div class="mosaic-overlay"><span>Sports Grounds</span></div>
+      </div>
+      <div class="mosaic-cell">
+        <img src="images/fest.jpg" alt="Annual Fest"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="mosaic-placeholder" style="display:none;"><i class="fa-solid fa-music"></i><span>Annual Fest</span></div>
+        <div class="mosaic-overlay"><span>Annual Fests</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 5 — STUDENT VOICES
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="why-voices">
+  <div class="container">
+    <div class="section-label">Student Voices</div>
+    <h2 class="section-title">Straight from those who lived it</h2>
+    <p class="section-desc">No brochure speaks louder than a student who has been through it. Here is what our alumni have to say — unfiltered.</p>
+
+    <div class="voices-grid">
+      <div class="voice-card">
+        <div class="quote-mark">"</div>
+        <blockquote>The placement cell didn't just find me a job — they prepared me for a career. Mock interviews every week, resume workshops, aptitude sessions. By the time Infosys came to campus, I was actually ready.</blockquote>
+        <div class="stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <div class="voice-author">
+          <div class="voice-avatar">RK</div>
+          <div>
+            <div class="voice-author-name">Rahul Kushwaha</div>
+            <div class="voice-author-detail">B.Tech CSE '22 · Software Engineer, Infosys</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="voice-card">
+        <div class="quote-mark">"</div>
+        <blockquote>What surprised me most about SOET was the research culture. As a final-year student, I co-authored a paper with my professor and secured a stipend from MPICT. That kind of opportunity is rare at this level.</blockquote>
+        <div class="stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <div class="voice-author">
+          <div class="voice-avatar">PS</div>
+          <div>
+            <div class="voice-author-name">Priya Sharma</div>
+            <div class="voice-author-detail">M.Tech Structural Eng. '23 · Research Fellow, NIT Bhopal</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="voice-card">
+        <div class="quote-mark">"</div>
+        <blockquote>I was from a small town and had never imagined working at a company like L&T. SOET changed that. The faculty believed in me before I believed in myself, and the campus exposure gave me the confidence to compete.</blockquote>
+        <div class="stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+        </div>
+        <div class="voice-author">
+          <div class="voice-avatar">AV</div>
+          <div>
+            <div class="voice-author-name">Arvind Verma</div>
+            <div class="voice-author-detail">B.Tech Civil '21 · Site Engineer, L&T Construction</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 6 — COMPARISON TABLE
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="why-compare" style="background:var(--clr-surface);">
+  <div class="container">
+    <div class="section-label">How We Compare</div>
+    <h2 class="section-title">SOET vs. Typical State Engineering Colleges</h2>
+    <p class="section-desc">We let the facts speak. Here is an honest comparison of what SOET offers against the typical state engineering college in Madhya Pradesh.</p>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th style="width:32%;">Feature</th>
+            <th class="highlight-col" style="width:24%;">SOET Ujjain</th>
+            <th style="width:22%;">Avg. State College</th>
+            <th style="width:22%;">Private College</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="feature-name">NAAC Accreditation</td>
+            <td class="highlight-col"><i class="fa-solid fa-circle-check check"></i> A+ Grade</td>
+            <td><i class="fa-solid fa-circle-minus partial"></i> B / Not ranked</td>
+            <td><i class="fa-solid fa-circle-minus partial"></i> Varies</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Placement Rate</td>
+            <td class="highlight-col"><i class="fa-solid fa-circle-check check"></i> 95%</td>
+            <td><i class="fa-solid fa-circle-xmark cross"></i> 40–60%</td>
+            <td><i class="fa-solid fa-circle-minus partial"></i> 60–75%</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Highest Package Offered</td>
+            <td class="highlight-col"><i class="fa-solid fa-circle-check check"></i> 18 LPA</td>
+            <td><i class="fa-solid fa-circle-xmark cross"></i> 4–6 LPA</td>
+            <td><i class="fa-solid fa-circle-minus partial"></i> 6–10 LPA</td>
+          </tr>
+          <tr>
+            <td class="feature-name">PhD-Qualified Faculty</td>
+            <td class="highlight-col"><i class="fa-solid fa-circle-check check"></i> Majority of core faculty</td>
+            <td><i class="fa-solid fa-circle-xmark cross"></i> Limited</td>
+            <td><i class="fa-solid fa-circle-minus partial"></i> Partial</td>
+          </tr>
+          <tr>
+            <td class="feature-name">On-Campus Hostel</td>
+            <td class="highlight-col"><i class="fa-solid fa-circle-check check"></i> Boys &amp; Girls hostels</td>
+            <td><i class="fa-solid fa-circle-minus partial"></i> Varies</td>
+            <td><i class="fa-solid fa-circle-check check"></i> Usually available</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Active Research &amp; Publications</td>
+            <td class="highlight-col"><i class="fa-solid fa-circle-check check"></i> Active research programs</td>
+            <td><i class="fa-solid fa-circle-xmark cross"></i> Minimal</td>
+            <td><i class="fa-solid fa-circle-xmark cross"></i> Rare</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Government Scholarships</td>
+            <td class="highlight-col"><i class="fa-solid fa-circle-check check"></i> All major schemes</td>
+            <td><i class="fa-solid fa-circle-check check"></i> Available</td>
+            <td><i class="fa-solid fa-circle-minus partial"></i> Limited</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Startup / Incubation Cell</td>
+            <td class="highlight-col"><i class="fa-solid fa-circle-check check"></i> Active E-Cell</td>
+            <td><i class="fa-solid fa-circle-xmark cross"></i> Rare</td>
+            <td><i class="fa-solid fa-circle-minus partial"></i> Few</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Affiliated University Prestige</td>
+            <td class="highlight-col"><i class="fa-solid fa-circle-check check"></i> Samrat Vikramaditya</td>
+            <td><i class="fa-solid fa-circle-minus partial"></i> Regional university</td>
+            <td><i class="fa-solid fa-circle-minus partial"></i> Autonomous / private</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--clr-text-faint); margin-top:14px;">
+      <i class="fa-solid fa-circle-check" style="color:#16a34a;"></i> Confirmed &nbsp;
+      <i class="fa-solid fa-circle-minus" style="color:var(--clr-gold);"></i> Partial / Varies &nbsp;
+      <i class="fa-solid fa-circle-xmark" style="color:#dc2626;"></i> Typically absent &nbsp;·&nbsp;
+      Data based on MPDTE reports and available public information. Comparisons are indicative.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 7 — UJJAIN ADVANTAGE
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="why-ujjain">
+  <div class="container">
+    <div class="section-label">The City Advantage</div>
+    <h2 class="section-title">Why Ujjain is the perfect city to study engineering</h2>
+
+    <div class="location-grid">
+      <div class="location-content">
+        <p>Students often underestimate how much the city around them shapes their college experience. Ujjain is not just a city — it is one of India's oldest living cities, a centre of culture, commerce, and education for over two millennia.</p>
+        <p>For engineering students specifically, Ujjain offers an extraordinary combination: it is affordable, safe, well-connected, and surprisingly industrially active — with nearby industrial zones in Dewas, Pithampur, and Indore providing internship and job opportunities.</p>
+
+        <div class="location-facts">
+          <div class="loc-fact">
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+            <div class="loc-fact-text">
+              <div class="t">Highly Affordable</div>
+              <div class="s">Among the lowest cost-of-living cities in MP — hostels, food, transport</div>
+            </div>
+          </div>
+          <div class="loc-fact">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div class="loc-fact-text">
+              <div class="t">Safe &amp; Student-Friendly</div>
+              <div class="s">Consistently ranked among India's safest mid-sized cities</div>
+            </div>
+          </div>
+          <div class="loc-fact">
+            <i class="fa-solid fa-train"></i>
+            <div class="loc-fact-text">
+              <div class="t">Excellent Connectivity</div>
+              <div class="s">Direct trains to Indore, Bhopal, Mumbai, Delhi &amp; Jaipur</div>
+            </div>
+          </div>
+          <div class="loc-fact">
             <i class="fa-solid fa-industry"></i>
-            <div>
-                <h4>50+ Labs</h4>
-                <p>Advanced Infrastructure</p>
+            <div class="loc-fact-text">
+              <div class="t">Industrial Corridor Access</div>
+              <div class="s">Pithampur &amp; Dewas industrial zones within 40–70 km</div>
             </div>
-        </div>
-        <div class="trust-item">
-            <i class="fa-solid fa-user-graduate"></i>
-            <div>
-                <h4>Top Placements</h4>
-                <p>Global Alumni Network</p>
+          </div>
+          <div class="loc-fact">
+            <i class="fa-solid fa-landmark-dome"></i>
+            <div class="loc-fact-text">
+              <div class="t">Rich Cultural Heritage</div>
+              <div class="s">Mahakaleshwar Jyotirlinga, Kumbh Mela city — a unique life experience</div>
             </div>
+          </div>
+          <div class="loc-fact">
+            <i class="fa-solid fa-wifi"></i>
+            <div class="loc-fact-text">
+              <div class="t">Modern Infrastructure</div>
+              <div class="s">Smart city upgrades, good hospitals, malls &amp; digital services</div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="location-card">
+        <div class="location-map-placeholder">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Ujjain, Madhya Pradesh</span>
+          <span style="font-size:11px; color:var(--clr-text-faint);">Replace with an embedded Google Map</span>
+        </div>
+        <div class="location-distances">
+          <div class="location-dist-row">
+            <span class="place"><i class="fa-solid fa-plane" style="color:var(--clr-gold);margin-right:8px;"></i>Devi Ahilya Airport, Indore</span>
+            <span class="dist">~55 km</span>
+            <span class="mode">1 hr drive</span>
+          </div>
+          <div class="location-dist-row">
+            <span class="place"><i class="fa-solid fa-train" style="color:var(--clr-gold);margin-right:8px;"></i>Indore Junction</span>
+            <span class="dist">~90 km</span>
+            <span class="mode">~1.5 hrs</span>
+          </div>
+          <div class="location-dist-row">
+            <span class="place"><i class="fa-solid fa-train" style="color:var(--clr-gold);margin-right:8px;"></i>Bhopal Habibganj</span>
+            <span class="dist">~185 km</span>
+            <span class="mode">~3 hrs</span>
+          </div>
+          <div class="location-dist-row">
+            <span class="place"><i class="fa-solid fa-industry" style="color:var(--clr-gold);margin-right:8px;"></i>Pithampur Industrial Zone</span>
+            <span class="dist">~65 km</span>
+            <span class="mode">~1.2 hrs</span>
+          </div>
+          <div class="location-dist-row">
+            <span class="place"><i class="fa-solid fa-industry" style="color:var(--clr-gold);margin-right:8px;"></i>Dewas Industrial Area</span>
+            <span class="dist">~35 km</span>
+            <span class="mode">~45 mins</span>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<section class="why-intro">
-    <div class="container text-center" style="max-width: 900px; margin: 0 auto; padding: 60px 20px;">
-        <h2 class="section-title text-center">Engineering Excellence Rooted in Heritage</h2>
-        <p style="font-size: 18px; color: #555; line-height: 1.8;">
-            As a premier University Teaching Department of Samrat Vikramaditya Vishwavidyalaya, SOET carries the weight of a prestigious legacy backed by modern, cutting-edge innovation. We don't just produce graduates; we forge industry-ready leaders, critical thinkers, and technological pioneers equipped to solve tomorrow's global challenges.
-        </p>
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 8 — CLOSING CTA BANNER
+══════════════════════════════════════════════════════════ -->
+<section class="section" style="border-bottom:none; background:var(--clr-surface);">
+  <div class="container">
+    <div class="cta-banner">
+      <div class="cta-text">
+        <h2>Still deciding? <em>Let's make it easy.</em></h2>
+        <p>Talk to our admissions counselor, visit the campus, or simply apply — and we will walk you through every step. Your seat at SOET Ujjain could be one form away.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="admission.html" class="btn-primary"><i class="fa-solid fa-file-pen"></i> Apply Now</a>
+        <a href="admission.html#enquiry-form" class="btn-secondary"><i class="fa-solid fa-phone"></i> Request Callback</a>
+      </div>
     </div>
+  </div>
 </section>
 
-<section class="excellence-section">
-    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 5% 80px;">
-        <h2 class="section-title">Centers of Excellence & Innovation</h2>
-        
-        <div class="excellence-grid">
-            <div class="excellence-card">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop" alt="AI Lab">
-                <div class="excellence-content">
-                    <h3>AI & Robotics Hub</h3>
-                    <p>Equipped with high-performance computing clusters and robotic arms, preparing students for the Fourth Industrial Revolution.</p>
-                </div>
-            </div>
-            <div class="excellence-card">
-                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" alt="Advanced Manufacturing">
-                <div class="excellence-content">
-                    <h3>Advanced Manufacturing</h3>
-                    <p>Featuring CNC machines, 3D printing labs, and automated fabrication units for hands-on mechanical and thermal engineering.</p>
-                </div>
-            </div>
-            <div class="excellence-card">
-                <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e9e9?w=600&h=400&fit=crop" alt="Renewable Energy">
-                <div class="excellence-content">
-                    <h3>Smart Grid & Energy Systems</h3>
-                    <p>Dedicated laboratories focusing on solar energy, EV infrastructure, and sustainable electrical grid technologies.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+</main>
 
-<section class="reasons-section" style="background-color: #f4f6f9; padding-top: 80px;">
-    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 5% 80px;">
-        <h2 class="section-title text-center" style="text-align: center;">The SOET Advantage</h2>
-        <div class="reasons-grid">
-            
-            <div class="reason-card">
-                <div class="reason-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
-                <h3>Distinguished Faculty</h3>
-                <p>Learn from Ph.D. scholars, seasoned researchers, and industry veterans who bring decades of real-world expertise directly into the classroom.</p>
-            </div>
-
-            <div class="reason-card">
-                <div class="reason-icon"><i class="fa-solid fa-briefcase"></i></div>
-                <h3>Corporate Synergy</h3>
-                <p>Benefit from our powerful Corporate Resource Center (CRC) that guarantees internships, industrial visits, and premium campus placement drives.</p>
-            </div>
-
-            <div class="reason-card">
-                <div class="reason-icon"><i class="fa-solid fa-laptop-code"></i></div>
-                <h3>Future-Proof Curriculum</h3>
-                <p>Our syllabus is dynamically updated alongside industry giants to include modern domains like Cloud Computing, IoT, and Data Science.</p>
-            </div>
-
-            <div class="reason-card">
-                <div class="reason-icon"><i class="fa-solid fa-microscope"></i></div>
-                <h3>Research & Grants</h3>
-                <p>SOET actively encourages undergraduate research, providing funding opportunities, incubation support, and patent-filing guidance for student startups.</p>
-            </div>
-            
-            <div class="reason-card">
-                <div class="reason-icon"><i class="fa-solid fa-building-columns"></i></div>
-                <h3>World-Class Infrastructure</h3>
-                <p>From a central library housing thousands of technical volumes to campus-wide high-speed Wi-Fi and smart classrooms, we provide a premium learning environment.</p>
-            </div>
-
-            <div class="reason-card">
-                <div class="reason-icon"><i class="fa-solid fa-city"></i></div>
-                <h3>The Ujjain Heritage</h3>
-                <p>Imbibe the rich cultural and intellectual heritage of Ujjain, offering a serene, disciplined, and highly focused environment for academic mastery.</p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<section class="cta-section">
-    <div class="cta-container">
-        <h2>Ready to Engineer Your Future?</h2>
-        <p>Join a legacy of excellence. Take the first step towards a rewarding career in technology and innovation.</p>
-        <div class="cta-buttons">
-            <a href="admission.html" class="btn btn-primary">Apply Now</a>
-            <a href="contact.html" class="btn btn-secondary">Contact Us</a>
-        </div>
-    </div>
-</section>
 <!-- FOOTER -->
 <footer class="elite-footer">
-    <div class="footer-top-grid">
-        
-        <div class="footer-col">
-            <h4>School of Engineering & Technology</h4>
-            <div class="contact-details">
-                <p>Samrat Vikramaditya Vishwavidyalaya<br>Ujjain, Madhya Pradesh, India</p>
-                <p><i class="fa-solid fa-phone" style="width: 25px; color: #8892b0;"></i> <a href="tel:+918770122362">+91-8770122362</a></p>
-                <p><i class="fa-solid fa-envelope" style="width: 25px; color: #8892b0;"></i> <a href="mailto:soet@vikramuniv.ac.in">soet@vikramuniv.ac.in</a></p>
-                <p><i class="fa-solid fa-globe" style="width: 25px; color: #8892b0;"></i> <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
-            </div>
-        </div>
-
-        <div class="footer-col">
-            <h4>Academics</h4>
-            <ul class="elite-links">
-                <li><a href="#">Departments</a></li>
-                <li><a href="programs.html">Educational Programmes</a></li>
-                <li><a href="#">Rules & Regulations</a></li>
-                <li><a href="https://vikram.mponline.gov.in">Online Services</a></li>
-                <li><a href="campus-life.html">Campus Life</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-col">
-            <h4>Institutional</h4>
-            <ul class="elite-links">
-                <li><a href="#">NIRF Ranking</a></li>
-                <li><a href="#">NAAC Accreditation</a></li>
-                <li><a href="anti-ragging.html">Anti-Ragging Committee</a></li>
-                <li><a href="#">Internal Complaints & Women Cell</a></li>
-                <li><a href="contact.html">Contact Directory</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-col live-campus-widget">
-            <h4>Campus Live</h4>
-            <div class="data-row">
-                <span class="data-label">Date & Time</span>
-                <span class="data-value"><span id="date">--</span> | <span id="time">--</span></span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">Location</span>
-                <span class="data-value" style="font-size: 12px;">स्वामी विवेकानन्द स्नातक भवन</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">Conditions</span>
-                <span class="data-value"><span id="weather">--</span>, <span id="temp">--</span></span>
-            </div>
-        </div>
-
+  <div class="footer-top-grid">
+    <div class="footer-col">
+      <h4>School of Engineering & Technology</h4>
+      <div class="contact-details">
+        <p>Samrat Vikramaditya Vishwavidyalaya<br>Ujjain, Madhya Pradesh, India</p>
+        <p><i class="fa-solid fa-phone" style="width:25px;color:#8892b0;"></i> <a href="tel:+918770122362">+91-8770122362</a></p>
+        <p><i class="fa-solid fa-envelope" style="width:25px;color:#8892b0;"></i> <a href="mailto:admissions@soet.ac.in">admissions@soet.ac.in</a></p>
+        <p><i class="fa-solid fa-globe" style="width:25px;color:#8892b0;"></i> <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
+      </div>
     </div>
-
-    <div class="footer-bottom-bar">
-        <div class="bottom-bar-content">
-            <div class="legal-text">
-                &copy; 2026 Student Tech Team SOET.<br>All rights reserved.
-            </div>
-            
-            <div class="footer-logo-center">
-                <a href="index.html">
-                    <img src="images/logo2.png" alt="SOET University Logo">
-                </a>
-            </div>
-
-            <div class="visitor-stats">
-                Last Updated: <span id="lastUpdated"></span><br>
-                Unique Visitors: <span id="visitorCount"></span>
-            </div>
-        </div>
+    <div class="footer-col">
+      <h4>Academics</h4>
+      <ul class="elite-links">
+        <li><a href="#">Departments</a></li>
+        <li><a href="programs.html">Educational Programmes</a></li>
+        <li><a href="#">Rules & Regulations</a></li>
+        <li><a href="https://vikram.mponline.gov.in">Online Services</a></li>
+        <li><a href="campus-life.html">Campus Life</a></li>
+      </ul>
     </div>
+    <div class="footer-col">
+      <h4>Institutional</h4>
+      <ul class="elite-links">
+        <li><a href="#">NIRF Ranking</a></li>
+        <li><a href="#">NAAC Accreditation</a></li>
+        <li><a href="anti-ragging.html">Anti-Ragging Committee</a></li>
+        <li><a href="#">Internal Complaints & Women Cell</a></li>
+        <li><a href="contact.html">Contact Directory</a></li>
+      </ul>
+    </div>
+    <div class="footer-col live-campus-widget">
+      <h4>Campus Live</h4>
+      <div class="data-row">
+        <span class="data-label">Date & Time</span>
+        <span class="data-value"><span id="date">--</span> | <span id="time">--</span></span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Location</span>
+        <span class="data-value" style="font-size:12px;">स्वामी विवेकानन्द स्नातक भवन</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Conditions</span>
+        <span class="data-value"><span id="weather">--</span>, <span id="temp">--</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom-bar">
+    <div class="bottom-bar-content">
+      <div class="legal-text">&copy; 2026 Student Tech Team SOET.<br>All rights reserved.</div>
+      <div class="footer-logo-center">
+        <a href="index.html"><img src="images/logo2.png" alt="SOET University Logo"></a>
+      </div>
+      <div class="visitor-stats">
+        Last Updated: <span id="lastUpdated"></span><br>
+        Unique Visitors: <span id="visitorCount"></span>
+      </div>
+    </div>
+  </div>
 </footer>
+
 <script src="js/script.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    // 1. Date & Time
-    const dateEl = document.getElementById("date");
-    const timeEl = document.getElementById("time");
-    
-    if(dateEl) dateEl.innerHTML = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-    
-    setInterval(function(){
-        if(timeEl) timeEl.innerHTML = new Date().toLocaleTimeString('en-US', { hour12: false });
-    }, 1000);
+document.addEventListener("DOMContentLoaded", function () {
+  const dateEl = document.getElementById("date");
+  const timeEl = document.getElementById("time");
+  if (dateEl) dateEl.innerHTML = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  setInterval(function () {
+    if (timeEl) timeEl.innerHTML = new Date().toLocaleTimeString('en-US', { hour12: false });
+  }, 1000);
 
-    // 2. Weather API
-    const apiKey = "6ab4623b616a1ea162cf45d73c2dcb32";
-    const city = "Ujjain";
-
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
-    .then(response => response.json())
+  const apiKey = "6ab4623b616a1ea162cf45d73c2dcb32";
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=Ujjain&units=metric&appid=${apiKey}`)
+    .then(r => r.json())
     .then(data => {
-        if (data.weather && data.weather.length > 0) {
-            let desc = data.weather[0].description;
-            document.getElementById("weather").innerHTML = desc.charAt(0).toUpperCase() + desc.slice(1);
-            document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
-        }
-    })
-    .catch(err => console.log("Weather error:", err));
+      if (data.weather) {
+        let desc = data.weather[0].description;
+        document.getElementById("weather").innerHTML = desc.charAt(0).toUpperCase() + desc.slice(1);
+        document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
+      }
+    }).catch(() => {});
 
-    // 3. Stats
-    const lastUp = document.getElementById("lastUpdated");
-    if(lastUp) lastUp.innerHTML = document.lastModified;
-
-    let count = localStorage.getItem("visitorCount");
-    count = count === null ? 1 : Number(count) + 1;
-    localStorage.setItem("visitorCount", count);
-    
-    const visCount = document.getElementById("visitorCount");
-    if(visCount) visCount.innerText = count.toLocaleString();
+  const lastUp = document.getElementById("lastUpdated");
+  if (lastUp) lastUp.innerHTML = document.lastModified;
+  let count = localStorage.getItem("visitorCount");
+  count = count === null ? 1 : Number(count) + 1;
+  localStorage.setItem("visitorCount", count);
+  const visCount = document.getElementById("visitorCount");
+  if (visCount) visCount.innerText = count.toLocaleString();
 });
 </script>
-</HTML>
+
+</body>
+</html>

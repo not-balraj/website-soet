@@ -8,6 +8,247 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<style>
+    /* =========================================
+           1. GLOBAL ELITE TYPOGRAPHY & FIXES
+           ========================================= */
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: #f8fafc; /* Very soft slate-white background */
+            color: #334155;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* =========================================
+           2. THE V2 ELITE IVY HERO
+           ========================================= */
+        .ivy-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 450px;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 8%;
+            margin-bottom: 90px;
+        }
+        .ivy-bg-image {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c2F2aW5nJTIwbW9uZXl8ZW58MHx8MHx8fDA%3D') center/cover no-repeat;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+        .ivy-bg-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(15, 23, 42, 0.4); 
+            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+            z-index: 2;
+        }
+        .ivy-hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0; height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%);
+            z-index: 3;
+        }
+        .ivy-content {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            padding: 60px 70px;
+            max-width: 780px;
+            border-left: 12px solid #800000; 
+            box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.25), 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(45px); 
+            animation: eliteSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        @keyframes eliteSlideUp {
+            0% { transform: translateY(80px); opacity: 0; }
+            100% { transform: translateY(45px); opacity: 1; }
+        }
+        .ivy-breadcrumb {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #800000;
+            margin-bottom: 25px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .ivy-breadcrumb::before {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 2px;
+            background-color: #800000;
+        }
+        .ivy-breadcrumb a { color: #800000; text-decoration: none; }
+        .ivy-breadcrumb span { color: #94a3b8; }
+        .ivy-content h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #0f172a; 
+            margin: 0 0 20px 0;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+        .ivy-content p {
+            font-size: 1.25rem;
+            color: #475569;
+            line-height: 1.7;
+            margin: 0;
+            font-weight: 400;
+            max-width: 600px;
+        }
+
+    /* ==========================================================================
+   FEES & SCHOLARSHIPS PAGE STYLES
+   ========================================================================== */
+
+/* --- Banner --- */
+.fees-banner {
+    color: white; text-align: center; padding: 120px 20px; margin-bottom: 0;
+}
+.fees-banner h1 { font-size: 48px; margin-bottom: 15px; letter-spacing: 1px;}
+
+/* --- Fee Tables --- */
+.fee-table-container {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid #eaeaea;
+}
+.fee-header {
+    background: #800000;
+    color: white;
+    padding: 20px 25px;
+}
+.fee-header h3 {
+    margin: 0;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.fee-header h3 i {
+    color: #ffffff;
+}
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    font-size: 16px;
+    text-align: left;
+}
+.styled-table thead tr {
+    background-color: #f4f6f9;
+    color: #333;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+}
+.styled-table th,
+.styled-table td {
+    padding: 15px 25px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+}
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #fafafa;
+}
+.styled-table tbody tr:hover {
+    background-color: #fdf5f5; /* Very light maroon hover */
+}
+.styled-table tbody tr:last-of-type {
+    border-bottom: none;
+}
+.total-row {
+    background-color: #fff9e6 !important; /* Gold tint for the total */
+    font-weight: bold;
+    color: #800000;
+    font-size: 18px;
+    border-top: 2px solid #ffffff !important;
+}
+
+/* Fee Note */
+.fee-note {
+    margin-top: 20px;
+    font-size: 14.5px;
+    color: #666;
+    background: #fdfdfd;
+    padding: 15px;
+    border-left: 4px solid #800000;
+    border-radius: 4px;
+}
+.fee-note i { color: #800000; margin-right: 5px;}
+
+/* --- Scholarships Grid --- */
+.scholarship-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+.scholarship-card {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border-bottom: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+.scholarship-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-bottom: 4px solid #ffffff;
+}
+.scholarship-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(128, 0, 0, 0.05);
+    color: #800000;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    transition: background 0.3s, color 0.3s;
+}
+.scholarship-card:hover .scholarship-icon {
+    background: #800000;
+    color: #ffffff;
+}
+.scholarship-card h4 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+.scholarship-card p {
+    color: #666;
+    font-size: 14.5px;
+    line-height: 1.7;
+}
+
+/* Responsive Table */
+@media screen and (max-width: 600px) {
+    .styled-table th, .styled-table td {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+}
+</style>
 
 </head>
 
@@ -209,12 +450,17 @@
 </nav>
 
 
-<section class="fees-banner" style="background: linear-gradient(rgba(128, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&h=600&fit=crop') center/cover;">
-    <div class="banner-content">
-        <h1>Fees & Scholarships</h1>
-        <p><a href="index.html" style="color: #ffcc00; text-decoration: none;">Home</a> / Admissions / Fees & Scholarships</p>
+<section class="ivy-hero">
+    <div class="ivy-bg-image"></div>
+    <div class="ivy-content">
+        <div class="ivy-breadcrumb">
+            <a href="index.html">Home</a> <span>/</span> Admissions <span>/</span> Fee Structure & Scholarships
+        </div>
+        <h1>Fee Structure & Scholarships</h1>
+        <p>Transparent and affordable education options for all students.</p>
     </div>
 </section>
+
 
 <section class="fees-intro" style="padding: 60px 5%; background-color: #f4f6f9;">
     <div class="container text-center" style="max-width: 900px; margin: 0 auto;">
@@ -341,10 +587,10 @@
 
 <section class="cta-section" style="background: linear-gradient(135deg, #800000, #4d0000); padding: 80px 20px; text-align: center; color: white;">
     <div class="cta-container">
-        <h2 style="color: #ffcc00; margin-bottom: 20px; font-size: 32px;">Have Questions About Fees?</h2>
+        <h2 style="color: #ffffff; margin-bottom: 20px; font-size: 32px;">Have Questions About Fees?</h2>
         <p style="margin-bottom: 30px; font-size: 18px;">Our accounts and admission counselors are here to help you understand your payment options and scholarship eligibility.</p>
         <div class="cta-buttons" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-            <a href="contact.html" class="btn btn-primary" style="background: #ffcc00; color: #800000; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 5px;">Contact Accounts Office</a>
+            <a href="contact.html" class="btn btn-primary" style="background: #ffffff; color: #800000; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 5px;">Contact Accounts Office</a>
             <a href="https://scholarshipportal.mp.nic.in/Home.aspx" target="_blank" class="btn btn-secondary" style="border: 2px solid white; color: white; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 5px;">MP Scholarship Portal</a>
         </div>
     </div>
