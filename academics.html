@@ -2,39 +2,696 @@
 <html>
 
 <head>
-<title>Academics - School Of Engineering and Technology</title>
+<title>Academics — School of Engineering and Technology, SOET Ujjain</title>
 
 <link rel="stylesheet" href="css/style.css">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<style>
 
+/* ============================================================
+   CSS VARIABLES — identical to admission.html
+   ============================================================ */
+:root {
+  --clr-bg:        #f4f6f9;
+  --clr-surface:   #ffffff;
+  --clr-surface2:  #eef1f5;
+  --clr-border:    #d6dbe4;
+  --clr-gold:      #a07828;
+  --clr-gold-lt:   #b8922e;
+  --clr-red:       #c0392b;
+  --clr-text:      #1a1e26;
+  --clr-text-dim:  #4a5568;
+  --clr-text-faint:#8a95a3;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'DM Sans', sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --container: 1160px;
+  --gap: 28px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+ul { list-style: none; }
+.container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+
+/* ============================================================
+   ALERT BANNER — from admission.html
+   ============================================================ */
+.alert-banner {
+  background: linear-gradient(90deg, rgba(192,57,43,.12) 0%, rgba(192,57,43,.05) 100%);
+  border-bottom: 1px solid rgba(192,57,43,.25);
+  padding: 11px 0;
+  font-size: 12.5px;
+  color: #922b21;
+  text-align: center;
+  letter-spacing: .3px;
+}
+.alert-banner strong { color: #7b241c; }
+.alert-banner a { color: #7b241c; text-decoration: underline; }
+
+/* ============================================================
+   PAGE HERO — from admission.html
+   ============================================================ */
+.page-hero {
+  background: #eef1f6;
+  border-bottom: 1px solid var(--clr-border);
+  padding: 60px 0 50px;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(160,120,40,.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(192,57,43,.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--clr-gold), transparent);
+  opacity: .2;
+}
+.breadcrumb {
+  font-size: 12px; color: var(--clr-text-faint);
+  margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+}
+.breadcrumb a { color: var(--clr-text-dim); transition: color .2s; }
+.breadcrumb a:hover { color: var(--clr-gold); }
+.breadcrumb span { color: var(--clr-text-faint); }
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 700; color: var(--clr-text);
+  line-height: 1.1; margin-bottom: 14px;
+}
+.page-hero h1 em { font-style: normal; color: var(--clr-gold); }
+.page-hero .hero-sub {
+  font-size: 15px; color: var(--clr-text-dim);
+  max-width: 560px; line-height: 1.7; margin-bottom: 28px;
+}
+.hero-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(201,168,76,.08); border: 1px solid rgba(201,168,76,.22);
+  color: var(--clr-gold-lt); padding: 6px 14px; border-radius: 100px;
+  font-size: 12.5px; font-weight: 500;
+}
+.hero-pill .dot {
+  width: 6px; height: 6px; background: var(--clr-gold);
+  border-radius: 50%; flex-shrink: 0;
+}
+
+/* ============================================================
+   SHARED SECTION PRIMITIVES
+   ============================================================ */
+.section { padding: 72px 0; border-bottom: 1px solid var(--clr-border); }
+.section.surface { background: var(--clr-surface); }
+.section-label {
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--clr-gold);
+  font-weight: 600; margin-bottom: 10px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 700; color: var(--clr-text);
+  line-height: 1.15; margin-bottom: 12px;
+}
+.section-title em { font-style: normal; color: var(--clr-gold); }
+.section-desc {
+  color: var(--clr-text-dim); max-width: 620px;
+  font-size: 14.5px; line-height: 1.75; margin-bottom: 44px;
+}
+
+/* ============================================================
+   HUB NAVIGATION CARDS — 6 primary tiles
+   ============================================================ */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+
+.hub-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform .25s, box-shadow .28s, border-color .25s;
+}
+.hub-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  opacity: 0; transition: opacity .25s;
+}
+.hub-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 52px rgba(0,0,0,.09);
+  border-color: rgba(160,120,40,.32);
+}
+.hub-card:hover::before { opacity: 1; }
+
+/* Colour-coded top bar per card */
+.hub-card.c-programs::before  { background: linear-gradient(90deg,#2563eb,#3b82f6); }
+.hub-card.c-ug::before         { background: linear-gradient(90deg,#a07828,#b8922e); }
+.hub-card.c-pg::before         { background: linear-gradient(90deg,#7c3aed,#8b5cf6); }
+.hub-card.c-nptel::before      { background: linear-gradient(90deg,#0891b2,#06b6d4); }
+.hub-card.c-library::before    { background: linear-gradient(90deg,#15803d,#16a34a); }
+.hub-card.c-exam::before       { background: linear-gradient(90deg,#dc2626,#ef4444); }
+
+.hub-card-top {
+  padding: 30px 28px 0;
+}
+.hub-icon-wrap {
+  width: 56px; height: 56px;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; color: #fff; margin-bottom: 20px; flex-shrink: 0;
+}
+.c-programs  .hub-icon-wrap { background: linear-gradient(135deg,#2563eb,#1d4ed8); }
+.c-ug        .hub-icon-wrap { background: linear-gradient(135deg,#a07828,#7a5c1e); }
+.c-pg        .hub-icon-wrap { background: linear-gradient(135deg,#7c3aed,#6d28d9); }
+.c-nptel     .hub-icon-wrap { background: linear-gradient(135deg,#0891b2,#0e7490); }
+.c-library   .hub-icon-wrap { background: linear-gradient(135deg,#15803d,#166534); }
+.c-exam      .hub-icon-wrap { background: linear-gradient(135deg,#dc2626,#b91c1c); }
+
+.hub-card h3 {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700; color: var(--clr-text);
+  line-height: 1.2; margin-bottom: 10px;
+}
+.hub-card p {
+  font-size: 13.5px; color: var(--clr-text-dim);
+  line-height: 1.68; margin-bottom: 20px;
+}
+.hub-card-tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px;
+}
+.hub-tag {
+  font-size: 11px; font-weight: 600;
+  background: var(--clr-surface2); border: 1px solid var(--clr-border);
+  color: var(--clr-text-dim); padding: 3px 9px; border-radius: 100px;
+}
+.hub-card-bottom {
+  margin-top: auto;
+  padding: 16px 28px;
+  border-top: 1px solid var(--clr-border);
+  background: var(--clr-surface2);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.hub-card-meta {
+  font-size: 12px; color: var(--clr-text-faint); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .4px;
+}
+.hub-card-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 700; color: var(--clr-gold);
+  transition: gap .15s;
+}
+.hub-card-link:hover { gap: 10px; }
+
+/* ============================================================
+   STATS STRIP
+   ============================================================ */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  background: var(--clr-border);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.stat-item {
+  background: var(--clr-surface);
+  padding: 28px 20px;
+  text-align: center;
+  transition: background .2s;
+}
+.stat-item:hover { background: var(--clr-surface2); }
+.stat-item .stat-num {
+  font-family: var(--font-display);
+  font-size: 40px; font-weight: 700; color: var(--clr-gold);
+  line-height: 1; margin-bottom: 6px; letter-spacing: -1px;
+}
+.stat-item .stat-label {
+  font-size: 11.5px; color: var(--clr-text-dim);
+  text-transform: uppercase; letter-spacing: .8px; font-weight: 600;
+}
+
+/* ============================================================
+   PROGRAMME OVERVIEW TABLE
+   ============================================================ */
+.prog-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--clr-border);
+  box-shadow: 0 4px 20px rgba(0,0,0,.04);
+}
+.prog-table {
+  width: 100%; border-collapse: collapse;
+  background: var(--clr-surface);
+}
+.prog-table thead tr {
+  background: var(--clr-surface2);
+  border-bottom: 2px solid var(--clr-border);
+}
+.prog-table th {
+  padding: 14px 20px; text-align: left;
+  font-size: 11.5px; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--clr-text-dim); font-weight: 700;
+}
+.prog-table tbody tr {
+  border-bottom: 1px solid var(--clr-border);
+  transition: background .15s;
+}
+.prog-table tbody tr:last-child { border-bottom: none; }
+.prog-table tbody tr:hover { background: var(--clr-surface2); }
+.prog-table td { padding: 14px 20px; font-size: 13.5px; color: var(--clr-text-dim); vertical-align: middle; }
+.prog-table td.prog-name { font-weight: 700; color: var(--clr-text); font-size: 14px; }
+.prog-level-badge {
+  display: inline-block;
+  font-size: 10.5px; font-weight: 700; padding: 3px 10px;
+  border-radius: 100px; letter-spacing: .4px; text-transform: uppercase;
+}
+.badge-ug   { background: rgba(160,120,40,.1); border:1px solid rgba(160,120,40,.2); color: var(--clr-gold); }
+.badge-pg   { background: rgba(124,58,237,.08); border:1px solid rgba(124,58,237,.18); color: #6d28d9; }
+.badge-phd  { background: rgba(220,38,38,.08); border:1px solid rgba(220,38,38,.18); color: #b91c1c; }
+
+/* ============================================================
+   QUICK-ACCESS RESOURCE CARDS — horizontal row
+   ============================================================ */
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.res-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: 24px 22px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: border-color .25s, box-shadow .25s, transform .25s;
+}
+.res-card:hover {
+  border-color: rgba(160,120,40,.3);
+  box-shadow: 0 10px 32px rgba(0,0,0,.07);
+  transform: translateY(-3px);
+}
+.res-card-icon {
+  width: 44px; height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(160,120,40,.08);
+  border: 1px solid rgba(160,120,40,.18);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: var(--clr-gold);
+}
+.res-card h4 {
+  font-size: 14px; font-weight: 700; color: var(--clr-text); line-height: 1.3;
+}
+.res-card p {
+  font-size: 12.5px; color: var(--clr-text-dim); line-height: 1.6; flex: 1;
+}
+.res-card-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12.5px; font-weight: 700; color: var(--clr-gold); margin-top: 4px;
+  transition: gap .15s;
+}
+.res-card-link:hover { gap: 10px; }
+
+/* ============================================================
+   DEPARTMENTS SECTION
+   ============================================================ */
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--clr-border);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.dept-item {
+  background: var(--clr-surface);
+  padding: 28px 26px;
+  display: flex; align-items: flex-start; gap: 18px;
+  transition: background .2s;
+}
+.dept-item:hover { background: var(--clr-surface2); }
+.dept-item-icon {
+  width: 48px; height: 48px; flex-shrink: 0;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; color: #fff;
+}
+.di-cse   { background: linear-gradient(135deg,#2563eb,#1d4ed8); }
+.di-ece   { background: linear-gradient(135deg,#7c3aed,#6d28d9); }
+.di-mech  { background: linear-gradient(135deg,#dc2626,#b91c1c); }
+.di-civil { background: linear-gradient(135deg,#d97706,#b45309); }
+.di-ee    { background: linear-gradient(135deg,#0891b2,#0e7490); }
+.di-it    { background: linear-gradient(135deg,#15803d,#166534); }
+
+.dept-body h4 {
+  font-size: 14.5px; font-weight: 700; color: var(--clr-text);
+  margin-bottom: 5px; line-height: 1.3;
+}
+.dept-body p { font-size: 12.5px; color: var(--clr-text-dim); line-height: 1.6; }
+.dept-body a {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; font-weight: 700; color: var(--clr-gold);
+  margin-top: 8px; transition: gap .15s;
+}
+.dept-body a:hover { gap: 9px; }
+
+/* ============================================================
+   ACADEMIC CALENDAR SECTION
+   ============================================================ */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+}
+.cal-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.cal-card-head {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--clr-border);
+  background: var(--clr-surface2);
+  display: flex; align-items: center; gap: 12px;
+}
+.cal-card-head i { font-size: 18px; color: var(--clr-gold); }
+.cal-card-head h4 {
+  font-family: var(--font-display);
+  font-size: 19px; font-weight: 700; color: var(--clr-text);
+}
+.cal-rows { padding: 0; }
+.cal-row {
+  display: flex; align-items: center; gap: 18px;
+  padding: 14px 24px; border-bottom: 1px solid var(--clr-border);
+  transition: background .15s;
+}
+.cal-row:last-child { border-bottom: none; }
+.cal-row:hover { background: var(--clr-surface2); }
+.cal-month {
+  width: 52px; text-align: center; flex-shrink: 0;
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .8px; color: var(--clr-gold);
+  background: rgba(160,120,40,.08); border: 1px solid rgba(160,120,40,.18);
+  padding: 6px 4px; border-radius: var(--radius-sm);
+}
+.cal-info { flex: 1; }
+.cal-info .ev { font-size: 13.5px; font-weight: 600; color: var(--clr-text); margin-bottom: 2px; }
+.cal-info .desc { font-size: 12px; color: var(--clr-text-faint); }
+.cal-tag {
+  font-size: 10.5px; font-weight: 700; padding: 3px 9px;
+  border-radius: 100px; flex-shrink: 0;
+}
+.ct-odd  { background: rgba(37,99,235,.08); border:1px solid rgba(37,99,235,.2); color:#1d4ed8; }
+.ct-even { background: rgba(124,58,237,.08); border:1px solid rgba(124,58,237,.2); color:#6d28d9; }
+.ct-exam { background: rgba(220,38,38,.08);  border:1px solid rgba(220,38,38,.18); color:#b91c1c; }
+.ct-hol  { background: rgba(22,163,74,.08);  border:1px solid rgba(22,163,74,.2);  color:#15803d; }
+
+/* ============================================================
+   FACILITIES OVERVIEW — 3 wide cards
+   ============================================================ */
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+.fac-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: 30px 26px;
+  position: relative; overflow: hidden;
+  transition: border-color .25s, box-shadow .25s;
+}
+.fac-card:hover {
+  border-color: rgba(160,120,40,.3);
+  box-shadow: 0 12px 40px rgba(0,0,0,.07);
+}
+.fac-card-bg-icon {
+  position: absolute; bottom: -10px; right: -10px;
+  font-size: 110px; color: rgba(160,120,40,.04);
+  line-height: 1; pointer-events: none;
+}
+.fac-card-icon {
+  width: 52px; height: 52px; border-radius: var(--radius-md);
+  background: rgba(160,120,40,.08); border: 1px solid rgba(160,120,40,.18);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; color: var(--clr-gold); margin-bottom: 18px;
+}
+.fac-card h4 {
+  font-family: var(--font-display);
+  font-size: 19px; font-weight: 700; color: var(--clr-text);
+  margin-bottom: 10px;
+}
+.fac-card p {
+  font-size: 13.5px; color: var(--clr-text-dim); line-height: 1.7; margin-bottom: 18px;
+}
+.fac-bullets { display: flex; flex-direction: column; gap: 7px; }
+.fac-bullet {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; color: var(--clr-text-dim);
+}
+.fac-bullet i { color: var(--clr-gold); font-size: 11px; margin-top: 4px; flex-shrink: 0; }
+
+/* ============================================================
+   ACADEMIC POLICIES — accordion style
+   ============================================================ */
+.policy-list {
+  display: flex; flex-direction: column; gap: 2px;
+  background: var(--clr-border);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.policy-item { background: var(--clr-surface); }
+.policy-question {
+  display: flex; align-items: center;
+  padding: 18px 24px; cursor: pointer;
+  transition: background .2s; gap: 16px;
+}
+.policy-question:hover { background: var(--clr-surface2); }
+.policy-q-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: rgba(160,120,40,.08); border: 1px solid rgba(160,120,40,.18);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--clr-gold);
+}
+.policy-question h4 {
+  font-size: 14px; font-weight: 600; color: var(--clr-text); flex: 1;
+}
+.policy-arrow { color: var(--clr-gold); font-size: 16px; transition: transform .25s; flex-shrink: 0; }
+.policy-item.open .policy-arrow { transform: rotate(45deg); }
+.policy-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height .3s ease, padding .3s;
+  padding: 0 24px 0 76px;
+  font-size: 13.5px; color: var(--clr-text-dim); line-height: 1.75;
+}
+.policy-item.open .policy-answer {
+  max-height: 300px;
+  padding: 12px 24px 20px 76px;
+  border-top: 1px solid var(--clr-border);
+}
+
+/* ============================================================
+   CONTACT / ACADEMIC OFFICE CARD
+   ============================================================ */
+.office-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: var(--gap);
+  align-items: start;
+}
+.office-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.office-head {
+  padding: 22px 24px; border-bottom: 1px solid var(--clr-border);
+}
+.office-head h3 {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700; color: var(--clr-text); margin-bottom: 4px;
+}
+.office-head p { font-size: 13px; color: var(--clr-text-dim); }
+.open-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11.5px; color: #15803d;
+  background: rgba(22,163,74,.08); border: 1px solid rgba(22,163,74,.25);
+  padding: 5px 12px; border-radius: 100px; margin: 14px 24px;
+}
+.open-badge::before {
+  content: ''; width: 6px; height: 6px;
+  background: #16a34a; border-radius: 50%; animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+.office-row {
+  display: flex; align-items: center; gap: 16px;
+  padding: 15px 24px; border-bottom: 1px solid var(--clr-border);
+  transition: background .15s;
+}
+.office-row:last-child { border-bottom: none; }
+.office-row:hover { background: var(--clr-surface2); }
+.office-ico {
+  width: 40px; height: 40px;
+  background: rgba(160,120,40,.08); border: 1px solid rgba(160,120,40,.18);
+  border-radius: var(--radius-md); display: flex; align-items: center;
+  justify-content: center; font-size: 15px; color: var(--clr-gold); flex-shrink: 0;
+}
+.office-lbl {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .7px;
+  color: var(--clr-text-faint); margin-bottom: 2px; font-weight: 600;
+}
+.office-val { font-size: 13.5px; font-weight: 600; color: var(--clr-text); }
+.office-val a { color: var(--clr-gold-lt); }
+.office-val a:hover { color: var(--clr-gold); }
+
+/* quick-links panel */
+.quick-links-panel {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.ql-tile {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: 22px 20px;
+  display: flex; flex-direction: column; gap: 10px;
+  transition: border-color .25s, transform .25s;
+}
+.ql-tile:hover {
+  border-color: rgba(160,120,40,.32); transform: translateY(-2px);
+}
+.ql-tile-icon {
+  width: 40px; height: 40px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; color: #fff;
+}
+.ql-tile h5 { font-size: 14px; font-weight: 700; color: var(--clr-text); }
+.ql-tile p { font-size: 12px; color: var(--clr-text-dim); line-height: 1.5; flex: 1; }
+.ql-tile-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12.5px; font-weight: 700; color: var(--clr-gold);
+  transition: gap .15s;
+}
+.ql-tile-link:hover { gap: 9px; }
+
+/* ============================================================
+   CTA BANNER
+   ============================================================ */
+.cta-banner {
+  background: linear-gradient(135deg, #1a1e26 0%, #2d3340 100%);
+  border-radius: var(--radius-lg); padding: 52px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 32px; position: relative; overflow: hidden;
+}
+.cta-banner::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(160,120,40,.2) 0%, transparent 70%);
+  border-radius: 50%; pointer-events: none;
+}
+.cta-banner::after {
+  content: ''; position: absolute; bottom: -40px; left: 35%;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(160,120,40,.08) 0%, transparent 70%);
+  border-radius: 50%; pointer-events: none;
+}
+.cta-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: #fff;
+  line-height: 1.2; margin-bottom: 8px;
+}
+.cta-text h2 em { font-style: normal; color: var(--clr-gold); }
+.cta-text p { font-size: 14px; color: rgba(255,255,255,.6); max-width: 460px; line-height: 1.7; }
+.cta-actions { display: flex; gap: 14px; flex-shrink: 0; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--clr-gold); color: #fff;
+  padding: 13px 26px; border-radius: var(--radius-md);
+  font-size: 14px; font-weight: 700;
+  transition: background .2s, transform .15s;
+}
+.btn-primary:hover { background: var(--clr-gold-lt); transform: translateY(-2px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: rgba(255,255,255,.08); color: rgba(255,255,255,.85);
+  border: 1px solid rgba(255,255,255,.15);
+  padding: 13px 26px; border-radius: var(--radius-md);
+  font-size: 14px; font-weight: 600; transition: background .2s;
+}
+.btn-secondary:hover { background: rgba(255,255,255,.14); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 980px) {
+  .hub-grid { grid-template-columns: 1fr 1fr; }
+  .stats-row { grid-template-columns: repeat(3, 1fr); }
+  .resource-grid { grid-template-columns: 1fr 1fr; }
+  .dept-grid { grid-template-columns: 1fr 1fr; }
+  .calendar-grid { grid-template-columns: 1fr; }
+  .facilities-grid { grid-template-columns: 1fr 1fr; }
+  .office-layout { grid-template-columns: 1fr; }
+  .cta-banner { flex-direction: column; align-items: flex-start; padding: 36px 28px; }
+}
+@media (max-width: 640px) {
+  .hub-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .dept-grid { grid-template-columns: 1fr; }
+  .facilities-grid { grid-template-columns: 1fr; }
+  .quick-links-panel { grid-template-columns: 1fr; }
+  .cta-actions { flex-direction: column; width: 100%; }
+}
+
+</style>
 </head>
 
 <body>
 
-  
-
 <!-- PRELOADER -->
 <div id="preloader">
-
-    <div class="loader-content">
-
-        <img src="images/logo.png" class="logo">
-
-        <h2>School of Engineering and Technology</h2>
-
-        <div class="spinner"></div>
-
-    </div>
-
+  <div class="loader-content">
+    <img src="images/logo.png" class="logo">
+    <h2>School of Engineering and Technology</h2>
+    <div class="spinner"></div>
+  </div>
 </div>
 
-
 <div class="SOET-Topstrip">
-
 <div class="topbar">
-
 <div class="topbar-left">
 <a href="student-login.html">Students</a> |
 <a href="teacher-login.html">Faculty & Staff</a> |
@@ -43,121 +700,81 @@
 <a href="about.html#about-contact">Directory</a> |
 <a href="contact.html">Contact</a>
 </div>
-
 <div class="topbar-right">
 <span onclick="changeFontSize(-1)">A-</span>
 <span onclick="changeFontSize(0)">A</span>
 <span onclick="changeFontSize(1)">A+</span>
-
 <span onclick="translatePage('hi')">हिंदी</span> |
 <span onclick="translatePage('en')">ENG</span>
 <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
-
 <div id="google_translate_element"></div>
 </div>
-
 </div>
-
-  </div>
-
+</div>
 
 <!-- MAIN WEBSITE -->
 <div id="content">
 
 <header>
-
-<!-- TOP BAR -->
-
-
-<div class="top-right">
-</div>
-
+<div class="top-right"></div>
 </div>
 <header>
-
-
 
 <!-- LOGO AREA -->
 <div class="logo-area">
 <div class="left-header">
-
-
-<a href="index.html">
-<img src="images/logo.png" class="logo">
-</a>
+<a href="index.html"><img src="images/logo.png" class="logo"></a>
 <div class="title">
 <h2>Samrat Vikramaditya Vishwavidayalaya</h2>
 <h1>School of Engineering and Technology</h1>
 </div>
 </div>
-
 <div class="right-emblems">
 <img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
-<a href="https://www.india.gov.in" target="blank">
-<img src="images/const.png" class="constitution">
-</a>
+<a href="https://www.india.gov.in" target="blank"><img src="images/const.png" class="constitution"></a>
 </div>
 </div>
-
 
 <!-- NAVBAR -->
 <nav class="navbar">
-
-<a href="index.html" class="home-icon">
-<i class="fa-solid fa-house"></i>
-</a>
-
+<a href="index.html" class="home-icon"><i class="fa-solid fa-house"></i></a>
 <li class="nav-item">
-    <a href="about.html">About us</a>
-
+  <a href="about.html">About us</a>
   <div class="dropdown-menu">
-
     <a href="about.html#about-overview">Overview</a>
     <a href="about.html#about-vision">Vision & Mission</a>
     <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
     <a href="about.html#about-history">History</a>
     <a href="about.html#about-administration">Administration and Organization HOD details</a>
     <a href="about.html#about-contact">Contact US / How to reach</a>
-
   </div>
 </li>
-
 <li class="nav-item">
   <a href="campus-life.html">Campus Life</a>
-
   <div class="dropdown-menu">
-
     <a href="dean-office.html">Office of the Dean</a>
     <a href="hostels-dining.html">Hostels and Dining faclities</a>
     <a href="ncc-nss.html">NCC & NSS</a>
     <a href="clubs-society.html">Clubs and Societies</a>
     <a href="sports.html">Sports Infrastructure and Teams</a>
     <a href="annual-fests.html">Annual Fests</a>
-     
-
+    <a href="campus-facilities.html">Campus Facilities</a>
   </div>
 </li>
-
 <li class="nav-item">
   <a href="academics.html">Academics</a>
-
   <div class="dropdown-menu">
-
     <a href="programs.html">Programs Offered</a>
     <a href="undergraduate.html">Under-Graduate</a>
     <a href="postgraduate.html">Post-Graduate</a>
     <a href="nptel.html">NPTEL/MOOCS</a>
     <a href="library.html">Central and College Library</a>
     <a href="exam-cell.html">Examination Cell</a>
-
   </div>
 </li>
-
 <li class="nav-item">
   <a href="admission.html">Admissions</a>
-
   <div class="dropdown-menu">
-
     <a href="why-soet.html">Why SOET Ujjain?</a>
     <a href="life-in-ujjain.html">Life in Ujjain</a>
     <a href="btech-admissions.html">B.TECH Admissions</a>
@@ -165,27 +782,20 @@
     <a href="fees-scholarships.html">Fee Structure & Scholarships</a>
     <a href="admissions-faq.html">Admission FAQ</a>
     <a href="anti-ragging.html">Anti-Ragging Policy</a>
-
   </div>
 </li>
-
 <li class="nav-item">
   <a href="research.html">Research and Innovations</a>
-
   <div class="dropdown-menu">
-
     <a href="research.html#rnd-dean">Dean of R&D</a>
     <a href="research.html#rnd-projects">Sponsored Projects and Grants</a>
     <a href="research.html#rnd-patents">Patents & Publications</a>
     <a href="research.html#rnd-facilities">Central Research Facilities</a>
     <a href="research.html#rnd-incubation">Incubation Center & E-Cell</a>
-
   </div>
 </li>
-
 <li class="nav-item">
   <a href="placement.html">Training & Placement cell</a>
-
   <div class="dropdown-menu">
     <a href="placement.html#tp-message">Message from T&P Officer</a>
     <a href="placement.html#tp-stats">Placement Statistics and Annual Report</a>
@@ -194,207 +804,833 @@
     <a href="placement.html#tp-skills">Student Skill Development</a>
   </div>
 </li>
-
-<li class="nav-item">
-  <a href="alumni.html">Alumni</a>
-</li>
-
+<li class="nav-item"><a href="alumni.html">Alumni</a></li>
 <a href="contact.html">Contact Us</a>
-<li>
-<a href="#" onclick="openSearch()">
-<i class="fa-solid fa-magnifying-glass search-icon"></i>
-</a>
-</li>
-
+<li><a href="#" onclick="openSearch()"><i class="fa-solid fa-magnifying-glass search-icon"></i></a></li>
 </nav>
 
-<section class="page-banner large">
-    <div class="banner-content">
-        <h1>Academics Excellence</h1>
-        <p><a href="index.html">Home</a> / Academics</p>
+<!-- ALERT BANNER -->
+<div class="alert-banner">
+  <i class="fa-solid fa-triangle-exclamation" style="margin-right:6px;"></i>
+  <strong>NOTICE:</strong> Semester examination schedules for May 2026 have been published. &nbsp;·&nbsp;
+  <a href="exam-cell.html">View Exam Timetable</a> &nbsp;·&nbsp;
+  NPTEL Semester 1 enrollment closes <strong>15 April 2026</strong>.
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <span>Academics</span>
     </div>
+    <h1>Academics at <em>SOET</em></h1>
+    <p class="hero-sub">
+      Everything you need to know about programs, curriculum, resources and academic life at SOET Ujjain — all in one place. Explore undergraduate and postgraduate programs, online learning, the library, and more.
+    </p>
+    <div class="hero-pills">
+      <span class="hero-pill"><span class="dot"></span> 11+ Programs</span>
+      <span class="hero-pill"><span class="dot"></span> AICTE Approved</span>
+      <span class="hero-pill"><span class="dot"></span> NAAC A+ Accredited</span>
+      <span class="hero-pill"><span class="dot"></span> 6 Departments</span>
+      <span class="hero-pill"><span class="dot"></span> NPTEL Partner</span>
+    </div>
+  </div>
 </section>
 
-<section class="about-section" style="justify-content: center; text-align: center; padding-bottom: 40px; background: #fff;">
-    <div class="intro-container" style="max-width: 800px; margin: 0 auto;">
-        <h2 class="section-title text-center">Empowering the Innovators of Tomorrow</h2>
-        <p style="color: var(--text-light, #555); line-height: 1.8; font-size: 16px;">
-            Samrat Vikramaditya Vishwavidayalaya offers a dynamic and rigorous academic environment. Explore our comprehensive programs, digital learning initiatives, extensive library resources, and seamless examination portals below.
-        </p>
+</header>
+
+<main>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 1 — ACADEMIC HUB TILES (6 cards)
+══════════════════════════════════════════════════════ -->
+<section class="section surface" id="acad-hub">
+  <div class="container">
+    <div class="section-label">Navigate Academics</div>
+    <h2 class="section-title">Everything Academic, <em>One Page</em></h2>
+    <p class="section-desc">Six dedicated sections cover every aspect of academic life at SOET — from programs and curriculum to the library, online courses, and examination systems.</p>
+
+    <div class="hub-grid">
+
+      <!-- Programs Offered -->
+      <div class="hub-card c-programs">
+        <div class="hub-card-top">
+          <div class="hub-icon-wrap"><i class="fa-solid fa-table-list"></i></div>
+          <h3>Programs Offered</h3>
+          <p>A complete list of all UG, PG, and doctoral programs offered at SOET — with duration, intake, eligibility, and AICTE approval status for each program.</p>
+          <div class="hub-card-tags">
+            <span class="hub-tag">B.Tech</span>
+            <span class="hub-tag">M.Tech</span>
+            <span class="hub-tag">Ph.D.</span>
+            <span class="hub-tag">Lateral Entry</span>
+          </div>
+        </div>
+        <div class="hub-card-bottom">
+          <span class="hub-card-meta">11 Programs &nbsp;·&nbsp; 420 UG Seats</span>
+          <a href="programs.html" class="hub-card-link">Explore <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Under-Graduate -->
+      <div class="hub-card c-ug">
+        <div class="hub-card-top">
+          <div class="hub-icon-wrap"><i class="fa-solid fa-user-graduate"></i></div>
+          <h3>Under-Graduate</h3>
+          <p>Detailed information on the four-year B.Tech program — semester structure, subjects per semester, lab requirements, project guidelines, and industry-integrated modules.</p>
+          <div class="hub-card-tags">
+            <span class="hub-tag">B.Tech (4 Years)</span>
+            <span class="hub-tag">8 Semesters</span>
+            <span class="hub-tag">6 Branches</span>
+          </div>
+        </div>
+        <div class="hub-card-bottom">
+          <span class="hub-card-meta">6 Branches &nbsp;·&nbsp; 420 Seats</span>
+          <a href="undergraduate.html" class="hub-card-link">Explore <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Post-Graduate -->
+      <div class="hub-card c-pg">
+        <div class="hub-card-top">
+          <div class="hub-icon-wrap"><i class="fa-solid fa-flask-vial"></i></div>
+          <h3>Post-Graduate</h3>
+          <p>M.Tech and Ph.D. programs for engineers seeking specialization, research, and academic careers. GATE-qualified students may receive full stipend under AICTE norms.</p>
+          <div class="hub-card-tags">
+            <span class="hub-tag">M.Tech (2 Years)</span>
+            <span class="hub-tag">Ph.D.</span>
+            <span class="hub-tag">GATE</span>
+            <span class="hub-tag">Research</span>
+          </div>
+        </div>
+        <div class="hub-card-bottom">
+          <span class="hub-card-meta">3 M.Tech Streams &nbsp;·&nbsp; Ph.D. Open</span>
+          <a href="postgraduate.html" class="hub-card-link">Explore <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- NPTEL / MOOCs -->
+      <div class="hub-card c-nptel">
+        <div class="hub-card-top">
+          <div class="hub-icon-wrap"><i class="fa-solid fa-laptop"></i></div>
+          <h3>NPTEL / MOOCs</h3>
+          <p>SOET is an NPTEL Local Chapter. Students can enroll in NPTEL courses, earn proctored examination certificates, and get credit transfer. MOOCs from Coursera and edX also recognized.</p>
+          <div class="hub-card-tags">
+            <span class="hub-tag">NPTEL</span>
+            <span class="hub-tag">Coursera</span>
+            <span class="hub-tag">Credit Transfer</span>
+            <span class="hub-tag">Certificates</span>
+          </div>
+        </div>
+        <div class="hub-card-bottom">
+          <span class="hub-card-meta">NPTEL Local Chapter</span>
+          <a href="nptel.html" class="hub-card-link">Explore <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Library -->
+      <div class="hub-card c-library">
+        <div class="hub-card-top">
+          <div class="hub-icon-wrap"><i class="fa-solid fa-book-open"></i></div>
+          <h3>Central Library</h3>
+          <p>SOET's central library holds 25,000+ books, access to journals via DELNET and N-LIST, and digital databases. Reading rooms, separate discussion zones, and e-library terminals available.</p>
+          <div class="hub-card-tags">
+            <span class="hub-tag">25,000+ Books</span>
+            <span class="hub-tag">N-LIST</span>
+            <span class="hub-tag">DELNET</span>
+            <span class="hub-tag">E-Library</span>
+          </div>
+        </div>
+        <div class="hub-card-bottom">
+          <span class="hub-card-meta">Open Mon–Sat, 8 AM–8 PM</span>
+          <a href="library.html" class="hub-card-link">Explore <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Examination Cell -->
+      <div class="hub-card c-exam">
+        <div class="hub-card-top">
+          <div class="hub-icon-wrap"><i class="fa-solid fa-file-circle-check"></i></div>
+          <h3>Examination Cell</h3>
+          <p>Manages all internal and university examinations, timetables, hall tickets, result declarations, re-checking requests, and grading processes under Samrat Vikramaditya Vishwavidyalaya norms.</p>
+          <div class="hub-card-tags">
+            <span class="hub-tag">Timetables</span>
+            <span class="hub-tag">Hall Tickets</span>
+            <span class="hub-tag">Results</span>
+            <span class="hub-tag">Re-Evaluation</span>
+          </div>
+        </div>
+        <div class="hub-card-bottom">
+          <span class="hub-card-meta">Semester &amp; Annual Exams</span>
+          <a href="exam-cell.html" class="hub-card-link">Explore <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
     </div>
+  </div>
 </section>
 
-<section class="acad-hub-container">
-    <div class="acad-hub-grid">
-        
-        <a href="#programs" class="acad-card">
-            <div class="acad-card-icon"><i class="fa-solid fa-layer-group"></i></div>
-            <div class="acad-card-content">
-                <h3>Programs Offered</h3>
-                <p>Browse our complete list of engineering, science, and management disciplines available at the university.</p>
-                <span class="acad-explore-btn">Explore <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-        </a>
+<!-- ══════════════════════════════════════════════════════
+     SECTION 2 — ACADEMIC STATS
+══════════════════════════════════════════════════════ -->
+<section class="section" id="acad-stats">
+  <div class="container">
+    <div class="section-label">SOET by the Numbers</div>
+    <h2 class="section-title">Academic Strength at a Glance</h2>
+    <p class="section-desc">Hard numbers that reflect the depth and scale of academic activity at SOET Ujjain.</p>
 
-        <a href="undergraduate.html" class="acad-card">
-            <div class="acad-card-icon"><i class="fa-solid fa-user-graduate"></i></div>
-            <div class="acad-card-content">
-                <h3>Under-Graduate (B.Tech)</h3>
-                <p>Access study materials, PYQs, and syllabus details for all 8 semesters of the B.Tech program.</p>
-                <span class="acad-explore-btn">Explore <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-        </a>
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-num">11+</div>
+        <div class="stat-label">Programs Offered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Departments</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2200+</div>
+        <div class="stat-label">Enrolled Students</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">25k+</div>
+        <div class="stat-label">Library Books</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">65+</div>
+        <div class="stat-label">Years of Excellence</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <a href="postgraduate.html" class="acad-card">
-            <div class="acad-card-icon"><i class="fa-solid fa-microscope"></i></div>
-            <div class="acad-card-content">
-                <h3>Post-Graduate (M.Tech/PhD)</h3>
-                <p>Advanced research programs, thesis guidelines, and specialized course materials for PG scholars.</p>
-                <span class="acad-explore-btn">Explore <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-        </a>
+<!-- ══════════════════════════════════════════════════════
+     SECTION 3 — ALL PROGRAMS TABLE
+══════════════════════════════════════════════════════ -->
+<section class="section surface" id="acad-programs">
+  <div class="container">
+    <div class="section-label">Full Program Listing</div>
+    <h2 class="section-title">Programs Offered at SOET</h2>
+    <p class="section-desc">All programs are approved by AICTE and affiliated to Samrat Vikramaditya Vishwavidyalaya, Ujjain. Admission to all programs is through MPDTE centralized counseling.</p>
 
-        <a href="nptel.html" class="acad-card">
-            <div class="acad-card-icon"><i class="fa-solid fa-laptop-code"></i></div>
-            <div class="acad-card-content">
-                <h3>NPTEL & MOOCs</h3>
-                <p>Enhance your skills with certified online courses from IITs and global universities. Credit transfer details inside.</p>
-                <span class="acad-explore-btn">Explore <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-        </a>
+    <div class="prog-table-wrap">
+      <table class="prog-table">
+        <thead>
+          <tr>
+            <th>Program</th>
+            <th>Level</th>
+            <th>Duration</th>
+            <th>Intake</th>
+            <th>Entrance</th>
+            <th>More</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="prog-name"><i class="fa-solid fa-laptop-code" style="color:#2563eb;margin-right:8px;"></i>B.Tech — Computer Science &amp; Engineering</td>
+            <td><span class="prog-level-badge badge-ug">UG</span></td>
+            <td>4 Years</td><td>120 seats</td><td>JEE Main / MPDTE</td>
+            <td><a href="undergraduate.html" style="color:var(--clr-gold);font-weight:700;font-size:12.5px;">Details <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a></td>
+          </tr>
+          <tr>
+            <td class="prog-name"><i class="fa-solid fa-microchip" style="color:#7c3aed;margin-right:8px;"></i>B.Tech — Electronics &amp; Communication Engg.</td>
+            <td><span class="prog-level-badge badge-ug">UG</span></td>
+            <td>4 Years</td><td>60 seats</td><td>JEE Main / MPDTE</td>
+            <td><a href="undergraduate.html" style="color:var(--clr-gold);font-weight:700;font-size:12.5px;">Details <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a></td>
+          </tr>
+          <tr>
+            <td class="prog-name"><i class="fa-solid fa-gear" style="color:#dc2626;margin-right:8px;"></i>B.Tech — Mechanical Engineering</td>
+            <td><span class="prog-level-badge badge-ug">UG</span></td>
+            <td>4 Years</td><td>60 seats</td><td>JEE Main / MPDTE</td>
+            <td><a href="undergraduate.html" style="color:var(--clr-gold);font-weight:700;font-size:12.5px;">Details <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a></td>
+          </tr>
+          <tr>
+            <td class="prog-name"><i class="fa-solid fa-building" style="color:#d97706;margin-right:8px;"></i>B.Tech — Civil Engineering</td>
+            <td><span class="prog-level-badge badge-ug">UG</span></td>
+            <td>4 Years</td><td>60 seats</td><td>JEE Main / MPDTE</td>
+            <td><a href="undergraduate.html" style="color:var(--clr-gold);font-weight:700;font-size:12.5px;">Details <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a></td>
+          </tr>
+          <tr>
+            <td class="prog-name"><i class="fa-solid fa-bolt" style="color:#0891b2;margin-right:8px;"></i>B.Tech — Electrical Engineering</td>
+            <td><span class="prog-level-badge badge-ug">UG</span></td>
+            <td>4 Years</td><td>60 seats</td><td>JEE Main / MPDTE</td>
+            <td><a href="undergraduate.html" style="color:var(--clr-gold);font-weight:700;font-size:12.5px;">Details <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a></td>
+          </tr>
+          <tr>
+            <td class="prog-name"><i class="fa-solid fa-network-wired" style="color:#15803d;margin-right:8px;"></i>B.Tech — Information Technology</td>
+            <td><span class="prog-level-badge badge-ug">UG</span></td>
+            <td>4 Years</td><td>60 seats</td><td>JEE Main / MPDTE</td>
+            <td><a href="undergraduate.html" style="color:var(--clr-gold);font-weight:700;font-size:12.5px;">Details <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a></td>
+          </tr>
+          <tr>
+            <td class="prog-name"><i class="fa-solid fa-drafting-compass" style="color:#6d28d9;margin-right:8px;"></i>M.Tech — Structural Engineering</td>
+            <td><span class="prog-level-badge badge-pg">PG</span></td>
+            <td>2 Years</td><td>18 seats</td><td>GATE</td>
+            <td><a href="postgraduate.html" style="color:var(--clr-gold);font-weight:700;font-size:12.5px;">Details <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a></td>
+          </tr>
+          <tr>
+            <td class="prog-name"><i class="fa-solid fa-fire" style="color:#dc2626;margin-right:8px;"></i>M.Tech — Thermal Engineering</td>
+            <td><span class="prog-level-badge badge-pg">PG</span></td>
+            <td>2 Years</td><td>18 seats</td><td>GATE</td>
+            <td><a href="postgraduate.html" style="color:var(--clr-gold);font-weight:700;font-size:12.5px;">Details <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a></td>
+          </tr>
+          <tr>
+            <td class="prog-name"><i class="fa-solid fa-plug-circle-bolt" style="color:#0891b2;margin-right:8px;"></i>M.Tech — Power Systems</td>
+            <td><span class="prog-level-badge badge-pg">PG</span></td>
+            <td>2 Years</td><td>18 seats</td><td>GATE</td>
+            <td><a href="postgraduate.html" style="color:var(--clr-gold);font-weight:700;font-size:12.5px;">Details <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a></td>
+          </tr>
+          <tr>
+            <td class="prog-name"><i class="fa-solid fa-microscope" style="color:#b91c1c;margin-right:8px;"></i>Ph.D. — Engineering (All Disciplines)</td>
+            <td><span class="prog-level-badge badge-phd">Ph.D.</span></td>
+            <td>3–5 Years</td><td>Variable</td><td>Entrance + Interview</td>
+            <td><a href="postgraduate.html" style="color:var(--clr-gold);font-weight:700;font-size:12.5px;">Details <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--clr-text-faint);margin-top:12px;"><i class="fa-solid fa-circle-info" style="color:var(--clr-gold);margin-right:5px;"></i>All programs affiliated to Samrat Vikramaditya Vishwavidyalaya and approved by AICTE, New Delhi. Seat matrix subject to revision by MPDTE.</p>
+  </div>
+</section>
 
-        <a href="library.html" class="acad-card">
-            <div class="acad-card-icon"><i class="fa-solid fa-book-open-reader"></i></div>
-            <div class="acad-card-content">
-                <h3>Central Library</h3>
-                <p>Access E-Journals, OPAC, digital archives, and read about our massive physical book collection.</p>
-                <span class="acad-explore-btn">Explore <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-        </a>
+<!-- ══════════════════════════════════════════════════════
+     SECTION 4 — DEPARTMENTS
+══════════════════════════════════════════════════════ -->
+<section class="section" id="acad-departments">
+  <div class="container">
+    <div class="section-label">Academic Departments</div>
+    <h2 class="section-title">Six Engineering Departments</h2>
+    <p class="section-desc">Each department operates independently with its own faculty, labs, and industry partnerships — yet collaborates across disciplines for research and student projects.</p>
 
-        <a href="exam-cell.html" class="acad-card">
-            <div class="acad-card-icon"><i class="fa-solid fa-file-signature"></i></div>
-            <div class="acad-card-content">
-                <h3>Examination Cell</h3>
-                <p>Download exam timetables, admit cards, results, and important examination forms instantly.</p>
-                <span class="acad-explore-btn">Explore <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-        </a>
+    <div class="dept-grid">
+      <div class="dept-item">
+        <div class="dept-item-icon di-cse"><i class="fa-solid fa-laptop-code"></i></div>
+        <div class="dept-body">
+          <h4>Computer Science &amp; Engineering</h4>
+          <p>AI/ML, Cloud, Cybersecurity, Software Engineering, Data Structures, DBMS, and Operating Systems.</p>
+          <a href="undergraduate.html">View Department <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="dept-item">
+        <div class="dept-item-icon di-ece"><i class="fa-solid fa-microchip"></i></div>
+        <div class="dept-body">
+          <h4>Electronics &amp; Communication</h4>
+          <p>VLSI Design, Embedded Systems, Signal Processing, Communication Networks, IoT, and RF Engineering.</p>
+          <a href="undergraduate.html">View Department <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="dept-item">
+        <div class="dept-item-icon di-mech"><i class="fa-solid fa-gear"></i></div>
+        <div class="dept-body">
+          <h4>Mechanical Engineering</h4>
+          <p>Thermodynamics, Fluid Mechanics, CAD/CAM, Manufacturing, Robotics, and Industrial Engineering.</p>
+          <a href="undergraduate.html">View Department <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="dept-item">
+        <div class="dept-item-icon di-civil"><i class="fa-solid fa-building"></i></div>
+        <div class="dept-body">
+          <h4>Civil Engineering</h4>
+          <p>Structural Analysis, Transportation, Geotechnical, Environmental Engineering, Hydraulics, and Surveying.</p>
+          <a href="undergraduate.html">View Department <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="dept-item">
+        <div class="dept-item-icon di-ee"><i class="fa-solid fa-bolt"></i></div>
+        <div class="dept-body">
+          <h4>Electrical Engineering</h4>
+          <p>Power Systems, Control Systems, Electrical Machines, Power Electronics, Smart Grids, and Renewable Energy.</p>
+          <a href="undergraduate.html">View Department <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="dept-item">
+        <div class="dept-item-icon di-it"><i class="fa-solid fa-network-wired"></i></div>
+        <div class="dept-body">
+          <h4>Information Technology</h4>
+          <p>Full-Stack Development, Networking, Mobile Applications, Data Analytics, Cybersecurity, and Cloud Platforms.</p>
+          <a href="undergraduate.html">View Department <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 5 — ACADEMIC RESOURCES (4 quick-access cards)
+══════════════════════════════════════════════════════ -->
+<section class="section surface" id="acad-resources">
+  <div class="container">
+    <div class="section-label">Academic Resources</div>
+    <h2 class="section-title">Tools &amp; Resources for Students</h2>
+    <p class="section-desc">Everything you need beyond the classroom — digital library access, online certification, university portals, and exam information.</p>
+
+    <div class="resource-grid">
+      <div class="res-card">
+        <div class="res-card-icon"><i class="fa-solid fa-book-open"></i></div>
+        <h4>N-LIST &amp; DELNET Access</h4>
+        <p>Access 6,000+ e-journals and 3 lakh+ e-books through N-LIST and DELNET from any campus terminal or via remote login with your student credentials.</p>
+        <a href="library.html" class="res-card-link">Go to Library <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="res-card">
+        <div class="res-card-icon"><i class="fa-solid fa-certificate"></i></div>
+        <h4>NPTEL Certifications</h4>
+        <p>Earn nationally recognized NPTEL certificates with credit transfer to your degree. SOET is an active NPTEL Local Chapter with a dedicated coordinator.</p>
+        <a href="nptel.html" class="res-card-link">Explore NPTEL <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="res-card">
+        <div class="res-card-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+        <h4>Previous Year Papers</h4>
+        <p>Download solved and unsolved previous year question papers for all branches and semesters from the examination cell's digital repository.</p>
+        <a href="exam-cell.html" class="res-card-link">Exam Cell <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="res-card">
+        <div class="res-card-icon"><i class="fa-solid fa-globe"></i></div>
+        <h4>University Online Portal</h4>
+        <p>Access Samrat Vikramaditya Vishwavidyalaya's online portal for registration, fee payment, results, and official communication regarding your academic record.</p>
+        <a href="https://vikram.mponline.gov.in" target="_blank" class="res-card-link">Open Portal <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 6 — ACADEMIC FACILITIES
+══════════════════════════════════════════════════════ -->
+<section class="section" id="acad-facilities">
+  <div class="container">
+    <div class="section-label">Infrastructure</div>
+    <h2 class="section-title">Academic Facilities</h2>
+    <p class="section-desc">Modern infrastructure designed to support both classroom learning and hands-on experimentation across all six engineering disciplines.</p>
+
+    <div class="facilities-grid">
+
+      <div class="fac-card">
+        <div class="fac-card-bg-icon"><i class="fa-solid fa-flask-vial"></i></div>
+        <div class="fac-card-icon"><i class="fa-solid fa-flask-vial"></i></div>
+        <h4>Laboratories &amp; Workshops</h4>
+        <p>Fully equipped labs for every subject — from advanced AI &amp; Robotics to hydraulics and fabrication workshops. Lab sessions are built into every semester for all disciplines.</p>
+        <div class="fac-bullets">
+          <div class="fac-bullet"><i class="fa-solid fa-check"></i> Dedicated AI, Robotics &amp; IoT Lab</div>
+          <div class="fac-bullet"><i class="fa-solid fa-check"></i> Central Research Facility open to all departments</div>
+          <div class="fac-bullet"><i class="fa-solid fa-check"></i> Fabrication, CNC &amp; Welding Workshop (Mech)</div>
+          <div class="fac-bullet"><i class="fa-solid fa-check"></i> High-speed Computing Lab (CSE / IT)</div>
+        </div>
+      </div>
+
+      <div class="fac-card">
+        <div class="fac-card-bg-icon"><i class="fa-solid fa-book-open"></i></div>
+        <div class="fac-card-icon"><i class="fa-solid fa-book-open"></i></div>
+        <h4>Central Library</h4>
+        <p>A sprawling two-floor library housing over 25,000 physical volumes, a dedicated digital reading zone, and access to national and international journal databases.</p>
+        <div class="fac-bullets">
+          <div class="fac-bullet"><i class="fa-solid fa-check"></i> 25,000+ books across all engineering disciplines</div>
+          <div class="fac-bullet"><i class="fa-solid fa-check"></i> DELNET &amp; N-LIST digital database access</div>
+          <div class="fac-bullet"><i class="fa-solid fa-check"></i> Separate discussion rooms and reading zones</div>
+          <div class="fac-bullet"><i class="fa-solid fa-check"></i> Open Mon–Sat, 8:00 AM – 8:00 PM</div>
+        </div>
+      </div>
+
+      <div class="fac-card">
+        <div class="fac-card-bg-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+        <div class="fac-card-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+        <h4>Smart Classrooms</h4>
+        <p>All lecture halls are equipped with digital projectors, interactive boards, and sound systems. Wi-Fi-enabled learning environment supports blended learning models.</p>
+        <div class="fac-bullets">
+          <div class="fac-bullet"><i class="fa-solid fa-check"></i> Digital projectors and interactive whiteboards</div>
+          <div class="fac-bullet"><i class="fa-solid fa-check"></i> Campus-wide high-speed Wi-Fi connectivity</div>
+          <div class="fac-bullet"><i class="fa-solid fa-check"></i> Dedicated seminar halls for guest lectures</div>
+          <div class="fac-bullet"><i class="fa-solid fa-check"></i> Online exam &amp; proctoring infrastructure</div>
+        </div>
+      </div>
 
     </div>
+  </div>
 </section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 7 — ACADEMIC CALENDAR
+══════════════════════════════════════════════════════ -->
+<section class="section surface" id="acad-calendar">
+  <div class="container">
+    <div class="section-label">Academic Year 2025–26</div>
+    <h2 class="section-title">Academic Calendar</h2>
+    <p class="section-desc">Key dates for the current academic year. For full details, timetables and holiday lists, visit the Examination Cell.</p>
+
+    <div class="calendar-grid">
+
+      <!-- Odd Semester -->
+      <div class="cal-card">
+        <div class="cal-card-head">
+          <i class="fa-solid fa-calendar-days"></i>
+          <h4>Odd Semester (Jul – Nov 2025)</h4>
+        </div>
+        <div class="cal-rows">
+          <div class="cal-row">
+            <div class="cal-month">Jul</div>
+            <div class="cal-info"><div class="ev">Classes Begin — Sem 1, 3, 5, 7</div><div class="desc">New academic year commences for all UG programs</div></div>
+            <span class="cal-tag ct-odd">Odd Sem</span>
+          </div>
+          <div class="cal-row">
+            <div class="cal-month">Aug</div>
+            <div class="cal-info"><div class="ev">Internal Assessment — Unit Test 1</div><div class="desc">First internal assessment across all branches</div></div>
+            <span class="cal-tag ct-exam">Exam</span>
+          </div>
+          <div class="cal-row">
+            <div class="cal-month">Sep</div>
+            <div class="cal-info"><div class="ev">Mid-Semester Break &amp; Lab Evaluations</div><div class="desc">Lab record submissions due before break</div></div>
+            <span class="cal-tag ct-hol">Break</span>
+          </div>
+          <div class="cal-row">
+            <div class="cal-month">Oct</div>
+            <div class="cal-info"><div class="ev">Internal Assessment — Unit Test 2</div><div class="desc">Second internal assessment, project submissions</div></div>
+            <span class="cal-tag ct-exam">Exam</span>
+          </div>
+          <div class="cal-row">
+            <div class="cal-month">Nov</div>
+            <div class="cal-info"><div class="ev">University End-Semester Examination</div><div class="desc">Odd semester final exams conducted by SVV</div></div>
+            <span class="cal-tag ct-exam">University Exam</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Even Semester -->
+      <div class="cal-card">
+        <div class="cal-card-head">
+          <i class="fa-solid fa-calendar-check"></i>
+          <h4>Even Semester (Jan – May 2026)</h4>
+        </div>
+        <div class="cal-rows">
+          <div class="cal-row">
+            <div class="cal-month">Jan</div>
+            <div class="cal-info"><div class="ev">Classes Resume — Sem 2, 4, 6, 8</div><div class="desc">Even semester begins after winter break</div></div>
+            <span class="cal-tag ct-even">Even Sem</span>
+          </div>
+          <div class="cal-row">
+            <div class="cal-month">Feb</div>
+            <div class="cal-info"><div class="ev">Internal Assessment — Unit Test 1</div><div class="desc">First internal evaluation of even semester</div></div>
+            <span class="cal-tag ct-exam">Exam</span>
+          </div>
+          <div class="cal-row">
+            <div class="cal-month">Mar</div>
+            <div class="cal-info"><div class="ev">NPTEL Proctored Exam Window</div><div class="desc">NPTEL online course certifications examinations</div></div>
+            <span class="cal-tag ct-even">NPTEL</span>
+          </div>
+          <div class="cal-row">
+            <div class="cal-month">Apr</div>
+            <div class="cal-info"><div class="ev">Internal Assessment — Unit Test 2 &amp; Projects</div><div class="desc">Final internal evaluations &amp; project viva</div></div>
+            <span class="cal-tag ct-exam">Exam</span>
+          </div>
+          <div class="cal-row">
+            <div class="cal-month">May</div>
+            <div class="cal-info"><div class="ev">University End-Semester Examination</div><div class="desc">Even semester final exams — currently in progress</div></div>
+            <span class="cal-tag ct-exam">University Exam</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <p style="font-size:12px;color:var(--clr-text-faint);margin-top:14px;">
+      <i class="fa-solid fa-circle-info" style="color:var(--clr-gold);margin-right:5px;"></i>
+      Dates are indicative. Official examination timetables are published by the Examination Cell and Samrat Vikramaditya Vishwavidyalaya.
+      <a href="exam-cell.html" style="color:var(--clr-gold);font-weight:600;margin-left:4px;">View Official Timetable <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a>
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 8 — ACADEMIC POLICIES ACCORDION
+══════════════════════════════════════════════════════ -->
+<section class="section" id="acad-policies">
+  <div class="container">
+    <div class="section-label">Rules &amp; Regulations</div>
+    <h2 class="section-title">Academic Policies</h2>
+    <p class="section-desc">Key rules that govern academic conduct, attendance, grading, and progression at SOET. Every enrolled student is expected to be familiar with these.</p>
+
+    <div class="policy-list">
+
+      <div class="policy-item open">
+        <div class="policy-question" onclick="togglePolicy(this)">
+          <div class="policy-q-icon"><i class="fa-solid fa-percent"></i></div>
+          <h4>Attendance Requirements</h4>
+          <span class="policy-arrow">+</span>
+        </div>
+        <div class="policy-answer">
+          A minimum of <strong>75% attendance</strong> in each subject (theory + lab) is mandatory to be eligible to appear in the University End-Semester Examination. Students falling below 75% will be detained and will not be permitted to appear in the exams for the concerned subject. Medical leaves can be condoned up to a maximum of 10% upon submission of valid documentation approved by the Dean's office. Attendance is calculated separately for theory and lab components.
+        </div>
+      </div>
+
+      <div class="policy-item">
+        <div class="policy-question" onclick="togglePolicy(this)">
+          <div class="policy-q-icon"><i class="fa-solid fa-star-half-stroke"></i></div>
+          <h4>Grading System &amp; CGPA</h4>
+          <span class="policy-arrow">+</span>
+        </div>
+        <div class="policy-answer">
+          SOET follows the 10-point CGPA grading system as prescribed by Samrat Vikramaditya Vishwavidyalaya. Internal assessment contributes 30 marks and the University End-Semester Examination contributes 70 marks per subject. The grade thresholds are: O (Outstanding) ≥ 90, A+ ≥ 80, A ≥ 70, B+ ≥ 60, B ≥ 55, C ≥ 50, D ≥ 45, F &lt; 45. Students scoring F in any subject must appear for the supplementary examination.
+        </div>
+      </div>
+
+      <div class="policy-item">
+        <div class="policy-question" onclick="togglePolicy(this)">
+          <div class="policy-q-icon"><i class="fa-solid fa-rotate"></i></div>
+          <h4>Re-Evaluation &amp; Re-Checking Policy</h4>
+          <span class="policy-arrow">+</span>
+        </div>
+        <div class="policy-answer">
+          Students who are dissatisfied with their result may apply for re-checking (marks re-totalling) within 15 days of result declaration. Re-evaluation (full re-assessment of answer script) is also available at the university level with an applicable fee. Applications must be submitted to the Examination Cell with the prescribed fee payment receipt. Results of re-evaluation are final and binding. Contact the exam cell for current fee schedules and procedures.
+        </div>
+      </div>
+
+      <div class="policy-item">
+        <div class="policy-question" onclick="togglePolicy(this)">
+          <div class="policy-q-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+          <h4>NPTEL Credit Transfer Policy</h4>
+          <span class="policy-arrow">+</span>
+        </div>
+        <div class="policy-answer">
+          Students who complete NPTEL online courses with a minimum of 60% in the proctored examination are eligible for credit transfer as per the AICTE NPTEL credit transfer guidelines. A maximum of 4 credits per semester and 20 credits over the entire degree program may be transferred. The NPTEL Local Chapter coordinator at SOET must be notified before the course starts, and the certificate must be submitted to the academic section within 30 days of result declaration.
+        </div>
+      </div>
+
+      <div class="policy-item">
+        <div class="policy-question" onclick="togglePolicy(this)">
+          <div class="policy-q-icon"><i class="fa-solid fa-code-branch"></i></div>
+          <h4>Branch Change Policy</h4>
+          <span class="policy-arrow">+</span>
+        </div>
+        <div class="policy-answer">
+          Branch change requests are processed at the end of the first semester, subject to availability of vacant seats in the desired branch. Eligibility criteria include a minimum CGPA of 7.5 in Semester 1, no active backlogs, and 75%+ overall attendance. The number of available seats for branch change is limited (typically 5% of sanctioned intake). Requests are processed in order of CGPA merit. Branch change is a one-time provision — no further change is permitted.
+        </div>
+      </div>
+
+      <div class="policy-item">
+        <div class="policy-question" onclick="togglePolicy(this)">
+          <div class="policy-q-icon"><i class="fa-solid fa-file-circle-xmark"></i></div>
+          <h4>Academic Integrity &amp; Anti-Plagiarism</h4>
+          <span class="policy-arrow">+</span>
+        </div>
+        <div class="policy-answer">
+          SOET maintains a strict zero-tolerance policy on academic dishonesty. Plagiarism in project reports, theses, assignments, and lab records is checked using anti-plagiarism tools. A similarity index above 20% results in rejection and mandatory resubmission. Copying in examinations or presenting another's work as one's own may result in suspension or cancellation of results for the entire semester. All final-year projects are screened before submission to the university.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 9 — ACADEMIC OFFICE + QUICK LINKS
+══════════════════════════════════════════════════════ -->
+<section class="section surface" id="acad-office">
+  <div class="container">
+    <div class="section-label">Academic Administration</div>
+    <h2 class="section-title">Academic Office &amp; Quick Links</h2>
+    <p class="section-desc">For academic queries, transcript requests, re-evaluation applications, and other administrative needs — contact the SOET academic office directly.</p>
+
+    <div class="office-layout">
+
+      <!-- Office contact card -->
+      <div>
+        <div class="office-card">
+          <div class="office-head">
+            <h3>SOET Academic Office</h3>
+            <p>For all academic queries, records, and administrative support</p>
+          </div>
+          <div class="open-badge">Office Open — Mon to Sat, 10 AM – 5 PM</div>
+          <div class="office-row">
+            <div class="office-ico"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <div class="office-lbl">Call</div>
+              <div class="office-val"><a href="tel:+918770122362">+91-8770122362</a></div>
+            </div>
+          </div>
+          <div class="office-row">
+            <div class="office-ico"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="office-lbl">Email</div>
+              <div class="office-val"><a href="mailto:academics@soet.ac.in">academics@soet.ac.in</a></div>
+            </div>
+          </div>
+          <div class="office-row">
+            <div class="office-ico"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <div class="office-lbl">Location</div>
+              <div class="office-val" style="font-size:13px;font-weight:500;color:var(--clr-text-dim);">Ground Floor, Main Academic Block<br>SOET, SVV Campus, Ujjain — 456010</div>
+            </div>
+          </div>
+          <div class="office-row">
+            <div class="office-ico"><i class="fa-solid fa-globe"></i></div>
+            <div>
+              <div class="office-lbl">University Portal</div>
+              <div class="office-val"><a href="https://vikram.mponline.gov.in" target="_blank">vikram.mponline.gov.in</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick link tiles -->
+      <div class="quick-links-panel">
+        <a href="programs.html" class="ql-tile">
+          <div class="ql-tile-icon" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);"><i class="fa-solid fa-table-list"></i></div>
+          <h5>Programs Offered</h5>
+          <p>Full listing of all UG, PG and doctoral programs with intake and eligibility details.</p>
+          <span class="ql-tile-link">Open <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="undergraduate.html" class="ql-tile">
+          <div class="ql-tile-icon" style="background:linear-gradient(135deg,#a07828,#7a5c1e);"><i class="fa-solid fa-user-graduate"></i></div>
+          <h5>Under-Graduate</h5>
+          <p>B.Tech semester-wise curriculum, subjects, lab schedules, and project guidelines.</p>
+          <span class="ql-tile-link">Open <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="postgraduate.html" class="ql-tile">
+          <div class="ql-tile-icon" style="background:linear-gradient(135deg,#7c3aed,#6d28d9);"><i class="fa-solid fa-flask-vial"></i></div>
+          <h5>Post-Graduate</h5>
+          <p>M.Tech and Ph.D. program details, GATE requirements, research areas and faculty.</p>
+          <span class="ql-tile-link">Open <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="nptel.html" class="ql-tile">
+          <div class="ql-tile-icon" style="background:linear-gradient(135deg,#0891b2,#0e7490);"><i class="fa-solid fa-laptop"></i></div>
+          <h5>NPTEL / MOOCs</h5>
+          <p>Online courses, credit transfer process, enrollment windows and certification guide.</p>
+          <span class="ql-tile-link">Open <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="library.html" class="ql-tile">
+          <div class="ql-tile-icon" style="background:linear-gradient(135deg,#15803d,#166534);"><i class="fa-solid fa-book-open"></i></div>
+          <h5>Central Library</h5>
+          <p>Library catalog, digital database access, reading room timings and membership.</p>
+          <span class="ql-tile-link">Open <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="exam-cell.html" class="ql-tile">
+          <div class="ql-tile-icon" style="background:linear-gradient(135deg,#dc2626,#b91c1c);"><i class="fa-solid fa-file-circle-check"></i></div>
+          <h5>Examination Cell</h5>
+          <p>Exam timetables, hall tickets, results, re-evaluation and academic record requests.</p>
+          <span class="ql-tile-link">Open <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 10 — CTA BANNER
+══════════════════════════════════════════════════════ -->
+<section class="section" style="border-bottom:none; background:var(--clr-surface);">
+  <div class="container">
+    <div class="cta-banner">
+      <div class="cta-text">
+        <h2>Ready to begin your journey at <em>SOET?</em></h2>
+        <p>Explore admission requirements, check eligibility, and apply for B.Tech or M.Tech through the MPDTE counseling process. Your future starts with the right choice of college.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="admission.html" class="btn-primary"><i class="fa-solid fa-file-pen"></i> Admissions 2026–27</a>
+        <a href="btech-admissions.html" class="btn-secondary"><i class="fa-solid fa-graduation-cap"></i> B.Tech Details</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div><!-- /content -->
 
 <!-- FOOTER -->
 <footer class="elite-footer">
-    <div class="footer-top-grid">
-        
-        <div class="footer-col">
-            <h4>School of Engineering & Technology</h4>
-            <div class="contact-details">
-                <p>Samrat Vikramaditya Vishwavidyalaya<br>Ujjain, Madhya Pradesh, India</p>
-                <p><i class="fa-solid fa-phone" style="width: 25px; color: #8892b0;"></i> <a href="tel:+918770122362">+91-8770122362</a></p>
-                <p><i class="fa-solid fa-envelope" style="width: 25px; color: #8892b0;"></i> <a href="mailto:soet@vikramuniv.ac.in">soet@vikramuniv.ac.in</a></p>
-                <p><i class="fa-solid fa-globe" style="width: 25px; color: #8892b0;"></i> <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
-            </div>
-        </div>
-
-        <div class="footer-col">
-            <h4>Academics</h4>
-            <ul class="elite-links">
-                <li><a href="#">Departments</a></li>
-                <li><a href="programs.html">Educational Programmes</a></li>
-                <li><a href="#">Rules & Regulations</a></li>
-                <li><a href="https://vikram.mponline.gov.in">Online Services</a></li>
-                <li><a href="campus-life.html">Campus Life</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-col">
-            <h4>Institutional</h4>
-            <ul class="elite-links">
-                <li><a href="#">NIRF Ranking</a></li>
-                <li><a href="#">NAAC Accreditation</a></li>
-                <li><a href="anti-ragging.html">Anti-Ragging Committee</a></li>
-                <li><a href="#">Internal Complaints & Women Cell</a></li>
-                <li><a href="contact.html">Contact Directory</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-col live-campus-widget">
-            <h4>Campus Live</h4>
-            <div class="data-row">
-                <span class="data-label">Date & Time</span>
-                <span class="data-value"><span id="date">--</span> | <span id="time">--</span></span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">Location</span>
-                <span class="data-value" style="font-size: 12px;">स्वामी विवेकानन्द स्नातक भवन</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">Conditions</span>
-                <span class="data-value"><span id="weather">--</span>, <span id="temp">--</span></span>
-            </div>
-        </div>
-
+  <div class="footer-top-grid">
+    <div class="footer-col">
+      <h4>School of Engineering & Technology</h4>
+      <div class="contact-details">
+        <p>Samrat Vikramaditya Vishwavidyalaya<br>Ujjain, Madhya Pradesh, India</p>
+        <p><i class="fa-solid fa-phone" style="width:25px;color:#8892b0;"></i> <a href="tel:+918770122362">+91-8770122362</a></p>
+        <p><i class="fa-solid fa-envelope" style="width:25px;color:#8892b0;"></i> <a href="mailto:admissions@soet.ac.in">admissions@soet.ac.in</a></p>
+        <p><i class="fa-solid fa-globe" style="width:25px;color:#8892b0;"></i> <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
+      </div>
     </div>
-
-    <div class="footer-bottom-bar">
-        <div class="bottom-bar-content">
-            <div class="legal-text">
-                &copy; 2026 Student Tech Team SOET.<br>All rights reserved.
-            </div>
-            
-            <div class="footer-logo-center">
-                <a href="index.html">
-                    <img src="images/logo2.png" alt="SOET University Logo">
-                </a>
-            </div>
-
-            <div class="visitor-stats">
-                Last Updated: <span id="lastUpdated"></span><br>
-                Unique Visitors: <span id="visitorCount"></span>
-            </div>
-        </div>
+    <div class="footer-col">
+      <h4>Academics</h4>
+      <ul class="elite-links">
+        <li><a href="#">Departments</a></li>
+        <li><a href="programs.html">Educational Programmes</a></li>
+        <li><a href="#">Rules & Regulations</a></li>
+        <li><a href="https://vikram.mponline.gov.in">Online Services</a></li>
+        <li><a href="campus-life.html">Campus Life</a></li>
+      </ul>
     </div>
+    <div class="footer-col">
+      <h4>Institutional</h4>
+      <ul class="elite-links">
+        <li><a href="#">NIRF Ranking</a></li>
+        <li><a href="#">NAAC Accreditation</a></li>
+        <li><a href="anti-ragging.html">Anti-Ragging Committee</a></li>
+        <li><a href="#">Internal Complaints & Women Cell</a></li>
+        <li><a href="contact.html">Contact Directory</a></li>
+      </ul>
+    </div>
+    <div class="footer-col live-campus-widget">
+      <h4>Campus Live</h4>
+      <div class="data-row">
+        <span class="data-label">Date & Time</span>
+        <span class="data-value"><span id="date">--</span> | <span id="time">--</span></span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Location</span>
+        <span class="data-value" style="font-size:12px;">स्वामी विवेकानन्द स्नातक भवन</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Conditions</span>
+        <span class="data-value"><span id="weather">--</span>, <span id="temp">--</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom-bar">
+    <div class="bottom-bar-content">
+      <div class="legal-text">&copy; 2026 Student Tech Team SOET.<br>All rights reserved.</div>
+      <div class="footer-logo-center">
+        <a href="index.html"><img src="images/logo2.png" alt="SOET University Logo"></a>
+      </div>
+      <div class="visitor-stats">
+        Last Updated: <span id="lastUpdated"></span><br>
+        Unique Visitors: <span id="visitorCount"></span>
+      </div>
+    </div>
+  </div>
 </footer>
+
 <script src="js/script.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    // 1. Date & Time
-    const dateEl = document.getElementById("date");
-    const timeEl = document.getElementById("time");
-    
-    if(dateEl) dateEl.innerHTML = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-    
-    setInterval(function(){
-        if(timeEl) timeEl.innerHTML = new Date().toLocaleTimeString('en-US', { hour12: false });
-    }, 1000);
+/* ── Accordion toggle ── */
+function togglePolicy(el) {
+  el.parentElement.classList.toggle('open');
+}
 
-    // 2. Weather API
-    const apiKey = "6ab4623b616a1ea162cf45d73c2dcb32";
-    const city = "Ujjain";
+/* ── Footer scripts ── */
+document.addEventListener('DOMContentLoaded', function () {
+  const dateEl = document.getElementById('date');
+  const timeEl = document.getElementById('time');
+  if (dateEl) dateEl.innerHTML = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  setInterval(function () {
+    if (timeEl) timeEl.innerHTML = new Date().toLocaleTimeString('en-US', { hour12: false });
+  }, 1000);
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
-    .then(response => response.json())
+  fetch('https://api.openweathermap.org/data/2.5/weather?q=Ujjain&units=metric&appid=6ab4623b616a1ea162cf45d73c2dcb32')
+    .then(r => r.json())
     .then(data => {
-        if (data.weather && data.weather.length > 0) {
-            let desc = data.weather[0].description;
-            document.getElementById("weather").innerHTML = desc.charAt(0).toUpperCase() + desc.slice(1);
-            document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
-        }
-    })
-    .catch(err => console.log("Weather error:", err));
+      if (data.weather) {
+        let d = data.weather[0].description;
+        document.getElementById('weather').innerHTML = d.charAt(0).toUpperCase() + d.slice(1);
+        document.getElementById('temp').innerHTML = Math.round(data.main.temp) + '°C';
+      }
+    }).catch(() => {});
 
-    // 3. Stats
-    const lastUp = document.getElementById("lastUpdated");
-    if(lastUp) lastUp.innerHTML = document.lastModified;
-
-    let count = localStorage.getItem("visitorCount");
-    count = count === null ? 1 : Number(count) + 1;
-    localStorage.setItem("visitorCount", count);
-    
-    const visCount = document.getElementById("visitorCount");
-    if(visCount) visCount.innerText = count.toLocaleString();
+  const lastUp = document.getElementById('lastUpdated');
+  if (lastUp) lastUp.innerHTML = document.lastModified;
+  let count = localStorage.getItem('visitorCount');
+  count = count === null ? 1 : Number(count) + 1;
+  localStorage.setItem('visitorCount', count);
+  const visCount = document.getElementById('visitorCount');
+  if (visCount) visCount.innerText = count.toLocaleString();
 });
 </script>
-</HTML>
+
+</body>
+</html>
